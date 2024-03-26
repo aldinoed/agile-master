@@ -1,21 +1,33 @@
 // Home.jsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import styles from "../style";
+import {Navbar,Hero,AddExperience} from "../components";
 
-function Home() {
-  const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    axios.get('http://localhost:5000')
-      .then(res => setMessage(res.data))
-      .catch(err => console.error(err));
-  }, []);
 
+const Home = () => {
   return (
-    <div>
-      <h1>{message}</h1>
+     <>
+    <div className=" w-full ">
+      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+        <div className={`${styles.boxWidth}`}>
+          <Navbar  />
+        </div>
+      </div>
     </div>
+
+    <div className={`bg-repeat bg-orange-gradient overflow-visible ${styles.flexStart} pb-20`}>
+      <div className={`${styles.boxWidth}`}>
+        <Hero />
+      </div>
+    </div>
+
+    <div className={`bg-white overflow-visible ${styles.flexCenter} pt-20`}>
+      <div className={`${styles.boxWidth}`}>
+        <AddExperience />
+      </div>
+    </div>
+    </>
   );
-}
+};
 
 export default Home;
