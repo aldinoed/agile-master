@@ -51,7 +51,7 @@ class _ListPerusahaanState extends State<Listperusahaan> {
       backgroundColor: Colors.grey.shade100,
       // Your existing AppBar and bottom search/filter UI (unchanged)
       appBar: AppBar(
-        title: const Text('GOSHIP'),
+        title: const Text('Goship'),
         titleTextStyle: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class _ListPerusahaanState extends State<Listperusahaan> {
           child: InkWell(
             onTap: (){
             },
-            
+
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Image.asset(
@@ -75,7 +75,7 @@ class _ListPerusahaanState extends State<Listperusahaan> {
                 height: 45,
               ),
             ),
-            
+
           ),
         ),
         ],
