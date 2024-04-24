@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/view/main_screen/main_screen.dart';
 
 class Guide extends StatelessWidget {
   const Guide({Key? key}) : super(key: key);
@@ -8,24 +9,39 @@ class Guide extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(250, 250, 254, 1),
       appBar: AppBar(
-        flexibleSpace: const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image(image: AssetImage('assets/home/LOGO1.png')),
-              Text(
-                'Goship',
-                style: TextStyle(
+        backgroundColor: Color.fromRGBO(250, 250, 254, 1),
+        title: InkWell(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => MainScreen()),
+            );
+          },
+          child: Align(
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisSize: MainAxisSize
+                  .min, // Memastikan konten dalam Row sesempit mungkin
+              children: <Widget>[
+                Image.asset(
+                  'assets/logo/logo-1.png',
+                  height: 40,
+                  width: 40,
+                ),
+                const SizedBox(width: 10), // Memberi jarak antara logo dan teks
+                const Text(
+                  'Goship',
+                  style: TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    fontFamily: 'LibreBaskerville'),
-              ),
-              Image(image: AssetImage('assets/home/ProfilePhoto.png'))
-            ],
+                    fontFamily: 'LibreBaskerville',
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+        centerTitle: true,
       ),
       body: Container(
         child: Column(
@@ -39,7 +55,7 @@ class Guide extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromARGB(255, 255, 255, 255),
                 ),
-                child: Column(  
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
