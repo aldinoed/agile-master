@@ -48,70 +48,60 @@ class _ListPerusahaanState extends State<Listperusahaan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      // Your existing AppBar and bottom search/filter UI (unchanged)
+      backgroundColor: Color.fromRGBO(250, 250, 254, 1),
       appBar: AppBar(
-        title: const Text('Goship'),
-        titleTextStyle: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'LibreBaskerville',
-          color: Colors.black,
+        backgroundColor: Color.fromRGBO(250, 250, 254, 1),
+        title: InkWell(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => MainScreen()),
+            );
+          },
+          child: Align(
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Image.asset(
+                  'assets/logo/logo-1.png',
+                  height: 40,
+                  width: 40,
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  'Goship',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'LibreBaskerville',
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         centerTitle: true,
-        actions: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 15),
-          child: InkWell(
-            onTap: (){
-            },
-
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.asset(
-                'assets/home/Profile_Photo1.png',
-                fit: BoxFit.cover,
-                width: 45,
-                height: 45,
-              ),
-            ),
-
-          ),
-        ),
-        ],
-        backgroundColor: Colors.grey.shade100,
-        toolbarHeight: 100,
-        leading: IconButton(
-            icon: Image.asset(
-              'assets/logo/logo-1.png',
-              height: 40, // Atur tinggi gambar sesuai kebutuhan
-              width: 40, // Atur lebar gambar sesuai kebutuhan
-            ),
-            onPressed: () {
-              // Tambahkan fungsi untuk handle onPressed di sini jika diperlukan
-            },
-          ),
-          leadingWidth: 70,
-          bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 10),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-
               children: <Widget>[
                 Expanded(
                   child: Material(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.white,
+                    color: Colors.grey.shade200,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Icon(
                             Icons.search,
                             color: Color.fromARGB(255, 0, 0, 0),
@@ -121,14 +111,12 @@ class _ListPerusahaanState extends State<Listperusahaan> {
                           child: Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: TextField(
-                              onChanged: (value) {
-                                _search(value);
-                              },
+                              onChanged: _search,
                               decoration: const InputDecoration.collapsed(
-                                hintText: 'search for the company',
+                                hintText: 'Cari perusahaan',
                                 hintStyle: TextStyle(
                                   fontSize: 13,
-                                  height: 4,
+                                  height: 1.0,
                                 ),
                               ),
                             ),
@@ -138,121 +126,115 @@ class _ListPerusahaanState extends State<Listperusahaan> {
                     ),
                   ),
                 ),
-                // IconButton(
-                //   onPressed: () {},
-                //   icon: Image.asset(
-                //     'assets/logo/filter-button.png',
-                //     width: 50,
-                //     height: 50,
-                //   ),
-                // ),
-                
+                IconButton(
+                  onPressed: () {
+                    // Aksi untuk tombol IconButton
+                  },
+                  icon: Image.asset(
+                    'assets/logo/filter-button.png',
+                    width: 50,
+                    height: 50,
+                  ),
+                ),
               ],
             ),
           ),
-        ),
-      ),
-      body: filteredPerusahaan.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: filteredPerusahaan.length,
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Listintern(
-                          idPerusahaan: filteredPerusahaan[index].id_perusahaan,
-                          namaPerusahaan:
-                              filteredPerusahaan[index].nama_perusahaan,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 3, 
-                    shadowColor: Colors.grey.withOpacity(0.2),
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Row(
-                      children: <Widget>[
-                        Card(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              filteredPerusahaan[index].logo_perusahaan,
-                              fit: BoxFit.cover,
-                              width: 55,
-                              height: 55,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
-                                  'assets/home/logo1.png',
-                                  fit: BoxFit.cover,
-                                  width: 55,
-                                  height: 55,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.4,
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                filteredPerusahaan[index].nama_perusahaan,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  fontFamily: 'DM Sans',
-                                  overflow: TextOverflow.ellipsis
-                                ),
+          Expanded(
+            child: filteredPerusahaan.isEmpty
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    padding: const EdgeInsets.all(8),
+                    itemCount: filteredPerusahaan.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Listintern(
+                                idPerusahaan:
+                                    filteredPerusahaan[index].id_perusahaan,
+                                namaPerusahaan:
+                                    filteredPerusahaan[index].nama_perusahaan,
                               ),
                             ),
-                            ...List.generate(
-                              filteredPerusahaan[index]
-                                          .posisiPerusahaan
-                                          .length >
-                                      4
-                                  ? 4
-                                  : filteredPerusahaan[index]
-                                      .posisiPerusahaan
-                                      .length,
-                              (posisiIndex) => Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 5.0,),
-                                child: Row(
+                          );
+                        },
+                        child: Card(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          child: Row(
+                            children: <Widget>[
+                              Card(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(
+                                    filteredPerusahaan[index].logo_perusahaan,
+                                    fit: BoxFit.cover,
+                                    width: 55,
+                                    height: 55,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        'assets/home/LOGO1.png',
+                                        fit: BoxFit.cover,
+                                        width: 55,
+                                        height: 55,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: MediaQuery.of(context).size.width / 1.4,
+                                      padding: const EdgeInsets.only(left: 5),
                                       child: Text(
-                                        '· '+
                                         filteredPerusahaan[index]
-                                            .posisiPerusahaan[posisiIndex]
-                                            .nama_posisi,
+                                            .nama_perusahaan,
                                         style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
                                           fontFamily: 'DM Sans',
-                                          fontSize: 12,
-                                          overflow: TextOverflow.ellipsis
                                         ),
                                       ),
                                     ),
-                                    
+                                    ...List.generate(
+                                      filteredPerusahaan[index]
+                                                  .posisiPerusahaan
+                                                  .length >
+                                              4
+                                          ? 4
+                                          : filteredPerusahaan[index]
+                                              .posisiPerusahaan
+                                              .length,
+                                      (posisiIndex) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 5.0),
+                                        child: Text(
+                                          '· ' +
+                                              filteredPerusahaan[index]
+                                                  .posisiPerusahaan[posisiIndex]
+                                                  .nama_posisi,
+                                          style: const TextStyle(
+                                            fontFamily: 'DM Sans',
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
+          ),
+        ],
+      ),
     );
   }
 }
