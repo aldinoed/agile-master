@@ -17,40 +17,53 @@ class _HomePageState extends State<HomePage> {
   List<Perusahaan> perusahaan = [];
   List<Story> stories = [];
   final _lightColors = [
-    Color(0xAE8C20FF),
-    Colors.red,
-    Colors.lightGreen,
-    Colors.orange.shade300,
+    Color(0xFFD62828),
+    Color(0xFF120B0B),
+    Color(0xFF35C91C),
+    Color(0xFF605B57),
   ];
 
   @override
   void initState() {
-    super.initState();
-    _loadStories();
-    _loadPerusahaan();
+    try {
+      super.initState();
+      _loadStories();
+      _loadPerusahaan();
+    } catch (error) {
+      print(error);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content:
+                const Text("Failed to fetch data. Please try again later."),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   Future<void> _loadPerusahaan() async {
-    try {
-      perusahaan = await Perusahaan.getPerusahaan();
-      setState(() {
-        perusahaan;
-      });
-    } catch (e) {
-      print(e);
-    }
+    perusahaan = await Perusahaan.getPerusahaan();
+    setState(() {
+      perusahaan;
+    });
   }
 
   Future<void> _loadStories() async {
-    try {
-      stories = await Story.getStory();
-
-      setState(() {
-        stories;
-      });
-    } catch (e) {
-      print(e);
-    }
+    stories = await Story.getStory();
+    setState(() {
+      stories;
+    });
   }
 
   @override
@@ -59,24 +72,31 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white12,
       appBar: AppBar(
         backgroundColor: Colors.white12,
-        flexibleSpace: const Padding(
+        flexibleSpace: Padding(
           padding: EdgeInsets.all(20.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image(image: AssetImage('assets/home/logo1.png')),
-              Text(
+              const Image(image: AssetImage('assets/home/logo1.png')),
+              const Text(
                 'Goship',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
                     fontFamily: 'LibreBaskerville'),
               ),
-              Image(
+              Container(
                   width: 50,
                   height: 50,
-                  image: AssetImage('assets/home/ProfilePhoto.png'))
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/home/Profile_Photo1.png',
+                    ),
+                    fit: BoxFit.contain,
+                  ))
             ],
           ),
         ),

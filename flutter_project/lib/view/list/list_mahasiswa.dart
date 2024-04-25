@@ -29,10 +29,32 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
   }
 
   Future<void> _fetchData(var id) async {
-    mahasiswa = await Mahasiswa.getMahasiswa(id);
-    setState(() {
-      filteredMahasiswa = mahasiswa;
-    });
+    try {
+      mahasiswa = await Mahasiswa.getMahasiswa(id);
+      setState(() {
+        filteredMahasiswa = mahasiswa;
+      });
+    } catch (error) {
+      print(error);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content:
+                const Text("Failed to fetch data. Please try again later."),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   void _search(String query) {
@@ -57,23 +79,30 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
       appBar: AppBar(
         title: Text(widget.nama_posisi),
         titleTextStyle: const TextStyle(
-            fontSize: 25,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'LibreBaskerville',
             color: Colors.black),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/logo/logo-1.png',
-              width: 40,
-              height: 40,
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: InkWell(
+              onTap: () {},
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.asset(
+                  'assets/home/Profile_Photo1.png',
+                  fit: BoxFit.cover,
+                  width: 45,
+                  height: 45,
+                ),
+              ),
             ),
           ),
         ],
-        backgroundColor: const Color(0xFFFAFAFE),
-        toolbarHeight: 100,
+        backgroundColor: Colors.grey.shade100,
+        toolbarHeight: 90,
         leading: Padding(
           padding: const EdgeInsets.only(left: 1, top: 5, bottom: 5),
           child: Card(
@@ -95,7 +124,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +134,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.grey.shade200,
+                    color: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -124,7 +153,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                 _search(value);
                               },
                               decoration: const InputDecoration.collapsed(
-                                hintText: 'Mencari Mahasiswa',
+                                hintText: 'search for the students',
                                 hintStyle: TextStyle(
                                   fontSize: 13,
                                   height: 4,
@@ -137,14 +166,14 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset(
-                    'assets/logo/filter-button.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                ),
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: Image.asset(
+                //     'assets/logo/filter-button.png',
+                //     width: 50,
+                //     height: 50,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -167,21 +196,23 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                     );
                   },
                   child: Card(
+                    elevation: 3,
+                    shadowColor: Colors.grey.withOpacity(0.2),
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Row(
                       children: <Widget>[
                         Column(
                           children: [
                             Container(
+                              width: 60,
+                              height: 60,
                               child: Card(
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: const Image(
                                     image: AssetImage(
-                                        'assets/home/ProfilePhoto.png'),
-                                    fit: BoxFit.cover,
-                                    width: 60,
-                                    height: 60,
+                                        'assets/home/Profile_Photo1.png'),
+                                    fit: BoxFit.fill,
                                   ),
                                 ),
                               ),
@@ -200,8 +231,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 65),
+                            Container(
                               child: Row(
                                 children: [
                                   Column(
@@ -215,10 +245,14 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                   ),
                                   Column(
                                     children: [
-                                      Text(
-                                        filteredMahasiswa[index].email,
-                                        style: TextStyle(
-                                            color: Colors.grey.shade600),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          filteredMahasiswa[index].email,
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600,
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
                                       ),
                                     ],
                                   ),

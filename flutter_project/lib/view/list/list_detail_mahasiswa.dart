@@ -9,8 +9,9 @@ import 'package:flutter_project/model/detail_mahasiswa.dart';
 class ListDetailMahasiswa extends StatefulWidget {
   final int id_siswa;
 
-  const ListDetailMahasiswa({Key? key, required this.id_siswa}) : super(key: key);
-  
+  const ListDetailMahasiswa({Key? key, required this.id_siswa})
+      : super(key: key);
+
   @override
   _ListDetailMahasiswaState createState() => _ListDetailMahasiswaState();
 }
@@ -25,8 +26,30 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
   }
 
   Future<void> _fetchData(var id) async {
-    detailMahasiswa = await DetailMahasiswa.getDetailMahasiswa(id);
-    setState(() {});
+    try {
+      detailMahasiswa = await DetailMahasiswa.getDetailMahasiswa(id);
+      setState(() {});
+    } catch (error) {
+      print(error);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content:
+                const Text("Failed to fetch data. Please try again later."),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -194,8 +217,8 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(
-                                top: 5), // Padding dari atas
+                            padding:
+                                EdgeInsets.only(top: 5), // Padding dari atas
                             child: Icon(Icons.build, size: 18),
                           ),
                           SizedBox(width: 10),
