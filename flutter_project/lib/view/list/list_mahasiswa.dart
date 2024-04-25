@@ -85,12 +85,20 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
             color: Colors.black),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/logo/logo-1.png',
-              width: 40,
-              height: 40,
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: InkWell(
+            onTap: (){
+            },
+            
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.asset(
+                'assets/home/Profile_Photo1.png',
+                fit: BoxFit.cover,
+                width: 45,
+                height: 45,
+              ),
             ),
             
           ),
