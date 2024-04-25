@@ -81,6 +81,7 @@ app.get('/api/major-data', async (req, res) => {
                 posts[j] = {
                     nama: element.nama_siswa,
                     posisi: element.nama_posisi,
+                    logo: element.logo_perusahaan,
                     perusahaan: element.nama_perusahaan,
                     deskripsi_magang: element.deskripsi_magang,
                     jenis_kelamin: element.jenis_kelamin,

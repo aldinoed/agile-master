@@ -56,9 +56,17 @@ class _ListPerusahaanState extends State<Listperusahaan> {
       if (query.isNotEmpty) {
         isSearching = true;
         filteredPerusahaan = perusahaan.where((perusahaan) {
-          return perusahaan.nama_perusahaan
+          // Cek apakah query cocok dengan nama perusahaan
+          bool perusahaanMatches = perusahaan.nama_perusahaan
               .toLowerCase()
               .contains(query.toLowerCase());
+
+          // Cek apakah query cocok dengan nama posisi
+          bool posisiMatches = perusahaan.posisiPerusahaan.any((posisi) =>
+              posisi.nama_posisi.toLowerCase().contains(query.toLowerCase()));
+
+          // Return true jika query cocok dengan nama perusahaan atau nama posisi
+          return perusahaanMatches || posisiMatches;
         }).toList();
       } else {
         isSearching = false;
