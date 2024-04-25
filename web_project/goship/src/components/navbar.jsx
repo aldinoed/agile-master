@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Menambahkan impor React
+import React, { useEffect, useState } from "react"; // Menambahkan impor React
 import { logo1 } from "../assets";
 import { navLinks } from "../constant";
 import ButtonSignIn from "./button_SignIn.jsx";
@@ -6,9 +6,28 @@ import ButtonSignIn from "./button_SignIn.jsx";
 const Navbar = () => {
   const [active, setActive] = useState("Home");
 
+  const [ini_navbar, set_navbarnya] = useState(false);
+
+  const scrollHeader = () => {
+    if(window.scrollY >= 20){
+      set_navbarnya(true)
+    }else{
+      set_navbarnya(false)
+    }
+  }
+
+  useEffect(()=>{
+    window.addEventListener('scroll', scrollHeader)
+    return ()=>{
+      window.addEventListener('scroll', scrollHeader)
+    }
+  },[])
+
+
   return (
-    <nav className="w-full flex py-6 justify-between items-center navbar">
-      <img src={logo1} alt="Goship" className="w-[200px] h-[50px]" />
+    <div className={ini_navbar ? "fixed z-10 w-[100%] bg-orange-gradient-navbar" : "bg-[transparent]"}>
+    <nav className="header px-16 w-full flex justify-between items-center navbar">
+      <img src={logo1} alt="Goship" className="w-[150px] h-[40px]" />
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
@@ -27,6 +46,7 @@ const Navbar = () => {
             <ButtonSignIn />
         </div>
     </nav>
+    </div>
   );
 };
 

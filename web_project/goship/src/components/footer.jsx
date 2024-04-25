@@ -6,7 +6,7 @@ import {logo2 } from "../assets";
 const Footer = () => {
   return (
 
-    <div className={`bg-orange w-full flex justify-between items-center md:flex-row  sm: px-16 px-6  border-t-[1px]`}>
+    <div className={`bg-orange w-full flex justify-between items-center md:flex-row  sm:px-32 px-6  border-t-[1px]`}>
         <div className={` flex ${styles.flexCenter} md:my-0 my-10 relative`}>
             <img src={logo2} alt="billing" className="w-[100%] h-100%] relative z-[5]" />
         </div>

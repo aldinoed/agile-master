@@ -7,10 +7,10 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _HomePageState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomePageState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen> {
   int currentTab = 0;
   List<Widget> screens = [const HomePage(), const Guide(), const Listperusahaan()];
   final PageStorageBucket pageStorageBucket = PageStorageBucket();
@@ -38,16 +38,18 @@ class _HomePageState extends State<MainScreen> {
                         onPressed: () {
                           setState(() {
                             currentScreen = HomePage();
-                            onPressed = Colors.orange;
+                            currentTab = 0;
+                            onPressed = const Color(0xFFF77D00);
                             notPressed = Colors.grey;
                           });
                         },
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.home_filled, color: onPressed),
+                            Icon(Icons.home_filled, color: currentTab == 0 ? onPressed : notPressed),
                             Text(
                               'Home',
-                              style: TextStyle(color: onPressed),
+                              style: TextStyle(color: currentTab == 0 ? onPressed : notPressed),
                             )
                           ],
                         ),
@@ -55,25 +57,27 @@ class _HomePageState extends State<MainScreen> {
                     ],
                   ),
                   Row(
+
                     children: [
                       MaterialButton(
                         onPressed: () {
                           setState(() {
                             currentScreen = Guide();
                             currentTab = 1;
-                            onPressed = Colors.grey;
-                            notPressed = Colors.orange;
+                            onPressed = const Color(0xFFF77D00);
+                            notPressed = Colors.grey;
                           });
                         },
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
                               Icons.book,
-                              color: notPressed,
+                              color: currentTab == 1 ? onPressed : notPressed,
                             ),
                             Text(
                               'Guide',
-                              style: TextStyle(color: notPressed),
+                              style: TextStyle(color: currentTab == 1 ? onPressed : notPressed),
                             )
                           ],
                         ),
@@ -89,11 +93,14 @@ class _HomePageState extends State<MainScreen> {
         elevation: 3,
         onPressed: () {
           setState(() {
-            currentScreen = Listperusahaan();
+            currentScreen = const Listperusahaan();
+            currentTab = 2;
+            onPressed = const Color(0xFFF77D00);
+            notPressed = Colors.grey;
           });
         },
         shape: const CircleBorder(),
-        backgroundColor: Colors.orange,
+        backgroundColor: onPressed,
         child: const Image(
           image: AssetImage('assets/home/center.png'),
         ),

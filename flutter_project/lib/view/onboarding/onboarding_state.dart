@@ -12,7 +12,7 @@ class OnboardingState with ChangeNotifier {
   List<String> listTitle = [
     'Goship Insight',
     'Goship Explorer',
-    'All in Ghosip'
+    'All in Goship'
   ];
   List<String> listDescription = [
     "Find out the history of upperclassmen's experiences",

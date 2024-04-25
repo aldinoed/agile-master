@@ -11,7 +11,7 @@ export const navLinks = [
     },
     {
       id: "Shared_Story",
-      title: "Shared Story",
+      title: "Share Story",
     },
     {
       id: "Our_story",

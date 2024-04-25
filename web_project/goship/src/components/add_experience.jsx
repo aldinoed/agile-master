@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from "../style";
-import {image2 } from "../assets";
+import {image2,bg } from "../assets";
 import ButtonExperience from "./button_experience";
 
 const AddExperience = () => {
   return (
-    <section id="Shared_Story" className={`flex md:flex-row flex-col`}>
+    <section id="Shared_Story" className={`flex md:flex-row flex-col py-5`}style={{ backgroundImage: `url(${bg})` }}>
       <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
             <img src={image2} alt="billing" className="w-[75%] h-[100%] relative z-[5]" />
         </div>

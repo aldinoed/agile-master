@@ -66,21 +66,24 @@ class _ListInternState extends State<Listintern> {
             color: Colors.black),
         centerTitle: true,
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: InkWell(
-              onTap: () {},
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.asset(
-                  'assets/home/Profile_Photo1.png',
-                  fit: BoxFit.cover,
-                  width: 45,
-                  height: 45,
-                ),
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: InkWell(
+            onTap: (){
+            },
+            
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.asset(
+                'assets/home/Profile_Photo1.png',
+                fit: BoxFit.cover,
+                width: 45,
+                height: 45,
               ),
             ),
+            
           ),
+        ),
         ],
         backgroundColor: Colors.grey.shade100,
         toolbarHeight: 66,
@@ -111,11 +114,11 @@ class _ListInternState extends State<Listintern> {
               future: Intern.getIntern(widget.idPerusahaan),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.0, // Ubah ketebalan garis indikator
-                    ),
-                  ); // Menampilkan indikator loading jika data masih dimuat
+                 return Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.0, // Ubah ketebalan garis indikator
+                  ),
+                ); // Menampilkan indikator loading jika data masih dimuat
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {

@@ -9,7 +9,7 @@ module.exports = {
         secondary: "#00f6ff",
         dimWhite: "rgba(255, 255, 255, 0.7)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
-        orange: "#E84D18",
+        orange: "#F77D00",
         dimBlack: "rgba(0, 0, 0, 0.7)", 
       },
       fontFamily: {

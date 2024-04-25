@@ -85,21 +85,16 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
             color: Colors.black),
         centerTitle: true,
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: InkWell(
-              onTap: () {},
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.asset(
-                  'assets/home/Profile_Photo1.png',
-                  fit: BoxFit.cover,
-                  width: 45,
-                  height: 45,
-                ),
-              ),
+          IconButton(
+            onPressed: () {},
+            icon: Image.asset(
+              'assets/logo/logo-1.png',
+              width: 40,
+              height: 40,
             ),
+            
           ),
+        ),
         ],
         backgroundColor: Colors.grey.shade100,
         toolbarHeight: 90,
@@ -196,8 +191,6 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                     );
                   },
                   child: Card(
-                    elevation: 3,
-                    shadowColor: Colors.grey.withOpacity(0.2),
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Row(
                       children: <Widget>[
@@ -213,6 +206,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                     image: AssetImage(
                                         'assets/home/Profile_Photo1.png'),
                                     fit: BoxFit.fill,
+
                                   ),
                                 ),
                               ),
@@ -245,14 +239,10 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                   ),
                                   Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: Text(
-                                          filteredMahasiswa[index].email,
-                                          style: TextStyle(
-                                              color: Colors.grey.shade600,
-                                              overflow: TextOverflow.ellipsis),
-                                        ),
+                                      Text(
+                                        filteredMahasiswa[index].email,
+                                        style: TextStyle(
+                                            color: Colors.grey.shade600),
                                       ),
                                     ],
                                   ),

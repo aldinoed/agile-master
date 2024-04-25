@@ -6,7 +6,10 @@ import Hero from "./hero";
 import Footer from "./footer";
 import AddExperience from "./add_experience";
 import CardForm from "./form_post";
-
+import Perusahaan from "./company";
+import CustomCarousel from "./Carousel";
+import StudentCard from "./StudentCard";
+import StudentList from "./StudentList";
 
 
 export {
@@ -17,5 +20,9 @@ export {
   AddExperience,
   ButtonExperience,
   Footer,
-  CardForm
+  CardForm,
+  CustomCarousel,
+  StudentCard,
+  StudentList,
+  Perusahaan
 };

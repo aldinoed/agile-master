@@ -15,23 +15,40 @@ import instagram from "./instagram.svg";
 import facebook from "./facebook.svg";
 import linkedin from "./linkedin.svg";
 import twitter from "./twitter.svg";
+import profile from "./profile.png";
+import bag from "./bag.png";
+import calendar from "./calendar.png";
+import card from "./card.png";
+import document from "./document.png";
+import location from "./location.png";
+import star from "./star.png";
+import bg from "./bg.png"
+
 
 export {
   logo1,
   logo2,
   image1,
-  image2, 
-  gojek,  
-  shopee, 
+  image2,
+  gojek,
+  shopee,
   telkomsel,
   halodoc,
   lazada,
   grab,
-  comp, 
-  plus, 
+  comp,
+  plus,
   comki,
   instagram,
   facebook,
   linkedin,
-  twitter
+  twitter,
+  profile,
+  bag,
+  calendar,
+  card,
+  document,
+  location,
+  star,
+  bg
 };
