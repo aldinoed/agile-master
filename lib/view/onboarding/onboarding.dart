@@ -6,12 +6,12 @@ import 'package:flutter_project/view/home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoarding extends StatelessWidget {
-
   const OnBoarding({super.key});
-  void _saveSession()async{
+  void _saveSession() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool('isVisited', true);
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -25,7 +25,10 @@ class OnBoarding extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // const Spacer(),
-                const Image(image: AssetImage('assets/logo/logo1.png')),
+                Image.asset(
+                  'assets/logo/logo1.png',
+                  width: 160,
+                ),
                 Consumer<OnboardingState>(
                   builder: (context, onBoarding, _) => Image(
                     width: 245,
@@ -102,7 +105,7 @@ class OnBoarding extends StatelessWidget {
                     Material(
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
-                        width: MediaQuery.of(context).size.width /2.75,
+                        width: MediaQuery.of(context).size.width / 2.75,
                         height: 50,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1.0),
@@ -117,7 +120,7 @@ class OnBoarding extends StatelessWidget {
                               onTap: () {
                                 if (onBoarding.onBoardingNumber > 0) {
                                   onBoarding.setOnBoardingNumber = 'back';
-                                }else if(onBoarding.onBoardingNumber == 0){
+                                } else if (onBoarding.onBoardingNumber == 0) {
                                   onBoarding.setOnBoardingNumber = 'skip';
                                 }
                               },
@@ -141,10 +144,10 @@ class OnBoarding extends StatelessWidget {
                     Material(
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
-                        width:  MediaQuery.of(context).size.width /2.75,
+                        width: MediaQuery.of(context).size.width / 2.75,
                         height: 50,
                         decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: Color(0xFFF77D00),
                             borderRadius: BorderRadius.circular(12)),
                         child: Material(
                           borderRadius: BorderRadius.circular(12),
@@ -158,9 +161,9 @@ class OnBoarding extends StatelessWidget {
                                 } else if (onBoarding.onBoardingNumber == 2) {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) {
-                                        _saveSession();
-                                        return MainScreen();
-                                      }));
+                                    _saveSession();
+                                    return MainScreen();
+                                  }));
                                 }
                               },
                               child: Center(

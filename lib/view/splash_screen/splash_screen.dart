@@ -67,7 +67,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     margin: EdgeInsets.symmetric(vertical: 20),
                     // Changed from MainAxisAlignment to margin
                     child: Image.asset(
-                      'assets/logo/logo2.png',
+                      'assets/logo/logo-1.png',
+                       width: 100,
+                      height: 100,
                     ),
                   ),
                   const Text(
@@ -86,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.orange,
+                      color: Color(0xFFF77D00),
                     ),
                   ),
                 ],

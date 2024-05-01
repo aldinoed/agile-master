@@ -19,15 +19,14 @@ class Guide extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Row(
-              mainAxisSize: MainAxisSize
-                  .min, // Memastikan konten dalam Row sesempit mungkin
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Image.asset(
                   'assets/logo/logo-1.png',
                   height: 40,
                   width: 40,
                 ),
-                const SizedBox(width: 10), // Memberi jarak antara logo dan teks
+                const SizedBox(width: 10),
                 const Text(
                   'Goship',
                   style: TextStyle(
@@ -54,6 +53,13 @@ class Guide extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromARGB(255, 255, 255, 255),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xFFF77D00).withOpacity(0.1),
+                      spreadRadius: 3,
+                      blurRadius: 4,
+                    ),
+                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +91,8 @@ class Guide extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.only(
+                                    top: 16, bottom: 16, left: 16),
                                 child: Image.asset(
                                   'assets/guide/Headline.png',
                                   width: 20,
@@ -100,13 +107,14 @@ class Guide extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding:
+                                    const EdgeInsets.only(top: 16, bottom: 16),
                                 child: Text(
                                   'Instructions for \ndoing an internship (KP)',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ),
@@ -117,26 +125,120 @@ class Guide extends StatelessWidget {
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height / 1.7,
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return Container(
-                            child: Text(
-                              '1. Select the KP type:\n      a. Regular\n      b. IISMA via UP2AI Ms Lely and KUI Mr Iwan Syarif\n      c. IGIP via UP2AI Ms Lely and KUI Mr Iwan Syarif\n\n2. If you have a Regular KP, determine whether you are a group or individual when carrying out the KP. \n       If you are in a group of up to 3 people, fill in the KP Submission Form in Online MIS (If in a group, then only the representative will fill it in)\n\n3. Make a KP Proposal, Make a Cover Letter (letter number, and KDAEP designation to be handled via Ms Pipid), make a thank you letter when it is received (letter number and KDAEP designation to be managed via Ms Pipid), Farewell to the Supervisor before leaving for KP\n\n4. Implementation of KP 6 Months\n\n5. Making a KP Logbook, the file filled in is the progress of the KP book, photos uploaded can be daily activities at the company (free photos)\n\n6. Preparation for KP Session\n        a. ACC Supervisor\n        b. KP Book\n        c. KP Presentation (Indonesia)\n        d. advance in groups\n        e. Collect Value from the Company\n       f. Collect Mandiri Bank Account (KP funds)',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                              ),
-                            ),
-                          );
-                        },
+                      child: ListView(
                         padding: EdgeInsets.all(20),
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10),
+                              Text(
+                                '1. Select the KP type:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                '   a. Regular\n'
+                                '   b. IISMA via UP2AI Ms Lely and KUI Mr Iwan Syarif\n'
+                                '   c. IGIP via UP2AI Ms Lely and KUI Mr Iwan Syarif',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '2. If you have a Regular KP, determine whether you are a group or individual when carrying out the KP.',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'If you are in a group of up to 3 people, fill in the KP Submission Form in Online MIS (If in a group, then only the representative will fill it in)',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '3. Make a KP Proposal',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '   a. Make a Cover Letter (letter number, and KDAEP designation to be handled via Ms Pipid)\n'
+                                '   b. Make a thank you letter when it is received (letter number and KDAEP designation to be managed via Ms Pipid)\n'
+                                '   c. Farewell to the Supervisor before leaving for KP',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '4. Implementation of KP 6 Months',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '5. Making a KP Logbook',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'the file filled in is the progress of the KP book, photos uploaded can be daily activities at the company (free photos)',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '6. Preparation for KP Session',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '   a. ACC Supervisor\n'
+                                '   b. KP Book\n'
+                                '   c. KP Presentation (Indonesia)\n'
+                                '   d. Advance in groups\n'
+                                '   e. Collect Value from the Company\n'
+                                '   f. Collect Mandiri Bank Account (KP funds)',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 10),
           ],
         ),
       ),

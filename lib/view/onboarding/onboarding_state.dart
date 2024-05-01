@@ -26,7 +26,7 @@ class OnboardingState with ChangeNotifier {
   int get onBoardingPageNumber => onBoardingNumber;
   Color onBoardingIndicator(int value) {
     if (value == onBoardingNumber) {
-      return Colors.orange;
+      return Color(0xFFF77D00);
     } else {
       return Colors.grey;
     }

@@ -26,8 +26,8 @@ class _MainScreenState extends State<MainScreen> {
   ];
   final PageStorageBucket pageStorageBucket = PageStorageBucket();
   Widget currentScreen = HomePage();
-  Color onPressed = Colors.orange;
-  Color notPressed = Colors.grey;
+  Color onPressed = Color(0xFFF77D00);
+  Color notPressed = Color(0xFFC0C0C0);
   bool iconPressed = true;
 
   @override
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                         currentScreen = HomePage();
                         currentTab = 0;
                         onPressed = const Color(0xFFF77D00);
-                        notPressed = Colors.grey;
+                        notPressed = Color(0xFFC0C0C0);
                       });
                     },
                     child: Column(
@@ -77,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
                         currentScreen = Guide();
                         currentTab = 1;
                         onPressed = const Color(0xFFF77D00);
-                        notPressed = Colors.grey;
+                        notPressed = Color(0xFFC0C0C0);
                       });
                     },
                     child: Column(
@@ -109,13 +109,15 @@ class _MainScreenState extends State<MainScreen> {
             currentScreen = const Listperusahaan();
             currentTab = 2;
             onPressed = const Color(0xFFF77D00);
-            notPressed = Colors.grey;
+            notPressed = Color(0xFFC0C0C0);
           });
         },
         shape: const CircleBorder(),
         backgroundColor: onPressed,
-        child: const Image(
-          image: AssetImage('assets/home/center.png'),
+        child: Image.asset(
+          'assets/home/center.png',
+          height: 24,
+          width: 24,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
