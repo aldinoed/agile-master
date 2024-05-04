@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> screens = [
     const HomePage(),
     const Guide(),
-    const Listperusahaan()
+    const ListPerusahaan()
   ];
   final PageStorageBucket pageStorageBucket = PageStorageBucket();
   Widget currentScreen = HomePage();
@@ -106,7 +106,7 @@ class _MainScreenState extends State<MainScreen> {
         elevation: 3,
         onPressed: () {
           setState(() {
-            currentScreen = const Listperusahaan();
+            currentScreen = const ListPerusahaan();
             currentTab = 2;
             onPressed = const Color(0xFFF77D00);
             notPressed = Color(0xFFC0C0C0);

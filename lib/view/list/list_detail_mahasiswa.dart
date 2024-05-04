@@ -74,12 +74,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
         toolbarHeight: 100,
         leading: GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Listperusahaan(),
-              ),
-            );
+            Navigator.pop(context);
           },
           child: const Padding(
             padding: EdgeInsets.only(left: 1, top: 5, bottom: 5),
