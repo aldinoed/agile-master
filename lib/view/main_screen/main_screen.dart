@@ -32,7 +32,9 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool showFab = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         elevation: 0,
@@ -102,22 +104,25 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       backgroundColor: Colors.white70.withOpacity(0.95),
-      floatingActionButton: FloatingActionButton(
-        elevation: 3,
-        onPressed: () {
-          setState(() {
-            currentScreen = const ListPerusahaan();
-            currentTab = 2;
-            onPressed = const Color(0xFFF77D00);
-            notPressed = Color(0xFFC0C0C0);
-          });
-        },
-        shape: const CircleBorder(),
-        backgroundColor: onPressed,
-        child: Image.asset(
-          'assets/home/center.png',
-          height: 24,
-          width: 24,
+      floatingActionButton: Visibility(
+        visible: !showFab,
+        child: FloatingActionButton(
+          elevation: 3,
+          onPressed: () {
+            setState(() {
+              currentScreen = const ListPerusahaan();
+              currentTab = 2;
+              onPressed = const Color(0xFFF77D00);
+              notPressed = Color(0xFFC0C0C0);
+            });
+          },
+          shape: const CircleBorder(),
+          backgroundColor: onPressed,
+          child: Image.asset(
+            'assets/home/center.png',
+            height: 24,
+            width: 24,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
