@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_project/model/perusahaan.dart';
 import 'package:flutter_project/provider/perusahaan.dart';
@@ -15,8 +17,56 @@ class ListPerusahaan extends StatefulWidget {
 class _ListPerusahaanState extends State<ListPerusahaan> {
   @override
   void initState() {
+    try{
     super.initState();
-    _loadData();
+    _loadData().timeout(const Duration(seconds: 5));
+    }catch (e){
+      if (e is TimeoutException) {
+        // Terjadi timeout saat mengambil data
+        print(e);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            print(context);
+            return AlertDialog(
+              title: const Text("Timeout"),
+              content: const Text(
+                  "Terjadi timeout saat mengambil data. Silakan coba lagi nanti."),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        // Terjadi error lainnya
+        print(e);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            print(context);
+            return AlertDialog(
+              title: const Text("Error"),
+              content: const Text(
+                  "Terjadi error saat mengambil data. Silakan coba lagi nanti."),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
   }
 
   Future<void> _loadData() async {
