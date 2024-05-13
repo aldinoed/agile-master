@@ -64,9 +64,10 @@ class _ListInternState extends State<Listintern> {
         ),
         backgroundColor: const Color(0xfafafe),
         toolbarHeight: 66,
+        centerTitle: true,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 1, top: 5, bottom: 5),
-          child: Card(
+          padding: const EdgeInsets.only(left: 20, top: 5, bottom: 5),
+          
             child: ButtonBar(
               children: [
                 GestureDetector(
@@ -74,13 +75,13 @@ class _ListInternState extends State<Listintern> {
                     Navigator.pop(context);
                   },
                   child: const Padding(
-                    padding: EdgeInsets.only(right: 8, left: 2),
+                    padding: EdgeInsets.only(right: 1, left: 2),
                     child: Icon(Icons.arrow_back),
                   ),
                 ),
               ],
             ),
-          ),
+        
         ),
       ),
       body: Padding(
