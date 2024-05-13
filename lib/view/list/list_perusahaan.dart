@@ -17,10 +17,10 @@ class ListPerusahaan extends StatefulWidget {
 class _ListPerusahaanState extends State<ListPerusahaan> {
   @override
   void initState() {
-    try{
-    super.initState();
-    _loadData().timeout(const Duration(seconds: 5));
-    }catch (e){
+    try {
+      super.initState();
+      _loadData().timeout(const Duration(seconds: 5));
+    } catch (e) {
       if (e is TimeoutException) {
         // Terjadi timeout saat mengambil data
         print(e);
@@ -29,18 +29,94 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           builder: (BuildContext context) {
             print(context);
             return AlertDialog(
-              title: const Text("Timeout"),
-              content: const Text(
-                  "Terjadi timeout saat mengambil data. Silakan coba lagi nanti."),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("OK"),
-                ),
-              ],
-            );
+                  backgroundColor:
+                      Colors.transparent, 
+                  contentPadding: EdgeInsets.zero,
+                  content: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFFF77D00).withOpacity(
+                              0.2), 
+                          spreadRadius: 2,
+                          blurRadius: 6,
+                          offset: Offset(0, 0), 
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 24),
+                          child: Image.asset(
+                            'assets/home/timeout.png',
+                            width: 120,
+                            height: 120,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Tiemout',
+                          style: TextStyle(
+                            color: Color(0xFFF77D00),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: Text(
+                            'Timeout while retrieving data, please try again later',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black, // Content color
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(24),
+                              bottomRight: Radius.circular(24),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'OK',
+                              style: TextStyle(
+                                color:
+                                    Color(0xFFF77D00), 
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
+                );
+            // return AlertDialog(
+            //   title: const Text("Timeout"),
+            //   content: const Text(
+            //       "Terjadi timeout saat mengambil data. Silakan coba lagi nanti."),
+            //   actions: [
+            //     TextButton(
+            //       onPressed: () {
+            //         Navigator.of(context).pop();
+            //       },
+            //       child: const Text("OK"),
+            //     ),
+            //   ],
+            // );
           },
         );
       } else {
@@ -51,18 +127,94 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           builder: (BuildContext context) {
             print(context);
             return AlertDialog(
-              title: const Text("Error"),
-              content: const Text(
-                  "Terjadi error saat mengambil data. Silakan coba lagi nanti."),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("OK"),
-                ),
-              ],
-            );
+                  backgroundColor:
+                      Colors.transparent, 
+                  contentPadding: EdgeInsets.zero,
+                  content: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFFF77D00).withOpacity(
+                              0.2), 
+                          spreadRadius: 2,
+                          blurRadius: 6,
+                          offset: Offset(0, 0), 
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 24),
+                          child: Image.asset(
+                            'assets/home/error.png',
+                            width: 120,
+                            height: 120,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Error',
+                          style: TextStyle(
+                            color: Color(0xFFF77D00),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: Text(
+                            'Error while retrieving data, please try again later',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black, // Content color
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(24),
+                              bottomRight: Radius.circular(24),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'OK',
+                              style: TextStyle(
+                                color:
+                                    Color(0xFFF77D00), 
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
+                );
+            // return AlertDialog(
+            //   title: const Text("Error"),
+            //   content: const Text(
+            //       "Terjadi error saat mengambil data. Silakan coba lagi nanti."),
+            //   actions: [
+            //     TextButton(
+            //       onPressed: () {
+            //         Navigator.of(context).pop();
+            //       },
+            //       child: const Text("OK"),
+            //     ),
+            //   ],
+            // );
           },
         );
       }
@@ -184,8 +336,48 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                       )
                     : provider.filteredPerusahaan.isEmpty &&
                             provider.perusahaan.isNotEmpty
-                        ? const Center(
-                            child: Text('Tidak ada data yang ditemukan'),
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/home/not_found.png',
+                                  width: 200,
+                                  height: 200,
+                                ),
+                                SizedBox(height: 16),
+                                RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Sorry, ',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: 'the data not found',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFFF77D00),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'Find more data!',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
                           )
                         : ListView.builder(
                             padding: const EdgeInsets.all(0),
@@ -402,7 +594,8 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               selectedColor: Colors.blue,
                               onSelected: (bool selected) {
                                 setState(() {
-                                  provider.selectYear(selected ? semester : null);
+                                  provider
+                                      .selectYear(selected ? semester : null);
                                 });
                               },
                             );
