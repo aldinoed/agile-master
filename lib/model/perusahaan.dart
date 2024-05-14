@@ -47,3 +47,4 @@ class Perusahaan {
     return perusahaan;
   }
 }
+

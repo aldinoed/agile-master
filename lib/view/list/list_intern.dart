@@ -188,6 +188,14 @@ class _ListInternState extends State<Listintern> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 12), // Tambahkan padding kiri kanan
+                      child: const Divider(
+                        color: Color.fromARGB(100, 93, 92, 91),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Container(
@@ -199,6 +207,7 @@ class _ListInternState extends State<Listintern> {
                                 Text(
                                   'Where the place you want?',
                                   style: TextStyle(
+                                    //   color: const Color(0xFFF77D00),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
@@ -220,12 +229,12 @@ class _ListInternState extends State<Listintern> {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ExpansionTile(
-                            collapsedBackgroundColor: Colors.white,
+                            collapsedBackgroundColor: Colors.transparent,
                             shape: const OutlineInputBorder(
                                 borderSide: BorderSide.none),
                             tilePadding:
                                 const EdgeInsets.only(left: 12, right: 12),
-                            backgroundColor: const Color(0xf7f7f7f7),
+                            backgroundColor: Colors.transparent,
                             title: Container(
                               // color: Colors.white,
                               child: Row(
@@ -251,7 +260,8 @@ class _ListInternState extends State<Listintern> {
                                   Column(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 10),
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
                                         child: Image.asset(
                                           'assets/logo/users-account.png',
                                           height: 20,
@@ -278,15 +288,14 @@ class _ListInternState extends State<Listintern> {
                                 padding: const EdgeInsets.only(top: 12),
                                 child: Container(
                                   margin: const EdgeInsets.only(
-                                      left: 24, right: 24, bottom: 24),
+                                      left: 12, right: 12, bottom: 24),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
                                     color: Colors.white,
                                     boxShadow: [
                                       BoxShadow(
-                                        color:
-                                            const Color.fromARGB(43, 47, 47, 47)
-                                                .withOpacity(0.2),
+                                        color: const Color(0xFFF77D00)
+                                            .withOpacity(0.2),
                                         spreadRadius: 1,
                                         blurRadius: 5,
                                         offset: const Offset(0, 1),
@@ -295,7 +304,8 @@ class _ListInternState extends State<Listintern> {
                                   ),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: posisi.siswa.length,
                                     itemBuilder: (context, posisiIndex) {
                                       return InkWell(
@@ -330,8 +340,8 @@ class _ListInternState extends State<Listintern> {
                                                               10.0),
                                                       child: ClipRRect(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                10),
+                                                            BorderRadius
+                                                                .circular(10),
                                                         child: const Image(
                                                           image: AssetImage(
                                                               'assets/home/Profile_Photo1.png'),
@@ -367,8 +377,8 @@ class _ListInternState extends State<Listintern> {
                                                               Icons
                                                                   .mark_email_read_rounded,
                                                               size: 16,
-                                                              color: Colors
-                                                                  .grey.shade600,
+                                                              color: Colors.grey
+                                                                  .shade600,
                                                             )
                                                           ],
                                                         ),

@@ -96,7 +96,10 @@ flutter:
     - assets/home/male.png
     - assets/home/female.png
     - assets/home/Profile_Photo1.png
-
+    - assets/home/not_found.png
+    - assets/home/no_internet.png
+    - assets/home/error.png
+    - assets/home/timeout.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
