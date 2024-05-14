@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool showFab = MediaQuery.of(context).viewInsets.bottom != 0;
+    // bool showFab = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomAppBar(
@@ -105,7 +105,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       backgroundColor: Colors.white70.withOpacity(0.95),
       floatingActionButton: Visibility(
-        visible: !showFab,
+        //visible: !showFab,
         child: FloatingActionButton(
           elevation: 3,
           onPressed: () {
