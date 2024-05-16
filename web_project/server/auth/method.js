@@ -77,6 +77,7 @@ module.exports = {
       },
       updatePasswordForNewAuth: async (req, res) => {
             const { nrp, password } = req.body;
+            let hashedPassword;
             try {
                   const dataMahasiswa = `SELECT * FROM siswa WHERE nrp='${nrp}';`;
                   let response = await executeQuery(dataMahasiswa);
