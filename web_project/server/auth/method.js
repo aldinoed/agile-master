@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const bcrypt = require("bcrypt");
 const executeQuery = require("../connection");
 const bodyParser = require("body-parser");
-const passwordHash = require("../utils/passwordHash");
-const jwt = require("jsonwebtoken");
+// const passwordHash = require("../utils/passwordHash");
+// const jwt = require("jsonwebtoken");s
+const generateRandomString = require("../utils/generateRandomString");
 const secretKey = "hagsydgsdjkasdkbh7yiuJHBJGCD";
 
 app.use(bodyParser.json());
@@ -20,13 +20,7 @@ module.exports = {
                   if (data.length > 0) {
                         if (data[0].is_first_auth == 1) {
                               if (nrp === data[0].nrp && password === data[0].password) {
-                                    const token = jwt.sign({ id: data[0].nrp }, secretKey, {
-                                          expiresIn: "30m",
-                                    });
-                                    res.cookie("refresh_token", token, {
-                                          httpOnly: true,
-                                          maxAge: 60 * 60 * 1000,
-                                    });
+                                    const token = generateRandomString(10)
                                     res.status(200).json({ token: token, user: data[0] });
                                     next();
                               } else {
@@ -35,15 +29,9 @@ module.exports = {
                         } else {
                               if (
                                     nrp === data[0].nrp &&
-                                    bcrypt.compare(password, data[0].password)
+                                    password === data[0].password
                               ) {
-                                    const token = jwt.sign({ id: data[0].nrp }, secretKey, {
-                                          expiresIn: "30m",
-                                    });
-                                    res.cookie("refresh_token", token, {
-                                          httpOnly: true,
-                                          maxAge: 60 * 60 * 1000,
-                                    });
+                                    const token = generateRandomString(10);
                                     res.status(200).json({ token: token, user: data[0] });
                                     next();
                               } else {
@@ -58,34 +46,32 @@ module.exports = {
             }
       },
       verifyAuthorizedUser: (req, res, next) => {
-            try {
-                  const refreshToken = req.cookie.refresh_token;
-                  if (!refreshToken) {
-                        res.status(401).send("Silahkan login terlebih dahulu!");
-                  }
-                  const decode = jwt.verify(refreshToken, secretKey);
-                  if (!decode) {
-                        res.status(401).json({ message: "Unauthorized: Invalid token!" });
-                  }
-                  res.status(200).json({ authorized: true });
-            } catch (error) {
-                  res.status(500).send("Internal server error!");
-            }
+            // try {
+            //       const refreshToken = req.cookie.refresh_token;
+            //       if (!refreshToken) {
+            //             res.status(401).send("Silahkan login terlebih dahulu!");
+            //       }
+            //       const decode = jwt.verify(refreshToken, secretKey);
+            //       if (!decode) {
+            //             res.status(401).json({ message: "Unauthorized: Invalid token!" });
+            //       }
+            //       res.status(200).json({ authorized: true });
+            // } catch (error) {
+            //       res.status(500).send("Internal server error!");
+            // }
       },
       logoutRequest: async (req, res) => {
-            res.clearCookie("refresh_token");
             res.json({ message: "Berhasil logout!" });
       },
       updatePasswordForNewAuth: async (req, res) => {
             const { nrp, password } = req.body;
-            let hashedPassword;
             try {
                   const dataMahasiswa = `SELECT * FROM siswa WHERE nrp='${nrp}';`;
                   let response = await executeQuery(dataMahasiswa);
 
                   if (response.length > 0) {
-                        hashedPassword = await passwordHash(password);
-                        const updatePassword = `UPDATE siswa SET password='${hashedPassword}', is_first_auth=${0} WHERE nrp='${nrp}' AND is_first_auth=${1};`;
+                        // hashedPassword = await passwordHash(password);
+                        const updatePassword = `UPDATE siswa SET password='${password}', is_first_auth=${0} WHERE nrp='${nrp}' AND is_first_auth=${1};`;
                         let resetResponse = await executeQuery(updatePassword);
                         if (resetResponse.affectedRows > 0) {
                               console.log(resetResponse)
