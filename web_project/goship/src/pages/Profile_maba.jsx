@@ -41,7 +41,7 @@ const Profilemaba = (loggedUser) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://103.127.135.153:5000/api/user/' + id);
+        const response = await axios.get('https://goship-apii.vercel.app/api/user/' + id);
         setUser(response.data[0]);
         // console.log(user.nama)
 

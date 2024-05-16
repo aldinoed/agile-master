@@ -7,7 +7,7 @@ const StudentList = () => {
 
   useEffect(() => {
     // Mengambil data dari API
-    fetch('http://103.127.135.153:5000/api/major-data/')
+    fetch('https://goship-apii.vercel.app/api/major-data/')
       .then(response => response.json())
       .then(data => setData(data));
   }, []);

@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 const CardForm = ({ onClose }) => {
   const [perusahaanData, setPerusahaanData] = useState([]);
   useEffect(() => {
-    fetch('http://103.127.135.153:5000/api/perusahaan/')
+    fetch('https://goship-apii.vercel.app/api/perusahaan/')
       .then(response => response.json())
       .then(data => setPerusahaanData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -71,7 +71,7 @@ const CardForm = ({ onClose }) => {
     console.log(data);
 
     try {
-      const response = await fetch('http://103.127.135.153:5000/form/insertData', {
+      const response = await fetch('https://goship-apii.vercel.app/form/insertData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

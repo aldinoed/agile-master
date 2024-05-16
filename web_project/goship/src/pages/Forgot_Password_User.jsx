@@ -28,7 +28,7 @@ const ForgotPasswordUserPage = () => {
       password: confirmpassword
     }
     try {
-      const response = await axios.post('http://103.127.135.153:5000/auth/reset-password', resetPassword)
+      const response = await axios.post('https://goship-apii.vercel.app/auth/reset-password', resetPassword)
       console.log(response.status)
       if (response.status === 200) {
         Swal.fire({

@@ -11,7 +11,7 @@ const DetailMahasiswa = () => {
 
   useEffect(() => {
     axios
-      .get("http://103.127.135.153:5000/api/user/:id")
+      .get("https://goship-apii.vercel.app/api/user/:id")
       .then((response) => {
         if (response.data && response.data.length > 0) {
           setProfileData(response.data[0]); // Menyimpan data pertama dari array ke state

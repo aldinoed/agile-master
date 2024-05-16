@@ -25,7 +25,7 @@ const Formprofile = (user) => {
 
     async function fetchData() {
         try {
-            const response = await axios.get('http://103.127.135.153:5000/api/user/' + id);
+            const response = await axios.get('https://goship-apii.vercel.app/api/user/' + id);
             setFullName(response.data[0].nama_siswa)
             setNrp(response.data[0].nrp)
             setEmail(response.data[0].email)
@@ -102,7 +102,7 @@ const Formprofile = (user) => {
             id: id
         }
         try {
-            const response = await axios.post(`http://103.127.135.153:5000/api/user-profile/update`, data);
+            const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
 
             navigate('/student-profile')
             // if (response.data.user.is_first_auth === 1) {
