@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bcrypt = require("bcrypt");
 const executeQuery = require("../connection");
 const bodyParser = require("body-parser");
 const passwordHash = require("../utils/passwordHash");
@@ -34,7 +35,7 @@ module.exports = {
                         } else {
                               if (
                                     nrp === data[0].nrp &&
-                                    password === data[0].password
+                                    bcrypt.compare(password, data[0].password)
                               ) {
                                     const token = jwt.sign({ id: data[0].nrp }, secretKey, {
                                           expiresIn: "30m",
@@ -83,7 +84,8 @@ module.exports = {
                   let response = await executeQuery(dataMahasiswa);
 
                   if (response.length > 0) {
-                        const updatePassword = `UPDATE siswa SET password='${password}', is_first_auth=${0} WHERE nrp='${nrp}' AND is_first_auth=${1};`;
+                        hashedPassword = await passwordHash(password);
+                        const updatePassword = `UPDATE siswa SET password='${hashedPassword}', is_first_auth=${0} WHERE nrp='${nrp}' AND is_first_auth=${1};`;
                         let resetResponse = await executeQuery(updatePassword);
                         if (resetResponse.affectedRows > 0) {
                               console.log(resetResponse)
