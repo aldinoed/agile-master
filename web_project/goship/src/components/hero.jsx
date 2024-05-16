@@ -7,9 +7,9 @@ const Hero = () => {
   return (
     <>
       <section id="home" className="flex flex-col md:flex-row">
-        <div className={`flex-1 ${styles.flexStart} flex-col px-10 md:px-16 xl:px-0`}>
+        <div className={flex-1 ${styles.flexStart} flex-col px-10 md:px-16 xl:px-0}>
             <div className="w-full flex flex-row items-center justify-between">
-                <p className={`${styles.paragraph} text-orange font-semibold text-[20px]`}>
+                <p className={${styles.paragraph} text-orange font-semibold text-[20px]}>
                     ABOUT US
                 </p>
             </div>
@@ -25,7 +25,7 @@ const Hero = () => {
                     <span className="text-orange">APPRENTICE</span>
                 </h1>
             </div>
-            <p className={`${styles.paragraph} mt-5 max-w-[700px]`}>
+            <p className={${styles.paragraph} mt-5 max-w-[700px]}>
                 Discover comprehensive internship information from 
                 senior peers, explore their success stories, and directly 
                 connect with them through provided contacts on GoShip.
@@ -36,7 +36,7 @@ const Hero = () => {
                 </div>
             </div> 
         </div>
-        <div className={`flex-1 flex ${styles.flexCenter} my-10 md:my-0 relative`}>
+        <div className={flex-1 flex ${styles.flexCenter} my-10 md:my-0 relative}>
             <img src={image1} alt="billing" className="w-[80%] h-auto relative z-5" />
         </div>
     </section>
