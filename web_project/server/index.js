@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
       cors({
-            origin: "https://goship-five.vercel.app", // Atur domain React Anda
+            origin: ["https://goship-five.vercel.app", "http://localhost:3000"], // Atur domain React Anda
             credentials: true, // Izinkan kredensial seperti cookies
 
       })
