@@ -9,6 +9,8 @@ class Story {
   String perusahaan;
   String sex;
   String createdAt;
+  int id_siswa;
+
 
   Story(
       {required this.id_post,
@@ -17,7 +19,8 @@ class Story {
       required this.post,
       required this.perusahaan,
       required this.sex,
-      required this.createdAt});
+      required this.createdAt,
+      required this.id_siswa});
 
   factory Story.createStoryObject(Map<String, dynamic> object) {
     return Story(
@@ -27,7 +30,8 @@ class Story {
         post: object["deskripsi_magang"],
         perusahaan: object["perusahaan"],
         sex: object["jenis_kelamin"],
-        createdAt: object["created_at"]);
+        createdAt: object["created_at"],
+        id_siswa: int.parse(object["id_siswa"].toString()));
   }
 
   static Future<List<Story>> getStory() async {

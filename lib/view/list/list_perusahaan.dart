@@ -266,250 +266,258 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           ),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 12),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: Material(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            const Padding(
-                              padding: EdgeInsets.all(12.0),
-                              child:
-                                  Icon(Icons.search, color: Color(0xFFF77D00)),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 10, bottom: 5),
-                                child: TextField(
-                                  onChanged: (value) {
-                                    provider.searchPerusahaan(value);
-                                  },
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: 'Cari perusahaan',
-                                    hintStyle: TextStyle(
-                                      fontSize: 13,
-                                      height: 1.0,
+        
+        body: SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 12, bottom: 12),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Material(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          color: Colors.white,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              const Padding(
+                                padding: EdgeInsets.all(12.0),
+                                child:
+                                    Icon(Icons.search, color: Color(0xFFF77D00)),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 10, bottom: 5),
+                                  child: TextField(
+                                    onChanged: (value) {
+                                      provider.searchPerusahaan(value);
+                                    },
+                                    decoration: const InputDecoration.collapsed(
+                                      hintText: 'Cari perusahaan',
+                                      hintStyle: TextStyle(
+                                        fontSize: 13,
+                                        height: 1.0,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        _showFilterModal(context, provider);
-                      },
-                      icon: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'assets/logo/filter-button.png',
-                          width: 50,
-                          height: 50,
+                      IconButton(
+                        onPressed: () {
+                          _showFilterModal(context, provider);
+                        },
+                        icon: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            'assets/logo/filter-button.png',
+                            width: 50,
+                            height: 50,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(
-                child: provider.filteredPerusahaan.isEmpty &&
-                        provider.perusahaan.isEmpty
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : provider.filteredPerusahaan.isEmpty &&
-                            provider.perusahaan.isNotEmpty
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/home/not_found.png',
-                                  width: 200,
-                                  height: 200,
-                                ),
-                                SizedBox(height: 16),
-                                RichText(
-                                  textAlign: TextAlign.center,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'Sorry, ',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'the data not found',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFFF77D00),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Find more data!',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : ListView.builder(
-                            padding: const EdgeInsets.all(0),
-                            itemCount: provider.filteredPerusahaan.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Listintern(
-                                        idPerusahaan: provider
-                                            .filteredPerusahaan[index]
-                                            .id_perusahaan,
-                                        namaPerusahaan: provider
-                                            .filteredPerusahaan[index]
-                                            .nama_perusahaan,
-                                      ),
+                Expanded(
+                  child: provider.filteredPerusahaan.isEmpty &&
+                          provider.perusahaan.isEmpty
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : provider.filteredPerusahaan.isEmpty &&
+                              provider.perusahaan.isNotEmpty
+                          ? Center(
+                              child: SingleChildScrollView(
+                                physics: const NeverScrollableScrollPhysics(),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/home/not_found.png',
+                                      width: 200,
+                                      height: 200,
                                     ),
-                                  );
-                                },
-                                highlightColor: Colors.white,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Card(
-                                    elevation: 6,
-                                    shadowColor:
-                                        Color(0xFFF77D00).withOpacity(0.2),
-                                    // Set background color to white
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.all(
-                                                8.0), // Memberikan padding sebesar 16 unit
-                                            child: Card(
-                                              color: Colors
-                                                  .white, // Menetapkan warna card
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: Image.network(
-                                                  provider
-                                                      .filteredPerusahaan[index]
-                                                      .logo_perusahaan,
-                                                  fit: BoxFit.cover,
-                                                  width: 55,
-                                                  height: 55,
-                                                  errorBuilder: (context, error,
-                                                      stackTrace) {
-                                                    return Image.asset(
-                                                      'assets/home/LOGO1.png',
-                                                      fit: BoxFit.cover,
-                                                      width: 55,
-                                                      height: 55,
-                                                    );
-                                                  },
-                                                ),
-                                              ),
+                                    SizedBox(height: 16),
+                                    RichText(
+                                      textAlign: TextAlign.center,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'Sorry, ',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 5),
-                                                  child: Text(
-                                                    provider
-                                                        .filteredPerusahaan[
-                                                            index]
-                                                        .nama_perusahaan,
-                                                    style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 13,
-                                                      fontFamily: 'DM Sans',
-                                                    ),
-                                                  ),
-                                                ),
-                                                ...List.generate(
-                                                  provider
-                                                              .filteredPerusahaan[
-                                                                  index]
-                                                              .posisiPerusahaan
-                                                              .length >
-                                                          4
-                                                      ? 4
-                                                      : provider
-                                                          .filteredPerusahaan[
-                                                              index]
-                                                          .posisiPerusahaan
-                                                          .length,
-                                                  (posisiIndex) => Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5, top: 4),
-                                                    child: Text(
-                                                      '=> ' +
-                                                          provider
-                                                              .filteredPerusahaan[
-                                                                  index]
-                                                              .posisiPerusahaan[
-                                                                  posisiIndex]
-                                                              .nama_posisi,
-                                                      style: const TextStyle(
-                                                        fontFamily: 'DM Sans',
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                          TextSpan(
+                                            text: 'the data not found',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFFF77D00),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
-                                  ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      'Find more data!',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            },
-                          ),
-              ),
-            ],
+                              ),
+                            )
+                          : ListView.builder(
+                            shrinkWrap: true,
+                              padding: const EdgeInsets.all(0),
+                              itemCount: provider.filteredPerusahaan.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Listintern(
+                                          idPerusahaan: provider
+                                              .filteredPerusahaan[index]
+                                              .id_perusahaan,
+                                          namaPerusahaan: provider
+                                              .filteredPerusahaan[index]
+                                              .nama_perusahaan,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  highlightColor: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: Card(
+                                      elevation: 6,
+                                      shadowColor:
+                                          Color(0xFFF77D00).withOpacity(0.2),
+                                      // Set background color to white
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(12),
+                                        ),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.all(
+                                                  8.0), // Memberikan padding sebesar 16 unit
+                                              child: Card(
+                                                color: Colors
+                                                    .white, // Menetapkan warna card
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Image.network(
+                                                    provider
+                                                        .filteredPerusahaan[index]
+                                                        .logo_perusahaan,
+                                                    fit: BoxFit.cover,
+                                                    width: 55,
+                                                    height: 55,
+                                                    errorBuilder: (context, error,
+                                                        stackTrace) {
+                                                      return Image.asset(
+                                                        'assets/home/LOGO1.png',
+                                                        fit: BoxFit.cover,
+                                                        width: 55,
+                                                        height: 55,
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5),
+                                                    child: Text(
+                                                      provider
+                                                          .filteredPerusahaan[
+                                                              index]
+                                                          .nama_perusahaan,
+                                                      style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 13,
+                                                        fontFamily: 'DM Sans',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  ...List.generate(
+                                                    provider
+                                                                .filteredPerusahaan[
+                                                                    index]
+                                                                .posisiPerusahaan
+                                                                .length >
+                                                            4
+                                                        ? 4
+                                                        : provider
+                                                            .filteredPerusahaan[
+                                                                index]
+                                                            .posisiPerusahaan
+                                                            .length,
+                                                    (posisiIndex) => Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5, top: 4),
+                                                      child: Text(
+                                                        '=> ' +
+                                                            provider
+                                                                .filteredPerusahaan[
+                                                                    index]
+                                                                .posisiPerusahaan[
+                                                                    posisiIndex]
+                                                                .nama_posisi,
+                                                        style: const TextStyle(
+                                                          fontFamily: 'DM Sans',
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -543,6 +551,8 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: SingleChildScrollView(
+                  physics:
+                      const NeverScrollableScrollPhysics(),
                   child: Padding(
                     padding:
                         const EdgeInsets.only(bottom: 16, right: 16, left: 16),

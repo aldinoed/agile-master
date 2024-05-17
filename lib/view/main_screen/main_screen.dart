@@ -34,7 +34,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     // bool showFab = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         elevation: 0,

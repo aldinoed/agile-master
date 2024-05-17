@@ -4,6 +4,7 @@ import 'package:flutter_project/model/perusahaan.dart';
 import 'package:flutter_project/view/guide/guide.dart';
 import 'dart:math';
 import 'package:flutter_project/model/story.dart';
+import 'package:flutter_project/view/list/page_detail_mahasiswa.dart';
 import 'package:flutter_project/view/main_screen/main_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -100,11 +101,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => MainScreen()),
-            );
-          },
+          
           child: Align(
             alignment: Alignment.center,
             child: Row(
@@ -183,109 +180,106 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                            left: 24,
-                            right: 24,
-                            bottom: 24), // Adjust vertical padding
-                        child: Card(
-                          elevation: 6,
-                          shadowColor: Color(0xFFF77D00).withOpacity(0.2),
-                          child: Container(
-                            height: 180,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                  12), // Set border radius
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin:
-                                            const EdgeInsets.only(right: 20),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          child: Image.asset(
-                                            stories[index].sex != 'Perempuan'
-                                                ? 'assets/home/male.png'
-                                                : 'assets/home/female.png',
-                                            width: 80,
-                                            height: 80,
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              stories.isNotEmpty
-                                                  ? stories[index].nama
-                                                  : "No Data",
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
-                                                fontFamily: 'DM Sans',
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Text(
-                                              stories.isNotEmpty
-                                                  ? stories[index].perusahaan
-                                                  : "No Data",
-                                              style:
-                                                  const TextStyle(fontSize: 12),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Text(
-                                              stories.isNotEmpty
-                                                  ? stories[index].posisi
-                                                  : "No Data",
-                                              style:
-                                                  const TextStyle(fontSize: 12),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+  child: CustomScrollView(
+    slivers: [
+      SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.only(
+                  left: 24, right: 24, bottom: 24), // Adjust vertical padding
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PageDetailMahasiswa(
+                        id_siswa: stories[index].id_siswa
+                      ),
+                    ),
+                  );
+                },
+                child: Card(
+                  elevation: 6,
+                  shadowColor: Color(0xFFF77D00).withOpacity(0.2),
+                  child: Container(
+                    height: 180,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12), // Set border radius
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 20),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    stories[index].sex != 'Perempuan'
+                                        ? 'assets/home/male.png'
+                                        : 'assets/home/female.png',
+                                    width: 80,
+                                    height: 80,
                                   ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    stories.isNotEmpty
-                                        ? stories[index].post
-                                        : "No Data",
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'DM Sans',
-                                    ),
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      stories.isNotEmpty ? stories[index].nama : "No Data",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        fontFamily: 'DM Sans',
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      stories.isNotEmpty ? stories[index].perusahaan : "No Data",
+                                      style: const TextStyle(fontSize: 12),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      stories.isNotEmpty ? stories[index].posisi : "No Data",
+                                      style: const TextStyle(fontSize: 12),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      );
-                    },
-                    childCount: stories.length,
+                          SizedBox(height: 10),
+                          Text(
+                            stories.isNotEmpty ? stories[index].post : "No Data",
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'DM Sans',
+                            ),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
+          childCount: stories.length,
+        ),
+      ),
+    ],
+  ),
+),
+
         ],
       ),
     );
