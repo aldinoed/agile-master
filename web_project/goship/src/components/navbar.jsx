@@ -42,9 +42,6 @@ const Navbar = (user) => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
-          <div className="sm:px-10 px-5 sm:py-3">
-            {loggedUser !== null ? <Link to='/student-profile' state={{ user: loggedUser }}>{loggedUser}</Link> : <ButtonSignIn />}
-          </div>
         </ul>
       </nav>
     </div>
