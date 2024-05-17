@@ -54,6 +54,7 @@ const Home = () => {
 
       <div className={`bg-white ${styles.flexCenter} pt-80 `}>
         <div className={`${styles.boxWidth}`}>
+            <AddExperience />
           <div className="List-Carousel pt-32 pb-24">
             <CustomCarousel />
           </div>
