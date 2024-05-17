@@ -44,7 +44,7 @@ app.get('/tes', async (req, res) => {
 
 app.get('/api/data', async (req, res) => {
       try {
-            const sql = "SELECT p.id_perusahaan, p.nama_perusahaan, p.logo_perusahaan, COUNT(m.siswa_id) AS jumlah_siswa, po.id_posisi, po.nama_posisi, GROUP_CONCAT(DISTINCT s.prodi) AS prodi, s.semester FROM perusahaan p LEFT JOIN magang m ON p.id_perusahaan = m.posisi_id LEFT JOIN posisi po ON p.id_perusahaan = po.perusahaan_id LEFT JOIN siswa s ON m.siswa_id = s.id_siswa GROUP BY p.id_perusahaan, po.id_posisi;"
+            const sql = "SELECT p.id_perusahaan, p.nama_perusahaan, p.logo_perusahaan, COUNT(m.siswa_id) AS jumlah_siswa, po.id_posisi, po.nama_posisi, GROUP_CONCAT(DISTINCT s.prodi) AS prodi, s.semester FROM perusahaan p INNER JOIN magang m ON p.id_perusahaan = m.posisi_id LEFT JOIN posisi po ON p.id_perusahaan = po.perusahaan_id LEFT JOIN siswa s ON m.siswa_id = s.id_siswa GROUP BY p.id_perusahaan, po.id_posisi;"
             const hasilQuery = await executeQuery(sql);
 
             const companiesData = {};
