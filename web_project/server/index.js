@@ -99,7 +99,7 @@ app.get("/api/major-data", async (req, res) => {
                   const element = hasilQuery[j];
                   if (element.deskripsi_magang) {
                         posts[j] = {
-                              id: elemet.id_siswa,
+                              id_siswa: elemet.siswa_id,
                               nama: element.nama_siswa,
                               posisi: element.nama_posisi,
                               logo: element.logo_perusahaan,
