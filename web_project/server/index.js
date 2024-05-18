@@ -171,7 +171,7 @@ app.get("/api/perusahaan", async (req, res) => {
 app.get('/api/perusahaan/:id', async (req, res) => {
       try {
             const id_perusahaan = req.params.id;
-            const sql = `SELECT pr.*, p.id_posisi, p.nama_posisi, s.id_siswa, s.nama_siswa, s.email, COUNT(m.id_magang) AS jumlah_siswa 
+            const sql = `SELECT pr.*, p.id_posisi, p.nama_posisi, s.id_siswa, s.nama_siswa, s.email, s.jenis_kelamin, COUNT(m.id_magang) AS jumlah_siswa 
                      FROM posisi p 
                      JOIN magang m ON p.id_posisi = m.posisi_id 
                      JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan 
@@ -209,7 +209,8 @@ app.get('/api/perusahaan/:id', async (req, res) => {
                         hasil[item.id_perusahaan].posisi[item.id_posisi].siswa.push({
                               id_siswa: item.id_siswa,
                               nama_siswa: item.nama_siswa,
-                              email: item.email
+                              email: item.email,
+                              jenis_kelamin: item.jenis_kelamin
                         });
 
                         hasil[item.id_perusahaan].posisi[item.id_posisi].jumlah_siswa += 1;
