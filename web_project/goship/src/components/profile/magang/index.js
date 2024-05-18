@@ -8,6 +8,7 @@ import Buttonlogout from "./button_logout";
 import Buttonreset from "./reset";
 import Buttonsave from "./save";
 import Instruction from "./instruction";
+import CardNotif from "../../announcement";
 
 export {
   Navbar,
@@ -19,5 +20,6 @@ export {
   Formprofile,
   Requirement,
   History, 
-  Instruction
+  Instruction,
+  CardNotif
 };
