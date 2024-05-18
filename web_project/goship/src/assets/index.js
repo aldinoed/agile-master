@@ -48,6 +48,9 @@ import telpon from "./icon/telpon.png"
 import bgprofile from "./profilebg.png"
 import menu from "./menu.svg"
 import close from "./close.svg"
+import announcement from "./announcement.png"
+import sukses from "./sukses.png"
+import failed from "./failed.png"
 
 
 
@@ -102,4 +105,7 @@ export {
   forgotuser,
   amplop,
   forgotadmin,
+   announcement,
+  sukses,
+  failed
 };
