@@ -28,8 +28,8 @@ const CardCompany = () => {
             fetchData();
       }, []);
 
-      const handleCardClick = (id_perusahaan) => {
-            navigate(`/detail`)
+      const handleCardClick = (id_perusahaan, i) => {
+            navigate(`/detail-company/${id_perusahaan}`)
       };
 
       const toggleShowMore = () => {
@@ -41,23 +41,22 @@ const CardCompany = () => {
                   <div className="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '10px', gridRowGap: '20px' }}>
                         {data.slice(0, showMore ? data.length : 8).map((company, index) => (
                               <div key={company.id_perusahaan} >
-                                    <Link to="/detail" state={company.id}>
-                                          <button onClick={() => handleCardClick(company.id_perusahaan)} >
-                                                <div className="rounded-lg overflow-hidden shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] items-center justify-center" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                      <div className="card-image ">
-                                                            {company.logo_perusahaan && (
-                                                                  <img className='w-[100px] h-[100px] ss:text-[10px] rounded' src={company.logo_perusahaan} alt={company.nama_perusahaan} />
-                                                            )}
-                                                            {!company.logo_perusahaan && (
-                                                                  <div className="placeholder-icon">
-                                                                        <i className="fas fa-image-not-found"></i>
-                                                                  </div>
-                                                            )}
-                                                      </div>
+
+                                    <button onClick={() => handleCardClick(company.id_perusahaan, index)} >
+                                          <div className="rounded-lg overflow-hidden shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] items-center justify-center" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <div className="card-image ">
+                                                      {company.logo_perusahaan && (
+                                                            <img className='w-[100px] h-[100px] ss:text-[10px] rounded' src={company.logo_perusahaan} alt={company.nama_perusahaan} />
+                                                      )}
+                                                      {!company.logo_perusahaan && (
+                                                            <div className="placeholder-icon">
+                                                                  <i className="fas fa-image-not-found"></i>
+                                                            </div>
+                                                      )}
                                                 </div>
-                                                <div className="card-title ss:text-[12px] font-bold py-2">{company.nama_perusahaan}</div>
-                                          </button>
-                                    </Link>
+                                          </div>
+                                          <div className="card-title ss:text-[12px] font-bold py-2">{company.nama_perusahaan}</div>
+                                    </button>
                               </div>
                         ))}
                         {data.length > 9 && (

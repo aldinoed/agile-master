@@ -9,7 +9,6 @@ const Navbar = (user) => {
       const [active, setActive] = useState("Home");
       const [iniNavbar, setIniNavbar] = useState(false);
       const loggedUser = user.user;
-      console.log("🚀 ~ Navbar ~ loggedUser:", loggedUser)
 
       const scrollHeader = () => {
             if (window.scrollY >= 20) {
