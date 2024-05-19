@@ -50,6 +50,9 @@ import menu from "./menu.svg"
 import close from "./close.svg"
 import male from "./male.png"
 import female from "./female.png"
+import announcement from "./announcement.png"
+import sukses from "./sukses.png"
+import failed from "./failed.png"
 
 
 
@@ -64,6 +67,11 @@ export {
       email,
       gps,
       req,
+      male,
+      female,
+      announcement,
+      failed,
+      sukses,
       logo2,
       image1,
       image2,
@@ -84,8 +92,6 @@ export {
       bag,
       calendar,
       card,
-      male,
-      female,
       document,
       location,
       star,
