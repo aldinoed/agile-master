@@ -4,7 +4,7 @@ import { Footer } from "../components";
 import { Navbar, Hero, Listperusahaan } from "../components/detail_perusahaan";
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { gojek, gps, req, bg, email } from "../assets";
+import { gojek, gps, req, bg, email, male, female } from "../assets";
 import "@fontsource/dm-sans";
 import '@fontsource/libre-baskerville';
 import axios from 'axios';
@@ -198,7 +198,7 @@ const Detailperusahaan = () => {
                                                                               >
                                                                                     <div className="flex flex-col rounded-lg shadow-md md:w-auto md:flex-row">
                                                                                           <div className="justify-start px-2 py-2 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
-                                                                                                <img src={gojek} className="object-cover w-20 h-18" alt="" />
+                                                                                                <img src={siswa.jenis_kelamin == 'Laki-laki' ? male : female} className="rounded object-cover w-20 h-18" alt="" />
                                                                                           </div>
                                                                                           <div className="flex flex-col justify-start py-2 pr-10 bg-white rounded-b-lg md:rounded-r-lg md:rounded-b-none md:w-auto">
                                                                                                 <p className="font-[700]">{siswa.nama_siswa}</p>
