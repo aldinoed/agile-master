@@ -54,8 +54,6 @@ import announcement from "./announcement.png"
 import sukses from "./sukses.png"
 import failed from "./failed.png"
 
-
-
 export {
       logo1,
       menu,

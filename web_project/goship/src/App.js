@@ -8,6 +8,7 @@ import ForgotPasswordUserPage from "./pages/Forgot_Password_User";
 import ForgotPasswordAdminPage from "./pages/Forgot_Password_Admin";
 import Profilemagang from './pages/Profile_magang';
 import Profilemaba from './pages/Profile_maba';
+import DetailMahasiswa from './pages/DetailMahasiswa';
 
 const App = () => {
       return (
@@ -16,6 +17,7 @@ const App = () => {
                         {/* <Switch> */}
                         <Route path="/" element={<Home />} />
                         <Route path="/detail-company/:id" element={<Detailperusahaan />} />
+                        <Route path="/detail-student/:id" element={<DetailMahasiswa />} />
                         <Route path="/Profilemagang" element={<Profilemagang />} />
                         <Route path="/student-profile" element={<Profilemaba />} />
                         <Route path="/login" element={<Login />} />

@@ -5,10 +5,10 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-const Buttonlogout = (user) => {
+const Buttonlogout = () => {
       const navigate = useNavigate();
       const refreshToken = Cookies.get('refresh_token');
-      console.log(user.user.user)
+      // console.log(user.user.user)
       const handleSubmit = async (e) => {
             e.preventDefault();
             const response = await axios.post('https://goship-apii.vercel.app/auth/logout')

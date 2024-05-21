@@ -63,7 +63,7 @@ const CardCompany = () => {
                               <div key="show-more" className="card ss:text-[30px] font-bold">
                                     <div className='md:h-[100px] h-max-[1200px] rounded-lg overflow-hidden shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex items-center justify-center '>
                                           <div className='px-3 outline rounded-lg'>
-                                                <button className='' onClick={toggleShowMore}>{showMore ? '-' : '+'}</button>
+                                                <button className='border-none' onClick={toggleShowMore}>{showMore ? 'Less' : 'More'}</button>
 
                                           </div>
                                     </div>

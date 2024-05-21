@@ -83,7 +83,7 @@ const LoginPage = () => {
                               user: response.data.user,
                               token: response.data.token
                         }
-                        navigate('/', { state: authorizationKey })
+                        navigate('/student-profile', { state: authorizationKey })
                   }
             } catch (error) {
                   console.log(error)

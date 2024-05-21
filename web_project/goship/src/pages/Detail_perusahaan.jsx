@@ -8,6 +8,7 @@ import { gojek, gps, req, bg, email, male, female } from "../assets";
 import "@fontsource/dm-sans";
 import '@fontsource/libre-baskerville';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const RevealOnScroll = ({ children }) => {
       const [isVisible, setIsVisible] = useState(false);
@@ -201,7 +202,7 @@ const Detailperusahaan = () => {
                                                                                                 <img src={siswa.jenis_kelamin == 'Laki-laki' ? male : female} className="rounded object-cover w-20 h-18" alt="" />
                                                                                           </div>
                                                                                           <div className="flex flex-col justify-start py-2 pr-10 bg-white rounded-b-lg md:rounded-r-lg md:rounded-b-none md:w-auto">
-                                                                                                <p className="font-[700]">{siswa.nama_siswa}</p>
+                                                                                                <a href={'/detail-student/' + siswa.id_siswa}><p className="font-[700]">{siswa.nama_siswa}</p></a>
                                                                                                 <div className="flex-row flex items-center ">
                                                                                                       <img src={email} className="pr-2" alt="" />
                                                                                                       <p className="text-dimBlack">{siswa.email}</p>
@@ -218,7 +219,7 @@ const Detailperusahaan = () => {
                                     </div>
                               </div>
                         </div>
-                  </div>
+                  </div >
 
                   <div>
                         <div className={`${styles.flexCenter} `}>
