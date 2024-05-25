@@ -9,6 +9,7 @@ import ForgotPasswordAdminPage from "./pages/Forgot_Password_Admin";
 import Profilemagang from './pages/Profile_magang';
 import Profilemaba from './pages/Profile_maba';
 import DetailMahasiswa from './pages/DetailMahasiswa';
+import AdminDashboard from './pages/AdminDashboard';
 
 const App = () => {
       return (
@@ -21,6 +22,7 @@ const App = () => {
                         <Route path="/Profilemagang" element={<Profilemagang />} />
                         <Route path="/student-profile" element={<Profilemaba />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path='/admin' element={<AdminDashboard />} />
                         <Route
                               path="/reset-password-user"
                               element={<ForgotPasswordUserPage />}

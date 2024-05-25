@@ -1,0 +1,239 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .App {
+    padding: 20px;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #f8f9fa; */
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  .logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  main {
+    margin-top: 20px;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    font-weight: medium;
+  }
+  
+  .btn-primary {
+    background-color: #F77D00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  form input {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 16px;
+  }
+  
+  .title-item {
+    flex: 1;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .title-item-id{
+    width: 100%;
+    max-width: 120px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .company-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .company-card-container {
+    background-color: #FFFFFF;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s;
+  }
+  
+  .company-card-container:hover {
+    background-color: #F77D00;
+  }
+  
+  .company-card {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    width: 100%;
+  }
+  
+  .company-id{
+    width: 100%;
+    max-width: 120px;
+  }
+
+
+  .company-logo-container,
+  .company-name{
+    width: 100%;
+  }
+
+
+
+  .company-profile,
+  .company-location,
+  .company-address,
+  .company-actions {
+    /* flex: 1; */
+    /* align-items: center; */
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 221.2px;
+    /* display: grid; */
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  
+  .company-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .company-logo {
+    width: 54px;
+    height: 48px;
+  }
+  
+  .company-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .company-actions button {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .detail{
+    width: 100%;
+    max-width: 221.2px;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-inner {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+  }
+  
+  .existing-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .view-button {
+    color: green;
+  }
+  
+  .edit-button {
+    color: yellow;
+  }
+  
+  .delete-button {
+    color: red;
+  }
