@@ -11,6 +11,8 @@ import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 
 const CardForm = ({ onClose }) => {
+  const [color, setColor] = useState(false);
+  const [selected, setSelected] = useState(''); // State to track selected value
   const [perusahaanData, setPerusahaanData] = useState([]);
   useEffect(() => {
     fetch('https://goship-apii.vercel.app/api/perusahaan/')
@@ -121,11 +123,11 @@ const CardForm = ({ onClose }) => {
   };
   
   const handleYesClick = () => {
-    setUangSaku('1');
+    setSelected('iya');
   };
 
   const handleNoClick = () => {
-    setUangSaku('0');
+    setSelected('tidak');
   };
 
   return (
@@ -431,47 +433,47 @@ const CardForm = ({ onClose }) => {
               </div>
 
               <div className="sm:col-span-3">
-                <div className="input-group flex inline-block border items-center border-1 rounded-md relative">
-                  <img src={star} alt="star" className="input-icon m-3" />
-                  <input
-                    type="checkbox"
-                    id="mendapat Uang Saku??"
-                    className="hidden"
-                  />
-                  <label
-                    htmlFor="mendapat Uang Saku??"
-                    className="block w-full py-1.5 ps-0 text-gray-700 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 mr-20"
-                    style={{ fontWeight: "normal" }}
-                  >
-                    mendapat Uang Saku??
-                  </label>
-                  <input
-                    type="text text-xss"
-                    name="mendapat Uang Saku??"
-                    id="mendapat Uang Saku??"
-                    placeholder="mendapat Uang Saku??"
-                    value={uangSaku}
-                    readOnly
-                    className="block w-full py-1.5 ps-0 text-gray-900 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 px-30 hidden mr-20"
-                  />
-                  <div className="flex right-0 flex items-center px-22">
-                    <button
-                      className="border py-1 px-2 rounded-md text-xs mr-2"
-                      style={{ color: "#F77D00", borderColor: "#F77D00" }}
-                      onClick={handleYesClick}
-                    >
-                      Iya
-                    </button>
-                    <button
-                      className="border py-1 px-2 rounded-md text-xs"
-                      style={{ color: "#F77D00", borderColor: "#F77D00" }}
-                      onClick={handleNoClick}
-                    >
-                      Tidak
-                    </button>
-                  </div>
-                </div>
-              </div>
+      <div className="input-group flex inline-block border items-center border-1 rounded-md relative">
+        <img src={star} alt="star" className="input-icon m-3" />
+        <input
+          type="checkbox"
+          id="mendapat Uang Saku??"
+          className="hidden"
+        />
+        <label
+          htmlFor="mendapat Uang Saku??"
+          className="block w-full py-1.5 ps-0 text-gray-700 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 mr-20"
+          style={{ fontWeight: "normal" }}
+        >
+          mendapat Uang Saku??
+        </label>
+        <input
+          type="text"
+          name="mendapat Uang Saku??"
+          id="mendapat Uang Saku??"
+          placeholder="mendapat Uang Saku??"
+          value={selected === 'yes' ? 'Yes' : selected === 'no' ? 'No' : ''}
+          readOnly
+          className="block w-full py-1.5 ps-0 text-gray-900 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 px-30 hidden mr-20"
+        />
+        <div className="flex right-0 flex items-center px-22">
+          <button
+          type="button"
+            className={`border py-1 px-2 rounded-md text-xs mr-2 ${selected === 'iya' ? 'bg-orange text-white border-orange' : 'text-orange-500 border-orange-500'}`}
+            onClick={handleYesClick}
+          >
+            Iya
+          </button>
+          <button
+          type="button"
+            className={`border py-1 px-2 rounded-md text-xs ${selected === 'tidak' ? 'bg-orange text-white border-orange' : 'text-orange-500 border-orange-500'}`}
+            onClick={handleNoClick}
+          >
+            Tidak
+          </button>
+        </div>
+      </div>
+    </div>
 
               <div className="col-span-full">
                 <div className="input-group flex inline-block border border-1 rounded-md">

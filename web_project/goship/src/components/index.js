@@ -5,7 +5,7 @@ import ButtonExperience from "./button_experience";
 import Hero from "./hero";
 import Footer from "./footer";
 import AddExperience from "./add_experience";
-import CardForm from "./form_post";
+import CardForm from "../pages/form_post";
 import Perusahaan from "./company";
 import CustomCarousel from "./Carousel";
 import StudentCard from "./StudentCard";
