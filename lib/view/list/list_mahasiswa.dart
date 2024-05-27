@@ -42,7 +42,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {

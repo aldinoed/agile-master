@@ -35,7 +35,7 @@ class _ListInternState extends State<Listintern> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -55,6 +55,7 @@ class _ListInternState extends State<Listintern> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: Text(widget.namaPerusahaan),
         titleTextStyle: const TextStyle(
           fontSize: 20,
@@ -196,30 +197,32 @@ class _ListInternState extends State<Listintern> {
                         color: Color.fromARGB(100, 93, 92, 91),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Container(
-                        child: const Row(
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Where the place you want?',
-                                  style: TextStyle(
-                                    //   color: const Color(0xFFF77D00),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                Text(
-                                    'Get an internship based on your interest!'),
-                              ],
+                     Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  child: const Row(
+                    children: <Widget>[
+                      Expanded( // Tambahkan widget Expanded di sini
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Dimana tempat yang cocok untukmu?',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
+                            Text(
+                                'Dapatkan tempat magang sesuai minat Anda!'),
                           ],
                         ),
                       ),
-                    ),
+                    ],
+                  ),
+                ),
+              ),
+
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -275,7 +278,7 @@ class _ListInternState extends State<Listintern> {
                                       Padding(
                                         padding: const EdgeInsets.only(left: 5),
                                         child: Text(
-                                          '${posisi.jumlah_siswa} people',
+                                          '${posisi.jumlah_siswa} orang',
                                         ),
                                       ),
                                     ],
@@ -342,11 +345,13 @@ class _ListInternState extends State<Listintern> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(10),
-                                                        child: const Image(
-                                                          image: AssetImage(
-                                                              'assets/home/Profile_Photo1.png'),
-                                                          fit: BoxFit.fill,
-                                                        ),
+                                                          child: Image.asset(
+                                          posisi.siswa[posisiIndex] != 'Perempuan'
+                                              ? 'assets/home/male.png'
+                                              : 'assets/home/female.png',
+                                          
+                                        ),
+                                                        
                                                       ),
                                                     ),
                                                   ),
@@ -419,7 +424,7 @@ class _ListInternState extends State<Listintern> {
                   ],
                 );
               } else {
-                return const Text('No data available');
+                return const Text('Tidak ada data tersedia');
               }
             }
           },

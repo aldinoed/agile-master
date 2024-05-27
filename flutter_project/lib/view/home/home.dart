@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(250, 250, 254, 1),
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
           onTap: () {
@@ -185,12 +186,12 @@ class _HomePageState extends State<HomePage> {
                               fit: BoxFit.fill,
                             )),
                         const Text(
-                          "Where you're interested?",
+                          "Di mana tempat yang cocok untukmu?",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'DM Sans'),
                         ),
-                        const Text('Get an internship based on your interests!')
+                        const Text('Dapatkan magang berdasarkan minat Anda!')
                       ],
                     ),
                   ),
@@ -241,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Text(
                                                 stories.isNotEmpty
                                                     ? stories[index].nama
-                                                    : "No Data",
+                                                    : "Tidak Ada Data",
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 16,
@@ -252,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                             Text(
                                               stories.isNotEmpty
                                                   ? stories[index].perusahaan
-                                                  : "No Data",
+                                                  : "Tidak Ada Data",
                                               overflow: TextOverflow.ellipsis,
                                               style:
                                                   const TextStyle(fontSize: 13),
@@ -260,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                                             Text(
                                                 stories.isNotEmpty
                                                     ? stories[index].posisi
-                                                    : "No Data",
+                                                    : "Tidak Ada Data",
                                                 overflow: TextOverflow.ellipsis,
                                                 style: const TextStyle(
                                                     fontSize: 13))
@@ -273,7 +274,7 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   stories.isNotEmpty
                                       ? stories[index].post
-                                      : "No Data",
+                                      : "Tidak Ada Data",
                                   style: const TextStyle(
                                       fontSize: 16, fontFamily: 'DM Sans'),
                                   overflow: TextOverflow.ellipsis,

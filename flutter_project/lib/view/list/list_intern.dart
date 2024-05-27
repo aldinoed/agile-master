@@ -38,7 +38,7 @@ class _ListInternState extends State<Listintern> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -231,13 +231,13 @@ class _ListInternState extends State<Listintern> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Where the place you want?',
+                        'Dimana tempat yang kamu inginkan?',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
-                      Text('Get an internship based on your interest!'),
+                      Text('Dapatkan magang berdasarkan minat Anda!'),
                     ],
                   ),
                 ],
@@ -305,7 +305,7 @@ class _ListInternState extends State<Listintern> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 5, bottom: 5, right: 30),
-                                child: Text('${posisi.jumlah_siswa} people'),
+                                child: Text('${posisi.jumlah_siswa} orang'),
                               ),
                             ],
                           ),

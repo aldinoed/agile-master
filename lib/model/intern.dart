@@ -9,6 +9,8 @@ class Intern {
   final String logo_perusahaan;
   final int jumlah_siswa_total;
   final List<PosisiPerusahaan> posisiPerusahaan;
+  
+ 
 
   Intern({
     required this.nama_perusahaan,
@@ -17,6 +19,8 @@ class Intern {
     required this.logo_perusahaan,
     required this.jumlah_siswa_total,
     required this.posisiPerusahaan,
+    
+ 
   });
 
   factory Intern.fromJson(Map<String, dynamic> json) {
@@ -27,6 +31,7 @@ class Intern {
       logo_perusahaan: json['logo_perusahaan'],
       jumlah_siswa_total: json['jumlah_siswa_total'],
       posisiPerusahaan: List<PosisiPerusahaan>.from(json['posisi'].map((x) => PosisiPerusahaan.fromJson(x))),
+      
     );
   }
 

@@ -36,7 +36,7 @@ class _ListPerusahaanState extends State<Listperusahaan> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -143,7 +143,7 @@ class _ListPerusahaanState extends State<Listperusahaan> {
                             child: TextField(
                               onChanged: _search,
                               decoration: const InputDecoration.collapsed(
-                                hintText: 'Cari perusahaan',
+                                hintText: 'Cari Perusahaan',
                                 hintStyle: TextStyle(
                                   fontSize: 13,
                                   height: 1.0,

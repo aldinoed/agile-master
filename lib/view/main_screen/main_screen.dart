@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
                         Icon(Icons.home_filled,
                             color: currentTab == 0 ? onPressed : notPressed),
                         Text(
-                          'Home',
+                          'Beranda',
                           style: TextStyle(
                               color: currentTab == 0 ? onPressed : notPressed),
                         )
@@ -91,7 +91,7 @@ class _MainScreenState extends State<MainScreen> {
                           color: currentTab == 1 ? onPressed : notPressed,
                         ),
                         Text(
-                          'Guide',
+                          'Petunjuk',
                           style: TextStyle(
                               color: currentTab == 1 ? onPressed : notPressed),
                         )
@@ -181,7 +181,7 @@ class _MainScreenState extends State<MainScreen> {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Sorry, ',
+                                text: 'Maaf, ',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -189,7 +189,7 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                               ),
                               TextSpan(
-                                text: 'failed to load',
+                                text: 'gagal memuat',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -197,7 +197,7 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                               ),
                               TextSpan(
-                                text: ' this page',
+                                text: ' halaman ini',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -211,7 +211,7 @@ class _MainScreenState extends State<MainScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Text(
-                            'Please check your internet connection and try again.',
+                            'Periksa koneksi internet Anda dan coba lagi.',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black, // Content color

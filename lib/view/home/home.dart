@@ -40,9 +40,9 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             print(context);
             return AlertDialog(
-              title: const Text("Timeout"),
+              title: const Text("Waktu habis"),
               content: const Text(
-                  "Terjadi timeout saat mengambil data. Silakan coba lagi nanti."),
+                  "Waktu habis saat mengambil data. Silakan coba lagi nanti."),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(250, 250, 254, 1),
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
           
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(height: 24), // Space between carousel and text
                 const Text(
-                  "Where you're interested?",
+                  "Dimana tempat yang cocok untukmu?",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'DM Sans',
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(height: 2),
                 const Text(
-                  'Get an internship based on your interests!',
+                  'Dapatkan tempat magang sesuai minat Anda!',
                   style: TextStyle(
                     fontSize: 14,
                   ),
@@ -228,36 +229,59 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      stories.isNotEmpty ? stories[index].nama : "No Data",
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        fontFamily: 'DM Sans',
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    stories.isNotEmpty ? stories[index].nama : "Tidak Ada Data",
+                                    style: const TextStyle(
+                                      color: Color(0xFFF77F00),
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      fontFamily: 'DM Sans',
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Icon(Icons.business, size: 12),
+                                      const SizedBox(width: 5),
+                                      Expanded(
+                                        child: Text(
+                                          stories.isNotEmpty ? stories[index].perusahaan : "Tidak Ada Data",
+                                          style: const TextStyle(fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      stories.isNotEmpty ? stories[index].perusahaan : "No Data",
-                                      style: const TextStyle(fontSize: 12),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      stories.isNotEmpty ? stories[index].posisi : "No Data",
-                                      style: const TextStyle(fontSize: 12),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Icon(Icons.work_outline, size: 12),
+                                      const SizedBox(width: 5),
+                                      Expanded(
+                                        child: Text(
+                                          stories.isNotEmpty ? stories[index].posisi : "Tidak Ada Data",
+                                          style: const TextStyle(fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
+                            ),
+
                             ],
                           ),
                           SizedBox(height: 10),
                           Text(
-                            stories.isNotEmpty ? stories[index].post : "No Data",
+                            stories.isNotEmpty ? stories[index].post : "Tidak Ada Data",
                             style: const TextStyle(
                               fontSize: 12,
                               fontFamily: 'DM Sans',

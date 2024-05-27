@@ -9,6 +9,7 @@ class Guide extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(250, 250, 254, 1),
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
           onTap: () {

@@ -5,14 +5,16 @@ class Mahasiswa {
   int id_siswa;
   String nama_siswa;
   String email;
+  String jenis_kelamin;
 
-  Mahasiswa({required this.id_siswa, required this.nama_siswa, required this.email});
+  Mahasiswa({required this.id_siswa, required this.nama_siswa, required this.email, required this.jenis_kelamin});
 
   factory Mahasiswa.fromJson(Map<String, dynamic> json){
     return Mahasiswa(
       id_siswa: json['id_siswa'] ?? "",
       nama_siswa: json['nama_siswa'],
       email: json['email'],
+      jenis_kelamin: json['jenis_kelamin'],
 
     );
   }

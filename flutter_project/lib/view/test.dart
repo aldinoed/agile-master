@@ -66,7 +66,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                           children: [
                             Icon(Icons.home_filled, color: widget.currentIndex == 0 ? onPressed : notPressed),
                             Text(
-                              'Home',
+                              'Beranda',
                               style: TextStyle(color: widget.currentIndex == 0 ? onPressed : notPressed),
                             )
                           ],
@@ -91,7 +91,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                               color: widget.currentIndex == 1 ? onPressed : notPressed,
                             ),
                             Text(
-                              'Guide',
+                              'Petunjuk',
                               style: TextStyle(color: widget.currentIndex == 1 ? onPressed : notPressed),
                             )
                           ],

@@ -37,7 +37,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -190,7 +190,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Prodi',
+                                  'Program Studi',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -334,7 +334,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Privilage',
+                                  'Privilege',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -362,7 +362,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Title of internship report',
+                                  'Judul laporan magang',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,

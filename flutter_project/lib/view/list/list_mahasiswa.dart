@@ -42,7 +42,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -156,7 +156,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                 _search(value);
                               },
                               decoration: const InputDecoration.collapsed(
-                                hintText: 'search for the students',
+                                hintText: 'Cari Mahasiswa',
                                 hintStyle: TextStyle(
                                   fontSize: 13,
                                   height: 4,

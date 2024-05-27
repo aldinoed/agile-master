@@ -9,6 +9,7 @@ class Guide extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(250, 250, 254, 1),
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
           onTap: () {
@@ -110,7 +111,7 @@ class Guide extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.only(top: 16, bottom: 16),
                                 child: Text(
-                                  'Instructions for \ndoing an internship (KP)',
+                                  'Petunjuk untuk \nmelakukan magang (KP)',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -133,7 +134,7 @@ class Guide extends StatelessWidget {
                             children: [
                               SizedBox(height: 10),
                               Text(
-                                '1. Select the KP type:',
+                                '1. Memilih jenis KP :',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -142,9 +143,11 @@ class Guide extends StatelessWidget {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                '   a. Regular\n'
-                                '   b. IISMA via UP2AI Ms Lely and KUI Mr Iwan Syarif\n'
-                                '   c. IGIP via UP2AI Ms Lely and KUI Mr Iwan Syarif',
+                                '   a. Reguler\n'
+                                '   b. IISMA via UP2AI Bu Lely dan KUI Pak\n'
+                                '       Iwan Syarif\n'
+                                '   c. IGIP via UP2AI Bu Lely dan KUI Pak Iwan\n' 
+                                '       Syarif',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -152,7 +155,7 @@ class Guide extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '2. If you have a Regular KP, determine whether you are a group or individual when carrying out the KP.',
+                                '2. Jika Anda memilih KP Reguler, tentukan apakah Anda merupakan kelompok atau individu saat melaksanakan KP.',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -160,7 +163,11 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'If you are in a group of up to 3 people, fill in the KP Submission Form in Online MIS (If in a group, then only the representative will fill it in)',
+                                '   Jika Anda berada dalam kelompok yang\n'
+                                '   terdiri dari maksimal 3 orang, isi Formulir\n' 
+                                '   Pengajuan KP di MIS Online (Jika dalam\n' 
+                                '   kelompok, maka hanya perwakilan yang\n'
+                                '   akan mengisinya)',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -168,7 +175,7 @@ class Guide extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '3. Make a KP Proposal',
+                                '3. Membuat Proposal KP',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -176,9 +183,15 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '   a. Make a Cover Letter (letter number, and KDAEP designation to be handled via Ms Pipid)\n'
-                                '   b. Make a thank you letter when it is received (letter number and KDAEP designation to be managed via Ms Pipid)\n'
-                                '   c. Farewell to the Supervisor before leaving for KP',
+                                '   a. Membuat Surat Pengantar (nomor surat,\n' 
+                                '      dan peruntukan KDAEP yang akan diurus\n' 
+                                '      melalui Bu Pipid)\n'
+                                '   b. Membuat surat ucapan terima kasih\n'
+                                '      setelah diterima (nomor surat dan\n'
+                                '      peruntukan KDAEP untuk dikelola melalui\n'
+                                '      Bu Pipid)\n'
+                                '   c. Perpisahan dengan Supervisor sebelum\n'
+                                '      berangkat ke KP',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -186,7 +199,7 @@ class Guide extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '4. Implementation of KP 6 Months',
+                                '4. Melaksanakan KP 6 Bulan',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -195,7 +208,7 @@ class Guide extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '5. Making a KP Logbook',
+                                '5. Membuat Buku Catatan KP',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -203,7 +216,9 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'the file filled in is the progress of the KP book, photos uploaded can be daily activities at the company (free photos)',
+                                '   File yang diisi adalah progres buku KP, foto\n'
+                                '   yang diupload bisa berupa kegiatan sehari-\n'
+                                '   hari di perusahaan (foto bebas)',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -211,7 +226,7 @@ class Guide extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '6. Preparation for KP Session',
+                                '6. Mempersiapkan untuk Sesi KP',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -219,12 +234,13 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '   a. ACC Supervisor\n'
-                                '   b. KP Book\n'
-                                '   c. KP Presentation (Indonesia)\n'
-                                '   d. Advance in groups\n'
-                                '   e. Collect Value from the Company\n'
-                                '   f. Collect Mandiri Bank Account (KP funds)',
+                                '   a. Persetujuan Supervisor\n'
+                                '   b. Buku KP\n'
+                                '   c. Presentasi KP (Indonesia)\n'
+                                '   d. Maju dalam Bentuk Kelompok\n'
+                                '   e. Mengumpulkan Nilai dari Perusahaan\n'
+                                '   f. Mengumpulkan Rekening Bank Mandiri\n'
+                                '      (dana KP)',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,

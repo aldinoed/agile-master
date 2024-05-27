@@ -233,6 +233,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
       return Scaffold(
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         appBar: AppBar(
+          scrolledUnderElevation: 0,
           backgroundColor: Color.fromRGBO(250, 250, 254, 1),
           title: InkWell(
             onTap: () {
@@ -302,7 +303,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                       provider.searchPerusahaan(value);
                                     },
                                     decoration: const InputDecoration.collapsed(
-                                      hintText: 'Cari perusahaan',
+                                      hintText: 'Cari Perusahaan',
                                       hintStyle: TextStyle(
                                         fontSize: 13,
                                         height: 1.0,
@@ -356,7 +357,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: 'Sorry, ',
+                                            text: 'Maaf, ',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -364,7 +365,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: 'the data not found',
+                                            text: 'data tidak ditemukan',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -376,7 +377,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      'Find more data!',
+                                      'Temukan lebih banyak data!',
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
