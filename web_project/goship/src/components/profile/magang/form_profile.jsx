@@ -48,17 +48,11 @@ const Formprofile = () => {
       useEffect(() => {
             if (loaded === true) {
                   setOriFullName(fullName);
-                  console.log("🚀 ~ Formprofile ~ oriFullName:", oriFullName)
                   setOriNrp(nrp);
-                  console.log("🚀 ~ Formprofile ~ oriFullName:", nrp)
                   setOriEmail(email);
-                  console.log("🚀 ~ Formprofile ~ oriFullName:", email)
                   setOriPhone(phone);
-                  console.log("🚀 ~ Formprofile ~ oriFullName:", phone)
                   setOriStudyYear(studyYear);
-                  console.log("🚀 ~ Formprofile ~ oriFullName:", studyYear)
                   setOriStudyProgram(studyProgram);
-                  console.log("🚀 ~ Formprofile ~ oriFullName:", studyProgram)
             }
 
       }, [loaded]);
@@ -80,17 +74,11 @@ const Formprofile = () => {
       const handleReset = (e) => {
             e.preventDefault();
             setFullName(oriFullName)
-            console.log("🚀 ~ handleReset ~ oriFullName:", oriFullName)
             setNrp(oriNrp)
-            console.log("🚀 ~ handleReset ~ oriNrp:", oriNrp)
             setEmail(oriEmail)
-            console.log("🚀 ~ handleReset ~ oriEmail:", oriEmail)
             setPhone(oriPhone)
-            console.log("🚀 ~ handleReset ~ oriPhone:", oriPhone)
             setStudyYear(oriStudyYear)
-            console.log("🚀 ~ handleReset ~ oriStudyYear:", oriStudyYear)
             setStudyProgram(oriStudyProgram)
-            console.log("🚀 ~ handleReset ~ oriStudyProgram:", oriStudyProgram)
       };
       const handleSubmit = async (e) => {
             e.preventDefault();
