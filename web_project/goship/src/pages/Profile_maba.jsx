@@ -39,6 +39,7 @@ const Profilemaba = (loggedUser) => {
             window.addEventListener('hashchange', handleHashChange);
             handleHashChange(); // Panggil fungsi saat komponen dimuat
 
+            setLoaded(true);
             return () => {
                   window.removeEventListener('hashchange', handleHashChange);
             };
@@ -73,7 +74,7 @@ const Profilemaba = (loggedUser) => {
                                           <div className='w-50 m-6 bg-white border rounded-lg shadow'>
                                                 <img className=' object-contain border rounded-lg' src={Profile_lanang} alt="asjndajkdnasjdandjasni" />
                                           </div>
-                                          <h2 className='font-bold box-fill '>ajsdhajhsk''</h2>
+                                          <h2 className='font-bold box-fill '>{userFullName}</h2>
                                     </div>
                                     <div className='pt-4'>
                                           <div class="flex flex-row w-60 p-2 max-w-sm rounded  shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">

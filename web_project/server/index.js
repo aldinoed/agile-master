@@ -253,7 +253,11 @@ app.get("/api/posisi/:id", async (req, res) => {
 app.get("/api/user/:id", async (req, res) => {
       try {
             const id_siswa = req.params.id;
-            const sql = `SELECT * FROM magang JOIN posisi ON magang.posisi_id = posisi.id_posisi JOIN perusahaan ON posisi.perusahaan_id = perusahaan.id_perusahaan JOIN siswa ON magang.siswa_id = siswa.id_siswa WHERE siswa.id_siswa = ${id_siswa};`;
+            const sql = `SELECT * FROM siswa
+            LEFT JOIN magang ON siswa.id_siswa = magang.siswa_id
+            LEFT JOIN posisi ON magang.posisi_id = posisi.id_posisi
+            LEFT JOIN perusahaan ON posisi.perusahaan_id = perusahaan.id_perusahaan
+            WHERE siswa.id_siswa = ${id_siswa};`;
             const data = await executeQuery(sql);
 
             res.json(data);

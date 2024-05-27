@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { logo1, gojek } from "../../../assets";
+import { logo1, Profile_lanang } from "../../../assets";
 import { navLinks_detail } from "../../../constant";
 
 
@@ -47,7 +47,7 @@ const Navbar = (nama) => {
                                     {/* {namaSiswa} */}
                               </p>
                               <div className="sm:pl-2 sm:py-3">
-                                    <img src={gojek} alt="Goship" className="w-[40px] h-[40px]" />
+                                    <img src={Profile_lanang} alt="Goship" className="w-[40px] h-[40px]" />
                               </div>
                         </ul>
                   </nav>

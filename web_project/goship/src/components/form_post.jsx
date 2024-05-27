@@ -49,7 +49,7 @@ const CardForm = ({ onClose }) => {
   const [jenisMagang, setJenisMagang] = useState("");
   const [judulLaporan, setJudulLaporan] = useState("");
   const [ceritaMagang, setCeritaMagang] = useState("");
-  const [uangSaku, setUangSaku] = useState('');
+  const [uangSaku, setUangSaku] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -120,12 +120,14 @@ const CardForm = ({ onClose }) => {
     setShowProvinceDropdown(!showProvinceDropdown);
   };
   
-  const handleYesClick = () => {
-    setUangSaku('1');
+  const handleYesClick = (event) => {
+    event.preventDefault();
+    setUangSaku(prev => prev === '1' ? null : '1');
   };
 
-  const handleNoClick = () => {
-    setUangSaku('0');
+  const handleNoClick = (event) => {
+    event.preventDefault();
+    setUangSaku(prev => prev === '0' ? null : '0');
   };
 
   return (
@@ -221,157 +223,6 @@ const CardForm = ({ onClose }) => {
                 )}
               </div>
 
-              {/* <div className="sm:col-span-3 relative">
-                <div
-                  className="input-group flex inline-block border border-1 rounded-md cursor-pointer dropdown focus:border-indigo-600"
-                  onClick={toggleCityDropdown}
-                >
-                  <img
-                    src={location}
-                    alt="location"
-                    className="input-icon-sm m-3"
-                  />
-                  <input
-                    type="text"
-                    name="Kota/Kabupaten"
-                    id="Kota/Kabupaten"
-                    placeholder="Kota/Kabupaten"
-                    value={selectedCity}
-                    readOnly
-                    className="block w-full py-1.5 ps-0 text-gray-700 placeholder:text-gray-400 placeholder:text-xs sm:text-sm border-0 mr-20"
-                    style={{ fontWeight: "normal" }}
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <svg
-                      className="h-5 w-5 text-gray-400 rotate-180"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 3a1 1 0 00-.707.293l-6 6a1 1 0 001.414 1.414L10 5.414l5.293 5.293a1 1 0 001.414-1.414l-6-6A1 1 0 0010 3z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                {showCityDropdown && (
-                  <div className="absolute z-10 mt-1 w-full rounded-md bg-white shadow-lg">
-                    <ul
-                      tabIndex="-1"
-                      role="listbox"
-                      aria-labelledby="listbox-label"
-                      aria-activedescendant="listbox-item-3"
-                      className="max-h-40 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
-                    >
-                      {cityData.map((city, index) => (
-                        <li
-                          key={index}
-                          className="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9"
-                          onClick={() =>
-                            handleCityDropdownClick(city, "city")
-                          }
-                        >
-                          <div className="flex items-center">
-                            <span className="font-normal block truncate">
-                              {city}
-                            </span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              <div className="sm:col-span-3 relative">
-                <div
-                  className="input-group flex inline-block border border-1 rounded-md cursor-pointer dropdown"
-                  onClick={toggleProvinceDropdown}
-                >
-                  <img
-                    src={location}
-                    alt="location"
-                    className="input-icon-sm m-3"
-                  />
-                  <input
-                    type="text"
-                    name="Provinsi"
-                    id="Provinsi"
-                    placeholder="Provinsi"
-                    value={selectedProvince}
-                    readOnly
-                    className="block w-full py-1.5 ps-0 text-gray-700 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 mr-20"
-                    style={{ fontWeight: "normal" }}
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <svg
-                      className="h-5 w-5 text-gray-400 rotate-180"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 3a1 1 0 00-.707.293l-6 6a1 1 0 001.414 1.414L10 5.414l5.293 5.293a1 1 0 001.414-1.414l-6-6A1 1 0 0010 3z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                {showProvinceDropdown && (
-                  <div className="absolute z-10 mt-1 w-full rounded-md bg-white shadow-lg">
-                    <ul
-                      tabIndex="-1"
-                      role="listbox"
-                      aria-labelledby="listbox-label"
-                      aria-activedescendant="listbox-item-3"
-                      className="max-h-40 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
-                    >
-                      {provinceData.map((province, index) => (
-                        <li
-                          key={index}
-                          className="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9"
-                          onClick={() =>
-                            handleProvinceDropdownClick(province, "province")
-                          }
-                        >
-                          <div className="flex items-center">
-                            <span className="font-normal block truncate">
-                              {province}
-                            </span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              <div className="sm:col-span-3">
-                <div className="input-group flex inline-block border border-1 rounded-md">
-                  <img
-                    src={location}
-                    alt="location"
-                    className="input-icon m-3"
-                  />
-                  <input
-                    type="text"
-                    name="Lokasi Magang"
-                    id="Lokasi Magang"
-                    value={lokasiMagang}
-                    onChange={(e) => setLokasiMagang(e.target.value)}
-                    placeholder="Lokasi Magang"
-
-                    className="block w-full py-1.5 ps-0 text-gray-700 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 mr-20"
-                    style={{ fontWeight: "normal" }}
-                  />
-                </div>
-              </div> */}
-
               <div className="sm:col-span-3">
                 <div className="input-group flex inline-block border border-1 rounded-md">
                   <img src={card} alt="card" className="input-icon m-3" />
@@ -457,14 +308,14 @@ const CardForm = ({ onClose }) => {
                   <div className="flex right-0 flex items-center px-22">
                     <button
                       className="border py-1 px-2 rounded-md text-xs mr-2"
-                      style={{ color: "#F77D00", borderColor: "#F77D00" }}
+                      style={{ color: uangSaku === '1' ? "#FFFFFF" : "#F77D00", borderColor: uangSaku === '1' ? "#FFFFFF" : "#F77D00", backgroundColor: uangSaku === '1' ? "#F77D00" : "#FFFFFF" }}
                       onClick={handleYesClick}
                     >
                       Iya
                     </button>
                     <button
                       className="border py-1 px-2 rounded-md text-xs"
-                      style={{ color: "#F77D00", borderColor: "#F77D00" }}
+                      style={{ color: uangSaku === '0' ? "#FFFFFF" : "#F77D00", borderColor: uangSaku === '0' ? "#FFFFFF" : "#F77D00", backgroundColor: uangSaku === '0' ? "#F77D00" : "#FFFFFF" }}
                       onClick={handleNoClick}
                     >
                       Tidak
