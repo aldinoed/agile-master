@@ -42,8 +42,7 @@ main {
 
 h1 {
   font-size: 2rem;
-  font-weight: bold;
-  font-family: 'source serif pro';
+  font-weight: medium;
 }
 
 .btn-primary {
