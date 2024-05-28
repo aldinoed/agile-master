@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/model/mahasiswa.dart';
 import 'package:flutter_project/view/list/page_detail_mahasiswa.dart';
