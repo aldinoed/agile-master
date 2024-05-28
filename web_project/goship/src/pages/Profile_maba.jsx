@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import { Profile_lanang, telpon, email, gender } from "../assets";
 import Buttonlogout from '../components/profile/magang/button_logout';
 import Loading from '../components/loading';
+import Swal from 'sweetalert2';
 // import {  } from "react-router-dom";
 
 const Profilemaba = (loggedUser) => {
