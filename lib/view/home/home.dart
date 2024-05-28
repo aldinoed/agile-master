@@ -7,6 +7,7 @@ import 'package:flutter_project/model/story.dart';
 import 'package:flutter_project/view/list/page_detail_mahasiswa.dart';
 import 'package:flutter_project/view/main_screen/main_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_project/widget/dialog_error.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Perusahaan> perusahaan = [];
   List<Story> stories = [];
   final _lightColors = [
     Color(0xFFD62828),
@@ -26,73 +26,38 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
-  void initState() {
-    try {
-      super.initState();
-      _loadStories().timeout(const Duration(seconds: 5));
-      _loadPerusahaan().timeout(const Duration(seconds: 5));
-    } catch (e) {
-      if (e is TimeoutException) {
-        // Terjadi timeout saat mengambil data
-        print(e);
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            print(context);
-            return AlertDialog(
-              title: const Text("Waktu habis"),
-              content: const Text(
-                  "Waktu habis saat mengambil data. Silakan coba lagi nanti."),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("OK"),
-                ),
-              ],
-            );
-          },
-        );
-      } else {
-        // Terjadi error lainnya
-        print(e);
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            print(context);
-            return AlertDialog(
-              title: const Text("Error"),
-              content: const Text(
-                  "Terjadi error saat mengambil data. Silakan coba lagi nanti."),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("OK"),
-                ),
-              ],
-            );
-          },
-        );
-      }
+void initState() {
+  super.initState();
+  _loadStories().timeout(const Duration(seconds: 5)).then((stories) {
+    setState(() {
+      this.stories = stories;
+    });
+  }).catchError((e) {
+    if (e is TimeoutException) {
+      // Terjadi timeout saat mengambil data
+      showCustomDialog(context, 'Timeout',
+          'Terjadi timeout saat mengambil data. Silakan coba lagi nanti.',
+          'assets/home/timeout.png');
+    } else {
+      // Terjadi error lainnya
+      showCustomDialog(context, 'Error',
+          'Terjadi error saat mengambil data. Silakan coba lagi nanti.',
+          'assets/home/error.png');
     }
-  }
-
-  Future<void> _loadPerusahaan() async {
-    perusahaan = await Perusahaan.getPerusahaan();
     setState(() {
-      perusahaan;
+      this.stories = []; // Tetapkan nilai stories ke array kosong jika terjadi error
     });
-  }
+  });
+}
 
-  Future<void> _loadStories() async {
-    stories = await Story.getStory();
-    setState(() {
-      stories;
-    });
+Future<List<Story>> _loadStories() async {
+  try {
+    return await Story.getStory();
+  } catch (e) {
+    throw e; // Lempar ulang error agar bisa ditangkap di initState
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
