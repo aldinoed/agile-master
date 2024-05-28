@@ -12,11 +12,11 @@ class Guide extends StatelessWidget {
         scrolledUnderElevation: 0,
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => MainScreen()),
-            );
-          },
+          // onTap: () {
+          //   Navigator.of(context).pushReplacement(
+          //     MaterialPageRoute(builder: (context) => MainScreen()),
+          //   );
+          // },
           child: Align(
             alignment: Alignment.center,
             child: Row(

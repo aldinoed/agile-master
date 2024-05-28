@@ -59,7 +59,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'Tiemout',
+                          'Waktu habis',
                           style: TextStyle(
                             color: Color(0xFFF77D00),
                             fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Text(
-                            'Timeout while retrieving data, please try again later',
+                            'Waktu habis saat mengambil data, silakan coba lagi nanti',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black, // Content color
@@ -168,7 +168,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Text(
-                            'Error while retrieving data, please try again later',
+                            'Kesalahan saat mengambil data, silakan coba lagi nanti',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black, // Content color
@@ -564,7 +564,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Semester",
+                              "Angkatan",
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -602,7 +602,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               ),
                               selected: provider.selectedYear == semester,
                               backgroundColor: Colors.grey[200],
-                              selectedColor: Colors.blue,
+                              selectedColor: Color(0xFFF77D00),
                               onSelected: (bool selected) {
                                 setState(() {
                                   provider
@@ -745,7 +745,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
-                                  backgroundColor: Color.fromARGB(255, 6, 6, 5),
+                                  backgroundColor: Color(0xFFF77D00),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
                                         12.0), // Set border radius
