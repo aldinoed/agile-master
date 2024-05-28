@@ -1,28 +1,33 @@
-import React from "react"; // Menambahkan impor React
+import React, { useEffect, useState } from "react";
 import styles from "../style";
-import { useEffect, useState } from "react";
-import { Hero, AddExperience, Footer, CustomCarousel, Perusahaan, Navbar } from "../components";
 import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import { Hero, AddExperience, Footer, CustomCarousel, Navbar } from "../components";
+import { image1, image2, bg } from "../assets";
+import ButtonIntern from "../components/button_intern";
+import ButtonExperience from "../components/button_experience";
+import CardCompany from "../components/card_company";
+import { Carousel } from 'react-bootstrap';
+import StudentList from "../components/StudentList";
 
 const Home = () => {
   const navigate = useNavigate();
-  let refreshToken = Cookies.get('refresh_token')
+  let refreshToken = Cookies.get('refresh_token');
   const location = useLocation();
   const data = location.state;
-  const [user, setUser] = useState(null)
-  const [loginState, setLoginState] = useState(false)
-  
+  const [user, setUser] = useState(null);
+  const [loginState, setLoginState] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+
   useEffect(() => {
-    // setUser(data);
     if (!refreshToken) {
-      localStorage.clear()
+      localStorage.clear();
       navigate('/');
     } else if (refreshToken) {
-      let name = localStorage.getItem('nama')
-      setUser(name)
+      let name = localStorage.getItem('nama');
+      setUser(name);
     }
-  }, [user]);
+  }, [refreshToken, navigate]);
 
   useEffect(() => {
     if (user) {
@@ -32,31 +37,141 @@ const Home = () => {
     }
   }, [user]);
 
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <>
-      <div className={` bg-orange-gradient overflow-visible ${styles.flexStart} pb-96`}>
+      <div className={`bg-orange-gradient overflow-visible ${styles.flexStart} pb-96`}>
         <div className={`${styles.boxWidth}`}>
-
-          <div className=" pb-16">
-             <Navbar user={user}/>
+          <div className="pb-16">
+            <Navbar user={user} />
           </div>
-          <Hero />
+          {/* Bagian Hero */}
+          <section id="home" className="flex flex-col md:flex-row px-4 md:px-8 lg:px-16 xl:px-24">
+            <div className={`flex-1 ${styles.flexStart} flex-col`}>
+              <div className="w-full flex flex-row items-center justify-between">
+                <p className={`${styles.paragraph} text-orange font-semibold text-[20px]`}>TENTANG KAMI</p>
+              </div>
+              <div className="w-full flex flex-row justify-between items-center">
+                <h1 className="flex-1 font-poppins font-semibold ss:text-[45px] text-[35px] ss:leading-[55.8px] leading-[45px]">
+                  CERITAMU <br className="sm:block hidden" />{" "}
+                  <span className="text-black">MENJADI</span>
+                </h1>
+              </div>
+              <div className="w-full flex flex-row justify-between items-center">
+                <h1 className="flex-1 font-poppins font-semibold ss:text-[45px] text-[35px] ss:leading-[55.8px] leading-[45px]">
+                  <span className="text-black">MAGANGKU</span>{" "}
+                  <span className="text-orange">PERCOBAAN</span>
+                </h1>
+              </div>
+              <p className={`${styles.paragraph} mt-5 max-w-[700px]`}>
+                Temukan informasi magang komprehensif dari senior, jelajahi kisah sukses mereka, dan langsung hubungi mereka melalui kontak yang disediakan di GoShip.
+              </p>
+              <div className="w-full flex flex-row justify-between items-center">
+                <div className="flex-1 text-black py-6 sm:py-17">
+                  <ButtonIntern />
+                </div>
+              </div>
+            </div>
+            <div className={`flex-1 flex ${styles.flexCenter} my-10 md:my-0 relative`}>
+              <img src={image1} alt="hero image" className="w-full h-auto relative z-5" />
+            </div>
+          </section>
         </div>
       </div>
 
-
-      <div className="relative">
-        <div className={`${styles.boxWidth} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4`}>
-          <Perusahaan isLogged={loginState} />
-        </div>
-      </div>
-
-
-      <div className={`bg-white ${styles.flexCenter} pt-80 `}>
+      <div className="relative px-4 md:px-8 lg:px-16 xl:px-24">
         <div className={`${styles.boxWidth}`}>
-            <AddExperience />
+          {/* Bagian Perusahaan */}
+          <div className="object-top">
+            <section id='companies' className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col rounded-[24px] box-shadow bg-white section-container shadow-lg`}>
+              <div className="flex-1 flex flex-col">
+                <div>
+                  <h4 className={`${styles.paragraph} flex-1 font-poppins font-semibold ss:text-[30px] text-[25px]`} style={{ color: '#F55F1D' }}>PERUSAHAAN KAMI</h4>
+                  <h1 className="flex-1 font-poppins font-semibold ss:text-[25px] text-[20px] text-black ss:leading-[50.8px] leading-[45px]">
+                    <span className="text-black">Dapatkan informasi tentang </span>{" "}
+                    <span className="text-orange">perusahaan impianmu</span>{" "}
+                  </h1>
+                </div>
+                <div className="mt-auto">
+                  <CardCompany showMore={showMore} toggleShowMore={toggleShowMore} />
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div className={`bg-white ${styles.flexCenter} ${showMore ? 'pt-40' : 'pt-32'}`}>
+        <div className={`${styles.boxWidth}`}>
+          {/* Bagian Share Your Story */}
+          <section id="Shared_Story" className="flex flex-col md:flex-row py-5" style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="flex-1 flex justify-center md:my-0 my-10 relative">
+              <img src={image2} alt="share story image" className="w-[75%] md:w-[100%] h-auto relative z-[5]" />
+            </div>
+            <div className="flex-1 flex flex-col justify-start items-center md:items-start px-4 md:px-8 lg:px-16 xl:px-24">
+              <div className='w-full'>
+                <p className="font-poppins font-semibold text-[20px] md:text-[24px] text-orange">BAGIKAN CERITAMU</p>
+              </div>
+              <div className="w-full">
+                <h1 className="font-poppins font-semibold text-[28px] md:text-[32px] text-black leading-[35px] md:leading-[50.8px]">
+                  <span>BAGIKAN </span>
+                  <span className="text-orange">PENGALAMAN</span>
+                </h1>
+              </div>
+              <div className="w-full">
+                <h1 className="font-poppins font-semibold text-[28px] md:text-[32px] text-black leading-[35px] md:leading-[50.8px]">
+                  <span className="text-orange">MAGANGMU</span> 
+                  <span>DISINI</span>
+                </h1>
+              </div>
+              <p className="max-w-[700px] mt-5 text-center md:text-left text-[16px] md:text-[18px]">
+                Bagikan pengalaman magangmu untuk membimbing dan menginspirasi calon magang berikutnya. Berikan kesempatan kepada orang lain, dengan menyediakan informasi berharga kepada mereka yang memiliki aspirasi tinggi.
+              </p>
+              <div className='w-full flex justify-center md:justify-start'>
+                <ButtonExperience />
+              </div>
+            </div>
+          </section>
+
+          {/* Bagian Carousel */}
           <div className="List-Carousel pt-32 pb-24">
-            <CustomCarousel />
+            <section id="Our_story" className={`flex flex-col md:flex-row px-4 md:px-8 lg:px-16 xl:px-24`}>
+              <div className={`flex-1 ${styles.flexStart} flex-col`}>
+                <div className='flex flex-row items-center justify-between w-full'>
+                  <p className={`${styles.paragraph} text-orange font-semibold text-lg md:text-xl lg:text-2xl`}>Kisah Kami</p>
+                </div>
+                <div className="flex flex-row justify-between items-center w-full">
+                  <h1 className={`${styles.paragraph} font-poppins font-semibold text-lg md:text-xl lg:text-3xl leading-normal md:leading-relaxed lg:leading-loose`}>
+                    <span className="text-black">Gunakan Cerita Mereka</span>{" "}
+                    <span className="text-orange">Sebagai Referensimu</span>{" "}
+                  </h1>
+                </div>
+              </div>
+              <div className="flex flex-row mx-auto px-4 md:px-20">
+                <button type="button" className="text-black rounded-l-md py-2 hover:text-orange">
+                  <div className="flex flex-row items-center">
+                    <svg className="w-6 md:w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                </button>
+                <button type="button" className="text-black rounded-r-md py-2 hover:text-orange px-2">
+                  <div className="flex flex-row items-center">
+                    <svg className="w-6 md:w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </section>
+            <div className="student-list-container no-scrollbar px-4 md:px-24">
+              <Carousel.Item>
+                <StudentList />
+              </Carousel.Item>
+            </div>
           </div>
           <Footer />
         </div>
