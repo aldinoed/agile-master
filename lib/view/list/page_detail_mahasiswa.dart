@@ -19,12 +19,29 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
   @override
   void initState() {
     super.initState();
-    _fetchData(widget.id_siswa);
+    _fetchData(widget.id_siswa).timeout(const Duration(seconds: 5)).catchError((e) {
+      if (e is TimeoutException) {
+        // Terjadi timeout saat mengambil data
+        showCustomDialog(context, 'Timeout',
+            'Terjadi timeout saat mengambil data. Silakan coba lagi nanti.',
+            'assets/home/timeout.png');
+      } else {
+        // Terjadi error lainnya
+        showCustomDialog(context, 'Error',
+            'Terjadi error saat mengambil data. Silakan coba lagi nanti.',
+            'assets/home/error.png');
+      }
+      return [];
+    });
   }
 
   Future<void> _fetchData(var id) async {
-    mahasiswa = await DetailMahasiswa.getDetailMahasiswa(id);
-    setState(() {});
+    try {
+      mahasiswa = await DetailMahasiswa.getDetailMahasiswa(id);
+      setState(() {});
+    } catch (e) {
+      throw e; // Lempar ulang error agar bisa ditangkap di initState
+    }
   }
 
   @override
