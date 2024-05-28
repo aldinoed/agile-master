@@ -90,7 +90,7 @@ const Profilemaba = (loggedUser) => {
                   id: id
             }
             try {
-                  const response = await axios.post(`http://localhost:5000/api/user-profile/update`, data);
+                  const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
 
                   // navigate('/')
                   // if (response.data.user.is_first_auth === 1) {
