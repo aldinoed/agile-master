@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/model/intern.dart';
 import 'package:flutter_project/view/list/page_detail_mahasiswa.dart';
