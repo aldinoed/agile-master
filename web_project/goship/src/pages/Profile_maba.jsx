@@ -83,8 +83,15 @@ const Profilemaba = (loggedUser) => {
       const handleSubmit = async (e) => {
             e.preventDefault();
             if (!refreshToken || localStorage.getItem('nama') == null || localStorage.getItem('id') == null || localStorage.getItem('nrp') == null) {
+                  Swal.fire({
+                        title: 'Oops!',
+                        text: 'Sesi kamu habis',
+                        icon: "warning",
+
+                  })
                   localStorage.clear()
-                  navigate('/signin');
+
+                  navigate('/login');
             }
             const data = {
                   nama: fullName,
@@ -94,8 +101,6 @@ const Profilemaba = (loggedUser) => {
             }
             try {
                   const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
-
-                  console.log("🚀 ~ handleSubmit ~ response:", response)
                   if (response.status === 200) {
                         Swal.fire({
                               title: 'Berhasil!',
