@@ -388,7 +388,7 @@ app.post("/api/user-profile/update", async (req, res) => {
             phone: req.body.phone,
             idSiswa: req.body.id
       };
-      const sql = `UPDATE siswa SET nama_siswa='${bodyReq.nama}', email='${bodyReq.email}', no_tel='${bodyReq.phone}' WHERE id_siswa='${bodyReq.idSiswa}'`;
+      const sql = `UPDATE siswa SET nama_siswa='${bodyReq.nama}', email='${bodyReq.email}', no_telp='${bodyReq.phone}' WHERE id_siswa='${bodyReq.idSiswa}'`;
       try {
             const response = await executeQuery(sql);
             console.log("🚀 ~ app.post ~ response:", response)
