@@ -170,6 +170,31 @@ app.get("/api/perusahaan", async (req, res) => {
       }
 });
 
+app.put('api/perusahaan/:id/update', async (req, res) => {
+      const id_perusahaan = req.params.id;
+      const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi, logo_perusahaan } = req.body;
+
+      const sql = `
+        UPDATE perusahaan
+        SET 
+          nama_perusahaan = ${nama_perusahaan}, 
+          profil_perusahaan = ${profil_perusahaan}, 
+          alamat = ${alamat},  
+          kota = ${kota},  
+          provinsi = ${provinsi},  
+          logo_perusahaan = ${logo_perusahaan}
+        WHERE id_perusahaan = ${id_perusahaan}`;
+
+      const response = await executeQuery(sql);
+      console.log("🚀 ~ app.post ~ response:", response)
+
+      if (response.affectedRows > 0) {
+            res.status(200).json({ status: true, message: "Berhasil update data user " + bodyReq.nama });
+      } else {
+            res.status(403).json({ status: false, message: "Gagal update data user " + bodyReq.nama });
+      }
+});
+
 app.get('/api/perusahaan/:id', async (req, res) => {
       try {
             const id_perusahaan = req.params.id;
