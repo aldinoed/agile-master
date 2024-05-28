@@ -25,7 +25,20 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
   @override
   void initState() {
     super.initState();
-    _fetchData(widget.id_posisi);
+    _fetchData(widget.id_posisi).timeout(const Duration(seconds: 5)).catchError((e) {
+      if (e is TimeoutException) {
+        // Terjadi timeout saat mengambil data
+        showCustomDialog(context, 'Timeout',
+            'Terjadi timeout saat mengambil data. Silakan coba lagi nanti.',
+            'assets/home/timeout.png');
+      } else {
+        // Terjadi error lainnya
+        showCustomDialog(context, 'Error',
+            'Terjadi error saat mengambil data. Silakan coba lagi nanti.',
+            'assets/home/error.png');
+      }
+      return [];
+    });
   }
 
   Future<void> _fetchData(var id) async {
@@ -34,26 +47,8 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
       setState(() {
         filteredMahasiswa = mahasiswa;
       });
-    } catch (error) {
-      print(error);
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Error"),
-            content:
-                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
+    } catch (e) {
+      throw e; // Lempar ulang error agar bisa ditangkap di initState
     }
   }
 
