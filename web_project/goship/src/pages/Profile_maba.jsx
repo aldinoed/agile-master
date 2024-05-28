@@ -82,7 +82,10 @@ const Profilemaba = (loggedUser) => {
       };
       const handleSubmit = async (e) => {
             e.preventDefault();
-
+            if (!refreshToken || localStorage.getItem('nama') == null || localStorage.getItem('id') == null || localStorage.getItem('nrp') == null) {
+                  localStorage.clear()
+                  navigate('/signin');
+            }
             const data = {
                   nama: fullName,
                   email: email,
@@ -93,23 +96,27 @@ const Profilemaba = (loggedUser) => {
                   const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
 
                   console.log("🚀 ~ handleSubmit ~ response:", response)
-                  // navigate('/')
-                  // if (response.data.user.is_first_auth === 1) {
-                  //     Swal.fire({
-                  //         title: 'Behasil!',
-                  //         text: response.data.message,
-                  //         icon: "success",
+                  if (response.status === 200) {
+                        Swal.fire({
+                              title: 'Berhasil!',
+                              text: response.data.message,
+                              icon: "success",
 
-                  //     })
-                  // } else {
-                  //     Swal.fire({
-                  //         title: 'Berhasil!',
-                  //         text: response.data.message,
-                  //         icon: "success",
-                  //     })
-                  // }
+                        })
+                        navigate('/')
+                  } else {
+                        Swal.fire({
+                              title: 'Gagal!',
+                              text: response.data.message,
+                              icon: "error",
+                        })
+                  }
             } catch (error) {
-                  console.log(error)
+                  Swal.fire({
+                        title: 'Error!',
+                        text: 'Error: ' + error,
+                        icon: "error",
+                  })
             }
       }
       useEffect(() => {
