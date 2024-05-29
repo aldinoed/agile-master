@@ -39,14 +39,6 @@ const ForgotPasswordUserPage = () => {
                         })
                         navigate('/student-profile', { state: user })
                   }
-                  // else if(response.status === 403){
-                  //   Swal.fire({
-                  //     title: 'Oops!',
-                  //     text: response.data.message,
-                  //     icon: "warning",
-                  //   })
-                  //   navigate('/')
-                  // } 
                   else {
                         Swal.fire({
                               title: 'Failed!',
