@@ -10,7 +10,7 @@ const Requirement = () => {
             <div class="absolute inset-0 bg-gray-700 opacity-60 rounded-md"></div>
             <div class="absolute inset-0 flex py-4 px-10">
                 <div className="border-l-2 border-orange pl-4">
-                    <h2 className="text-lg font-semibold text-white">Internship requirements</h2>
+                    <h2 className="text-lg font-semibold text-white">Persyaratan Magang</h2>
                 </div>
             </div>
         </div>

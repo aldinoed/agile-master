@@ -134,14 +134,14 @@ const Detailperusahaan = () => {
                                                             <div className="flex flex-row justify-between items-center w-full py-2 font-libre">
                                                                   <img src={gps} className='pr-10' alt="" />
                                                                   <div className="text-dimBlack flex-1 font-semibold ss:text-[30px] text-black ss:leading-[25.8px]">
-                                                                        Location<br className="sm:block hidden ]" />{" "}
+                                                                        Lokasi<br className="sm:block hidden ]" />{" "}
                                                                         <p className="font-sans max-w-[800px] text-[20px] py-2 ">{address}</p>{" "}
                                                                   </div>
                                                             </div>
                                                             <div className="font-sans flex flex-row justify-between items-center w-full ">
                                                                   <img src={req} className='px-3 pr-14' alt="" />
                                                                   <h1 className="font-sans text-dimBlack  flex-1 font-poppins font-semibold ss:text-[30px] text-black ss:leading-[35.8px] py-2">
-                                                                        Requirement<br className="sm:block hidden" />{" "}
+                                                                        Persyaratan<br className="sm:block hidden" />{" "}
                                                                         <span className=" font-sans ss:text-[20px]">
                                                                               <li>lulusan S1 </li>
                                                                               <li>bisa ngoding</li>
@@ -164,13 +164,13 @@ const Detailperusahaan = () => {
                                     <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-10`}>
                                           <div className="flex flex-row justify-between items-center w-full">
                                                 <h1 className="flex-1 font-poppins font-semibold ss:text-[30px] text-orange ss:leading-[50.8px]">
-                                                      OUR COMPANIES <br className="sm:block hidden" />{" "}
+                                                      PERUSAHAAN KAMI <br className="sm:block hidden" />{" "}
                                                 </h1>
                                           </div>
                                           <div className="flex flex-row justify-between items-center w-full">
                                                 <h1 className="flex-1 font-poppins font-semibold ss:text-[40px] text-black ss:leading-[75.8px] leading-[60px]">
-                                                      <span className="text-black ">Get information about your</span>{" "}
-                                                      <span className="text-orange">dream company</span>{" "}
+                                                      <span className="text-black ">Dapatakan Informasi</span>{" "}
+                                                      <span className="text-orange">Perusahaan Impian Anda</span>{" "}
                                                 </h1>
                                           </div>
                                     </div>

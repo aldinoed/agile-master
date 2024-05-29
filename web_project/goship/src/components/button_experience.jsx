@@ -31,7 +31,7 @@ const ButtonExperience = () => {
     <div className='xl:max-w-[1280px] w-full h-full'>
       <button class="bg-orange text-white hover:bg-white font-bold py-2 px-4 mt-4 border-b-2 border-white hover:text-black rounded-lg "
         onClick={handleClick}>
-        Add Experience
+        Tambah Pengalaman
       </button>
       {showForm ? (user ? <CardForm onClose={() => setShowForm(false)} /> : <CardNotif onClose={() => setShowForm(false)} />) : null}
     </div>

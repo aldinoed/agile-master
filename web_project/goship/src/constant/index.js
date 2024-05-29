@@ -3,19 +3,19 @@ import { facebook, instagram, linkedin, twitter } from "../assets";
 export const navLinks = [
     {
       id: "home",
-      title: "Home",
+      title: "Beranda",
     },
     {
       id: "companies",
-      title: "Companies",
+      title: "Perusahaan",
     },
     {
       id: "Shared_Story",
-      title: "Share Story",
+      title: "Bagikan Cerita",
     },
     {
       id: "Our_story",
-      title: "Our Story",
+      title: "Cerita Kami",
     },
   ];
 
@@ -80,18 +80,18 @@ export const socialMedia = [
 export const navLinks_detail = [
   {
     id: "about",
-    title: "About",
+    title: "Tentang Kami",
   },
   {
     id: "companies",
-    title: "Companies",
+    title: "Perusahaan",
   },
   {
     id: "Shared_Story",
-    title: "Share Story",
+    title: "Bagikan Cerita",
   },
   {
     id: "Our_story",
-    title: "Our Story",
+    title: "Cerita Kami",
   },
 ];
