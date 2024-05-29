@@ -71,7 +71,7 @@ const Home = () => {
               </div>
               <div className="w-full flex flex-row justify-between items-center">
                 <h1 className="flex-1 font-poppins font-semibold ss:text-[45px] text-[35px] ss:leading-[55.8px] leading-[45px]">
-                  CERITAMU <br className="sm:block hidden" />{" "}
+                  KISAHMU <br className="sm:block hidden" />{" "}
                   <span className="text-black">JADI</span>
                 </h1>
               </div>
@@ -186,7 +186,6 @@ const Home = () => {
                 calon magang berikutnya. Berikan kesempatan kepada orang lain,
                 dengan menyediakan informasi berharga kepada mereka yang
                 memiliki aspirasi tinggi.
-                
               </p>
               <div className="w-full flex justify-center md:justify-start">
                 <ButtonExperience />
