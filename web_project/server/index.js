@@ -170,28 +170,40 @@ app.get("/api/perusahaan", async (req, res) => {
       }
 });
 
-app.put('api/perusahaan/:id/update', async (req, res) => {
-      const id_perusahaan = req.params.id;
-      const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi, logo_perusahaan } = req.body;
+app.put('/api/perusahaan/:id/update', async (req, res) => {
+      // console.log('api berjalan');
+      try {
+            const id_perusahaan = req.params.id;
+            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi, logo_perusahaan } = req.body;
+            console.log(nama_perusahaan);
+            console.log(profil_perusahaan);
+            console.log(alamat);
+            console.log(kota);
+            console.log(provinsi);
+            console.log(logo_perusahaan);
 
-      const sql = `
-        UPDATE perusahaan
-        SET 
-          nama_perusahaan = ${nama_perusahaan}, 
-          profil_perusahaan = ${profil_perusahaan}, 
-          alamat = ${alamat},  
-          kota = ${kota},  
-          provinsi = ${provinsi},  
-          logo_perusahaan = ${logo_perusahaan}
+            const sql = `
+        UPDATE perusahaan SET 
+          nama_perusahaan = '${nama_perusahaan}', 
+          profil_perusahaan = '${profil_perusahaan}', 
+          alamat = '${alamat}',  
+          kota = '${kota}',  
+          provinsi = '${provinsi}',  
+          logo_perusahaan = '${logo_perusahaan}'
         WHERE id_perusahaan = ${id_perusahaan}`;
 
-      const response = await executeQuery(sql);
-      console.log("🚀 ~ app.post ~ response:", response)
+            const response = await executeQuery(sql);
+            console.log("🚀 ~ app.put ~ response:", response);
 
-      if (response.affectedRows > 0) {
-            res.status(200).json({ status: true, message: "Berhasil update data user " + bodyReq.nama });
-      } else {
-            res.status(403).json({ status: false, message: "Gagal update data user " + bodyReq.nama });
+            // res.send(response.json());
+            if (response.affectedRows > 0) {
+                  res.status(200).json({ status: true, message: "Berhasil update data perusahaan " + nama_perusahaan });
+            } else {
+                  res.status(403).json({ status: false, message: "Gagal update data perusahaan " + nama_perusahaan });
+            }
+      } catch (err) {
+            console.error(err);
+            res.status(500).send(err);
       }
 });
 
@@ -218,6 +230,7 @@ app.get('/api/perusahaan/:id', async (req, res) => {
                                     alamat: item.alamat,
                                     kota: item.kota,
                                     provinsi: item.provinsi,
+                                    profil_perusahaan: item.profil_perusahaan,
                                     logo_perusahaan: item.logo_perusahaan,
                                     jumlah_siswa_total: 0,
                                     posisi: {},
@@ -250,6 +263,7 @@ app.get('/api/perusahaan/:id', async (req, res) => {
                         alamat: item.alamat,
                         kota: item.kota,
                         provinsi: item.provinsi,
+                        profil_perusahaan: item.profil_perusahaan,
                         logo_perusahaan: item.logo_perusahaan,
                         jumlah_siswa_total: item.jumlah_siswa_total,
                         posisi: Object.values(item.posisi)

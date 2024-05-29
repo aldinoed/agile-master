@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../AdminDashboard.css";
+import "../assets/AdminDashboard.css";
 import { logo1 } from "../assets"; // Hanya impor yang digunakan
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +45,7 @@ function AdminDashboard() {
         "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
       );
       setFormData({
-        id_perusahaan: response.data[0].id_perusahaan,
+        id_perusahaan: idPerusahaan,
         nama_perusahaan: response.data[0].nama_perusahaan,
         logo_perusahaan: response.data[0].logo_perusahaan,
         profil_perusahaan: response.data[0].profil_perusahaan,
@@ -75,15 +75,21 @@ function AdminDashboard() {
 
   const handleAddOrUpdate = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
-    }
+    const data = formData;
+    // data.append ("nama_perusahaan", formData.nama_perusahaan);
+    // data.append ("logo_perusahaan", formData.logo_perusahaan);
+    // data.append ("alamat", formData.alamat);
+    // data.append ("kota", formData.kota);
+    // data.append ("provinsi", formData.provinsi);
+    // data.append ("profil_perusahaan", formData.profil_perusahaan);
 
+    console.log(formData);
+    console.log(formData.id_perusahaan);
+    console.log(data);
     try {
       if (editMode) {
         await axios.put(
-          `https://goship-apii.vercel.app/api/perusahaan/${formData.id_perusahaan}`,
+          `https://goship-apii.vercel.app/api/perusahaan/${formData.id_perusahaan}/update`,
           data,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -106,6 +112,7 @@ function AdminDashboard() {
   };
 
   const handleEdit = (company) => {
+    console.log(company.id_perusahaan);
     fetchSomeDetailData(company.id_perusahaan);
     setEditMode(true);
     setViewMode(false);
@@ -149,9 +156,9 @@ function AdminDashboard() {
   const handleSort = () => {
     const sortedCompanies = [...companies].sort((a, b) => {
       if (sortOrder === "asc") {
-        return a.id_perusahaan > b.id_perusahaan ? 1 : -1;
-      } else {
         return a.id_perusahaan < b.id_perusahaan ? 1 : -1;
+      } else {
+        return a.id_perusahaan > b.id_perusahaan ? 1 : -1;
       }
     });
     setCompanies(sortedCompanies);
