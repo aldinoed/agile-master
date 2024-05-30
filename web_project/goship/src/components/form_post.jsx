@@ -5,10 +5,14 @@ import {
   card,
   calendar,
   star,
-  document,
+  dokumen,
 } from "../assets";
 import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
+import { createRoot } from 'react-dom/client';
+import CardSuccessForm from "../components/handle_notif/notif_succes_form"
+import CardFailedForm from "../components/handle_notif/notif_failed_form"
+import Swal from "sweetalert2"
 
 const CardForm = ({ onClose }) => {
   const [perusahaanData, setPerusahaanData] = useState([]);
@@ -51,6 +55,14 @@ const CardForm = ({ onClose }) => {
   const [ceritaMagang, setCeritaMagang] = useState("");
   const [uangSaku, setUangSaku] = useState("");
 
+  const renderComponent = (component) => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);  // Make sure container is added to the body
+    const root = createRoot(container);
+    root.render(component);
+    return container;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -85,9 +97,49 @@ const CardForm = ({ onClose }) => {
 
       const responseData = await response.json();
       console.log('Success:', responseData);
-      onClose();
+      Swal.fire({
+        html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+              showConfirmButton: false,
+              didOpen: () => {
+                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                  const spinner = document.createElement('div');
+                  spinner.className = 'loading-spinner';
+                  const content = document.querySelector('.swal2-content');
+                  if (content) {
+                      content.appendChild(spinner);
+                  }
+
+                  setTimeout(() => {
+                      Swal.update({
+                          html: renderComponent(<CardSuccessForm onClose={() => Swal.close()} />),
+                          showConfirmButton: false
+                      });
+                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+              }
+  })
+      // onClose();
     } catch (error) {
       console.error('Error:', error);
+      Swal.fire({
+        html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+              showConfirmButton: false,
+              didOpen: () => {
+                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                  const spinner = document.createElement('div');
+                  spinner.className = 'loading-spinner';
+                  const content = document.querySelector('.swal2-content');
+                  if (content) {
+                      content.appendChild(spinner);
+                  }
+
+                  setTimeout(() => {
+                      Swal.update({
+                          html: renderComponent(<CardFailedForm onClose={() => Swal.close()} />),
+                          showConfirmButton: false
+                      });
+                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+              }
+  })
     }
   };
 
@@ -297,25 +349,25 @@ const CardForm = ({ onClose }) => {
                     mendapat Uang Saku??
                   </label>
                   <input
-                    type="text text-xss"
+                    type="text"
                     name="mendapat Uang Saku??"
                     id="mendapat Uang Saku??"
                     placeholder="mendapat Uang Saku??"
-                    value={uangSaku}
+                    value={uangSaku === 'iya' ? '1' : uangSaku === 'tidak' ? '0' : ''}
                     readOnly
                     className="block w-full py-1.5 ps-0 text-gray-900 placeholder:text-gray-400 placeholder:text-xs focus:ring-inset focus:ring-indigo-600 sm:text-sm border-0 px-30 hidden mr-20"
                   />
                   <div className="flex right-0 flex items-center px-22">
                     <button
-                      className="border py-1 px-2 rounded-md text-xs mr-2"
-                      style={{ color: uangSaku === '1' ? "#FFFFFF" : "#F77D00", borderColor: uangSaku === '1' ? "#FFFFFF" : "#F77D00", backgroundColor: uangSaku === '1' ? "#F77D00" : "#FFFFFF" }}
+                      type="button"
+                      className={`border py-1 px-2 rounded-md text-xs mr-2 ${uangSaku === '1' ? 'bg-orange text-white border-orange' : 'text-orange bg-white border-orange-500'}`}
                       onClick={handleYesClick}
                     >
                       Iya
                     </button>
                     <button
-                      className="border py-1 px-2 rounded-md text-xs"
-                      style={{ color: uangSaku === '0' ? "#FFFFFF" : "#F77D00", borderColor: uangSaku === '0' ? "#FFFFFF" : "#F77D00", backgroundColor: uangSaku === '0' ? "#F77D00" : "#FFFFFF" }}
+                      type="button"
+                      className={`border py-1 px-2 rounded-md text-xs ${uangSaku === '0' ? 'bg-orange text-white border-orange' : 'text-orange bg-white border-orange-500'}`}
                       onClick={handleNoClick}
                     >
                       Tidak
@@ -327,7 +379,7 @@ const CardForm = ({ onClose }) => {
               <div className="col-span-full">
                 <div className="input-group flex inline-block border border-1 rounded-md">
                   <img
-                    src={document}
+                    src={dokumen}
                     alt="document"
                     className="input-icon m-3"
                   />

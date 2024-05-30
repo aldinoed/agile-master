@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import Swal from "sweetalert2";
+import CardSuccessLogin from "../components/handle_notif/notif_succes_login"
+import CardFailedLogin from "../components/handle_notif/notif_failed_login"
+import { createRoot } from 'react-dom/client';
 let storage = require('../storage')
 // import { putHistory, showHistory } from "../storage";
 
@@ -48,6 +51,14 @@ const LoginPage = () => {
             setFormDataAdmin({ ...formDataAdmin, [e.target.name]: e.target.value });
       };
 
+      const renderComponent = (component) => {
+            const container = document.createElement('div');
+            document.body.appendChild(container);  // Make sure container is added to the body
+            const root = createRoot(container);
+            root.render(component);
+            return container;
+      };
+
       const handleSubmit = async (e) => {
             e.preventDefault();
 
@@ -61,9 +72,27 @@ const LoginPage = () => {
 
                   if (response.data.user.is_first_auth === 1) {
                         Swal.fire({
-                              title: 'Behasil!',
-                              text: response.data.message,
-                              icon: "success",
+                              // title: 'Behasil!',
+                              // text: response.data.message,
+                              // icon: "success",
+                              html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                              showConfirmButton: false,
+                              didOpen: () => {
+                                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                  const spinner = document.createElement('div');
+                                  spinner.className = 'loading-spinner';
+                                  const content = document.querySelector('.swal2-content');
+                                  if (content) {
+                                      content.appendChild(spinner);
+                                  }
+              
+                                  setTimeout(() => {
+                                      Swal.update({
+                                          html: renderComponent(<CardSuccessLogin onClose={() => Swal.close()} />),
+                                          showConfirmButton: false
+                                      });
+                                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+                              }
 
                         })
                         localStorage.setItem('id', response.data.user.id_siswa)
@@ -72,9 +101,28 @@ const LoginPage = () => {
                         navigate('/reset-password-user', { state: response.data.user })
                   } else {
                         Swal.fire({
-                              title: 'Berhasil!',
-                              text: response.data.message,
-                              icon: "success",
+                              // title: 'Behasil!',
+                              // text: response.data.message,
+                              // icon: "success",
+                              html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                              showConfirmButton: false,
+                              didOpen: () => {
+                                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                  const spinner = document.createElement('div');
+                                  spinner.className = 'loading-spinner';
+                                  const content = document.querySelector('.swal2-content');
+                                  if (content) {
+                                      content.appendChild(spinner);
+                                  }
+              
+                                  setTimeout(() => {
+                                      Swal.update({
+                                          html: renderComponent(<CardSuccessLogin onClose={() => Swal.close()} />),
+                                          showConfirmButton: false
+                                      });
+                                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+                              }
+
                         })
                         localStorage.setItem('id', response.data.user.id_siswa)
                         localStorage.setItem('nama', response.data.user.nama_siswa)
@@ -86,6 +134,26 @@ const LoginPage = () => {
                         navigate('/student-profile', { state: authorizationKey })
                   }
             } catch (error) {
+                  Swal.fire({
+                        html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            // Tambahkan spinner secara dinamis jika .swal2-content ada
+                            const spinner = document.createElement('div');
+                            spinner.className = 'loading-spinner';
+                            const content = document.querySelector('.swal2-content');
+                            if (content) {
+                                content.appendChild(spinner);
+                            }
+        
+                            setTimeout(() => {
+                                Swal.update({
+                                    html: renderComponent(<CardFailedLogin onClose={() => Swal.close()} />),
+                                    showConfirmButton: false
+                                });
+                            }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+                        }
+                    });
                   console.log(error)
             }
             // if (isAdminForm) {

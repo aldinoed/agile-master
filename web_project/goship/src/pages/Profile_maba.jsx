@@ -8,6 +8,9 @@ import { Profile_lanang, telpon, email, gender } from "../assets";
 import Buttonlogout from '../components/profile/magang/button_logout';
 import Loading from '../components/loading';
 import Swal from 'sweetalert2';
+import { createRoot } from 'react-dom/client';
+import CardSuccesEdit from "../components/handle_notif/notif_succes_edit"
+import CardFailedEdit from "../components/handle_notif/notif_failed_edit"
 // import {  } from "react-router-dom";
 
 const Profilemaba = (loggedUser) => {
@@ -81,6 +84,15 @@ const Profilemaba = (loggedUser) => {
             setStudyYear(oriStudyYear)
             setStudyProgram(oriStudyProgram)
       };
+
+      const renderComponent = (component) => {
+            const container = document.createElement('div');
+            document.body.appendChild(container);  // Make sure container is added to the body
+            const root = createRoot(container);
+            root.render(component);
+            return container;
+      };
+
       const handleSubmit = async (e) => {
             e.preventDefault();
             if (!refreshToken || localStorage.getItem('nama') == null || localStorage.getItem('id') == null || localStorage.getItem('nrp') == null) {
@@ -104,24 +116,68 @@ const Profilemaba = (loggedUser) => {
                   const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
                   if (response.status === 200) {
                         Swal.fire({
-                              title: 'Berhasil!',
-                              text: response.data.message,
-                              icon: "success",
+                              html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                              showConfirmButton: false,
+                              didOpen: () => {
+                                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                  const spinner = document.createElement('div');
+                                  spinner.className = 'loading-spinner';
+                                  const content = document.querySelector('.swal2-content');
+                                  if (content) {
+                                      content.appendChild(spinner);
+                                  }             
+                                  setTimeout(() => {
+                                      Swal.update({
+                                          html: renderComponent(<CardSuccesEdit onClose={() => Swal.close()} />),
+                                          showConfirmButton: false
+                                      });
+                                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen
+                              }
 
                         })
                         navigate('/')
                   } else {
                         Swal.fire({
-                              title: 'Gagal!',
-                              text: response.data.message,
-                              icon: "error",
+                              html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                              showConfirmButton: false,
+                              didOpen: () => {
+                                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                  const spinner = document.createElement('div');
+                                  spinner.className = 'loading-spinner';
+                                  const content = document.querySelector('.swal2-content');
+                                  if (content) {
+                                      content.appendChild(spinner);
+                                  }             
+                                  setTimeout(() => {
+                                      Swal.update({
+                                          html: renderComponent(<CardFailedEdit onClose={() => Swal.close()} />),
+                                          showConfirmButton: false
+                                      });
+                                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen
+                              }
+
                         })
                   }
             } catch (error) {
                   Swal.fire({
-                        title: 'Error!',
-                        text: 'Error: ' + error,
-                        icon: "error",
+                        html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            // Tambahkan spinner secara dinamis jika .swal2-content ada
+                            const spinner = document.createElement('div');
+                            spinner.className = 'loading-spinner';
+                            const content = document.querySelector('.swal2-content');
+                            if (content) {
+                                content.appendChild(spinner);
+                            }             
+                            setTimeout(() => {
+                                Swal.update({
+                                    html: renderComponent(<CardFailedEdit onClose={() => Swal.close()} />),
+                                    showConfirmButton: false
+                                });
+                            }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen
+                        }
+
                   })
             }
       }
