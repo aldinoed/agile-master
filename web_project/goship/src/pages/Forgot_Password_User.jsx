@@ -5,6 +5,9 @@ import { forgotuser, gembok } from "../assets";
 import axios from 'axios';
 import image21 from "../assets/image21.png";
 import Swal from "sweetalert2"
+import { createRoot } from 'react-dom/client';
+import CardSuccesPass from "../components/handle_notif/notif_succes_pass"
+import CardFailedPass from "../components/handle_notif/notif_failed_pass"
 
 const ForgotPasswordUserPage = () => {
       const location = useLocation();
@@ -21,6 +24,14 @@ const ForgotPasswordUserPage = () => {
             setUser(localStorage.getItem('nrp'));
       }, []);
 
+      const renderComponent = (component) => {
+            const container = document.createElement('div');
+            document.body.appendChild(container);  // Make sure container is added to the body
+            const root = createRoot(container);
+            root.render(component);
+            return container;
+      };
+
       const handleSubmit = async (e) => {
             e.preventDefault();
             const resetPassword = {
@@ -32,25 +43,74 @@ const ForgotPasswordUserPage = () => {
                   console.log(response.status)
                   if (response.status === 200) {
                         Swal.fire({
-                              title: 'Behasil!',
-                              text: response.data.message,
-                              icon: "success",
+                              html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                              showConfirmButton: false,
+                              didOpen: () => {
+                                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                  const spinner = document.createElement('div');
+                                  spinner.className = 'loading-spinner';
+                                  const content = document.querySelector('.swal2-content');
+                                  if (content) {
+                                      content.appendChild(spinner);
+                                  }             
+                                  setTimeout(() => {
+                                      Swal.update({
+                                          html: renderComponent(<CardSuccesPass onClose={() => Swal.close()} />),
+                                          showConfirmButton: false
+                                      });
+                                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+                              }
 
                         })
                         navigate('/student-profile', { state: user })
                   }
                   else {
                         Swal.fire({
-                              title: 'Failed!',
-                              text: "Gagal update password!",
-                              icon: "error",
+                              html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                                    showConfirmButton: false,
+                                    didOpen: () => {
+                                        // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                        const spinner = document.createElement('div');
+                                        spinner.className = 'loading-spinner';
+                                        const content = document.querySelector('.swal2-content');
+                                        if (content) {
+                                            content.appendChild(spinner);
+                                        }
+                    
+                                        setTimeout(() => {
+                                            Swal.update({
+                                                html: renderComponent(<CardFailedPass onClose={() => Swal.close()} />),
+                                                showConfirmButton: false
+                                            });
+                                        }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+                                    }
                         })
                   }
             } catch (error) {
+                  // Swal.fire({
+                  //       title: 'Oops!',
+                  //       text: 'Tidak bisa update password 2 kali!',
+                  //       icon: "warning",
+                  // })
                   Swal.fire({
-                        title: 'Oops!',
-                        text: 'Tidak bisa update password 2 kali!',
-                        icon: "warning",
+                        html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
+                              showConfirmButton: false,
+                              didOpen: () => {
+                                  // Tambahkan spinner secara dinamis jika .swal2-content ada
+                                  const spinner = document.createElement('div');
+                                  spinner.className = 'loading-spinner';
+                                  const content = document.querySelector('.swal2-content');
+                                  if (content) {
+                                      content.appendChild(spinner);
+                                  }
+              
+                                  setTimeout(() => {
+                                      Swal.update({
+                                          html: renderComponent(<CardFailedPass onClose={() => Swal.close()} />),
+                                          showConfirmButton: false
+                                      });
+                                  }, 1000); // Atur timeout 1 detik sebelum menampilkan komponen CardFailedLogin
+                              }
                   })
                   navigate('/')
             }
