@@ -40,29 +40,29 @@ function AdminDashboard() {
             }
       };
 
-  const fetchSomeDetailData = async (idPerusahaan) => {
-    try {
-      const response = await axios.get(
-        "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
-      );
-      setFormData({
-        id_perusahaan: idPerusahaan,
-        nama_perusahaan: response.data[0].nama_perusahaan,
-        logo_perusahaan: response.data[0].logo_perusahaan,
-        profil_perusahaan: response.data[0].profil_perusahaan,
-        alamat: response.data[0].alamat,
-        kota: response.data[0].kota,
-        provinsi: response.data[0].provinsi,
-      });
-      setExistingLogo(response.data[0].logo_perusahaan);
-    } catch (error) {
-      Swal.fire({
-        title: "Error!",
-        text: `Error: ${error}`,
-        icon: "error",
-      });
-    }
-  };
+      const fetchSomeDetailData = async (idPerusahaan) => {
+            try {
+                  const response = await axios.get(
+                        "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
+                  );
+                  setFormData({
+                        id_perusahaan: idPerusahaan,
+                        nama_perusahaan: response.data[0].nama_perusahaan,
+                        logo_perusahaan: response.data[0].logo_perusahaan,
+                        profil_perusahaan: response.data[0].profil_perusahaan,
+                        alamat: response.data[0].alamat,
+                        kota: response.data[0].kota,
+                        provinsi: response.data[0].provinsi,
+                  });
+                  setExistingLogo(response.data[0].logo_perusahaan);
+            } catch (error) {
+                  Swal.fire({
+                        title: "Error!",
+                        text: `Error: ${error}`,
+                        icon: "error",
+                  });
+            }
+      };
 
       const handleInputChange = (e) => {
             const { name, value } = e.target;
@@ -73,44 +73,47 @@ function AdminDashboard() {
             const { name, files } = e.target;
             setFormData({ ...formData, [name]: files[0] });
       };
+      // data.append ("nama_perusahaan", formData.nama_perusahaan);
+      // data.append ("logo_perusahaan", formData.logo_perusahaan);
+      // data.append ("alamat", formData.alamat);
+      // data.append ("kota", formData.kota);
+      // data.append ("provinsi", formData.provinsi);
+      // data.append ("profil_perusahaan", formData.profil_perusahaan);
 
-  const handleAddOrUpdate = async (e) => {
-    e.preventDefault();
-    const data = formData;
-    // data.append ("nama_perusahaan", formData.nama_perusahaan);
-    // data.append ("logo_perusahaan", formData.logo_perusahaan);
-    // data.append ("alamat", formData.alamat);
-    // data.append ("kota", formData.kota);
-    // data.append ("provinsi", formData.provinsi);
-    // data.append ("profil_perusahaan", formData.profil_perusahaan);
+      const handleAddOrUpdate = async (e) => {
+            e.preventDefault();
+            const data = new FormData();
 
-    console.log(formData);
-    console.log(formData.id_perusahaan);
-    console.log(data);
-    try {
-      if (editMode) {
-        await axios.put(
-          `https://goship-apii.vercel.app/api/perusahaan/${formData.id_perusahaan}/update`,
-          data,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-      } else {
-        await axios.post(
-          "https://goship-apii.vercel.app/api/perusahaan",
-          data,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-      }
-      fetchCompanies();
-      closeForm();
-    } catch (error) {
-      console.error("Error adding/updating company:", error);
-    }
-  };
+            // Append each key-value pair from formData to FormData instance
+            for (const key in formData) {
+                  data.append(key, formData[key]);
+            }
+
+            console.log(...data);
+            try {
+                  if (editMode) {
+                        await axios.put(
+                              `http://localhost:5000/api/perusahaan/${formData.id_perusahaan}/update`,
+                              data,
+                              {
+                                    headers: { "Content-Type": "multipart/form-data" },
+                              }
+                        );
+                  } else {
+                        await axios.post(
+                              "https://goship-apii.vercel.app/api/perusahaan",
+                              data,
+                              {
+                                    headers: { "Content-Type": "multipart/form-data" },
+                              }
+                        );
+                  }
+                  fetchCompanies();
+                  closeForm();
+            } catch (error) {
+                  console.error("Error adding/updating company:", error);
+            }
+      };
 
       const handleEdit = (company) => {
             fetchSomeDetailData(company.id_perusahaan);
@@ -153,17 +156,17 @@ function AdminDashboard() {
             setExistingLogo("");
       };
 
-  const handleSort = () => {
-    const sortedCompanies = [...companies].sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a.id_perusahaan < b.id_perusahaan ? 1 : -1;
-      } else {
-        return a.id_perusahaan > b.id_perusahaan ? 1 : -1;
-      }
-    });
-    setCompanies(sortedCompanies);
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  };
+      const handleSort = () => {
+            const sortedCompanies = [...companies].sort((a, b) => {
+                  if (sortOrder === "asc") {
+                        return a.id_perusahaan < b.id_perusahaan ? 1 : -1;
+                  } else {
+                        return a.id_perusahaan > b.id_perusahaan ? 1 : -1;
+                  }
+            });
+            setCompanies(sortedCompanies);
+            setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      };
 
       const handleLogout = () => {
             localStorage.removeItem("userToken");
