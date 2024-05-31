@@ -50,7 +50,7 @@ const Home = () => {
   return (
     <>
       <div
-        className={`bg-orange-gradient overflow-visible ${styles.flexStart} pb-96`}
+        className={`bg-orange-gradient overflow-visible ${styles.flexStart} pb-60`}
       >
         <div className={`${styles.boxWidth}`}>
           <div className="pb-16">
@@ -105,7 +105,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="relative px-4 md:px-8 lg:px-16 xl:px-24">
+      <div className="relative px-4 md:px-8 lg:px-16 xl:px-24 -mt-60 max-h-60 xs:mb-56 sm:mb-0">
         <div className={`${styles.boxWidth}`}>
           {/* Bagian Perusahaan */}
           <div className="object-top">
@@ -149,7 +149,7 @@ const Home = () => {
           {/* Bagian Share Your Story */}
           <section
             id="Shared_Story"
-            className="flex flex-col md:flex-row py-5"
+            className="flex flex-col md:flex-row pb-5 pt-10 xs:mt-64 md:mt-5"
             style={{
               backgroundImage: `url(${bg})`,
               backgroundSize: "cover",
@@ -194,7 +194,7 @@ const Home = () => {
           </section>
 
           {/* Bagian Carousel */}
-          <div className="List-Carousel pt-32 pb-24">
+          <div className="List-Carousel pt-20 pb-24">
             <section
               id="Our_story"
               className={`flex flex-col md:flex-row px-4 md:px-8 lg:px-16 xl:px-24`}

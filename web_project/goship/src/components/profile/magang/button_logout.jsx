@@ -31,7 +31,7 @@ const Buttonlogout = () => {
 
       }
       return (
-            <div className='xl:max-w-[1280px] w-full h-full'>
+            <div className='max-w-[1280px] min-w-[215px] h-full'>
                   <div className=''>
                         {/* Ganti button dengan Link */}
                         <form onSubmit={handleSubmit}>
