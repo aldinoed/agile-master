@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_project/model/detail_mahasiswa.dart';
+import 'package:flutter_project/widget/dialog_error.dart';
 
 class PageDetailMahasiswa extends StatefulWidget {
   final int id_siswa;
@@ -19,20 +21,28 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
   @override
   void initState() {
     super.initState();
-    _fetchData(widget.id_siswa);
+    _fetchData(widget.id_siswa).timeout(const Duration(seconds: 5)).catchError((e) {
+      if (e is TimeoutException) {
+        // Terjadi timeout saat mengambil data
+        showCustomDialog(context, 'Timeout',
+            'Terjadi timeout saat mengambil data. Silakan coba lagi nanti.',
+            'assets/home/timeout.png');
+      } else {
+        // Terjadi error lainnya
+        showCustomDialog(context, 'Error',
+            'Terjadi error saat mengambil data. Silakan coba lagi nanti.',
+            'assets/home/error.png');
+      }
+      return [];
+    });
   }
 
   Future<void> _fetchData(var id) async {
-    mahasiswa = await DetailMahasiswa.getDetailMahasiswa(id);
-    setState(() {});
-  }
-
-  String truncateEmail(String email) {
-    const maxLength = 17;
-    if (email.length > maxLength) {
-      return email.substring(0, maxLength) + '...';
-    } else {
-      return email;
+    try {
+      mahasiswa = await DetailMahasiswa.getDetailMahasiswa(id);
+      setState(() {});
+    } catch (e) {
+      throw e; // Lempar ulang error agar bisa ditangkap di initState
     }
   }
 
@@ -106,6 +116,7 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                     ),
                                   ),
                                 ),
+                                
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -279,156 +290,101 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                             ),
                                             const SizedBox(height: 5),
                                             Row(
-                                              children: [
-                                                const Icon(Icons.mail,
-                                                    size: 15),
-                                                const SizedBox(width: 5),
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    const Icon(Icons.mail, size: 15),
+    const SizedBox(width: 5),
+    Container(
+      constraints: BoxConstraints(maxWidth: 200), // Atur lebar sesuai kebutuhan Anda
+      child: Text(
+        mahasiswa[index].email.length > 24
+            ? '${mahasiswa[index].email.substring(0, 24)}...'
+            : mahasiswa[index].email,
+        style: const TextStyle(fontSize: 13),
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.left,
+      ),
+    ),
+    SizedBox(width: 5), // Jarak antara email dan ikon salin
+    InkWell(
+      onTap: () {
+        Clipboard.setData(ClipboardData(text: mahasiswa[index].email));
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: Colors.transparent,
+              contentPadding: EdgeInsets.zero,
+              content: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xFFF77D00).withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 6,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 16),
+                    Text(
+                      'Sukses',
+                      style: TextStyle(
+                        color: Color(0xFFF77D00),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        'Alamat email berhasil disalin',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black, // Content color
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(24),
+                          bottomRight: Radius.circular(24),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'OK',
+                          style: TextStyle(
+                            color: Color(0xFFF77D00),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+      child: Icon(Icons.content_copy, size: 13),
+    ),
+  ],
+),
 
-                                                Text(
-                                                  truncateEmail(
-                                                      mahasiswa[index].email),
-                                                  style: const TextStyle(
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    fontSize: 13,
-                                                  ),
-                                                  textAlign: TextAlign.left,
-                                                ),
-                                                SizedBox(
-                                                    width:
-                                                        10), // Jarak antara email dan ikon salin
-                                                InkWell(
-                                                  onTap: () {
-                                                    Clipboard.setData(
-                                                        ClipboardData(
-                                                            text:
-                                                                mahasiswa[index]
-                                                                    .email));
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return AlertDialog(
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          contentPadding:
-                                                              EdgeInsets.zero,
-                                                          content: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          24.0),
-                                                              boxShadow: [
-                                                                BoxShadow(
-                                                                  color: Color(
-                                                                          0xFFF77D00)
-                                                                      .withOpacity(
-                                                                          0.2),
-                                                                  spreadRadius:
-                                                                      2,
-                                                                  blurRadius: 6,
-                                                                  offset:
-                                                                      Offset(
-                                                                          0, 0),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                SizedBox(
-                                                                    height: 16),
-                                                                Text(
-                                                                  'Sukses',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Color(
-                                                                        0xFFF77D00),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        16,
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height: 8),
-                                                                Padding(
-                                                                  padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                      horizontal:
-                                                                          24),
-                                                                  child: Text(
-                                                                    'Alamat email berhasil disalin',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Colors
-                                                                          .black, // Content color
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height: 8),
-                                                                Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              24),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              24),
-                                                                    ),
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                  child:
-                                                                      TextButton(
-                                                                    onPressed:
-                                                                        () {
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .pop();
-                                                                    },
-                                                                    child:
-                                                                        const Text(
-                                                                      'OK',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Color(
-                                                                            0xFFF77D00),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height: 16),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Icon(
-                                                      Icons.content_copy,
-                                                      size: 13),
-                                                ),
-                                              ],
-                                            ),
                                           ],
                                         ),
                                       ],

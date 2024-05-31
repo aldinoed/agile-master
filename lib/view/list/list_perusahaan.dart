@@ -5,6 +5,7 @@ import 'package:flutter_project/model/perusahaan.dart';
 import 'package:flutter_project/provider/perusahaan.dart';
 import 'package:flutter_project/view/list/list_intern.dart';
 import 'package:flutter_project/view/main_screen/main_screen.dart';
+import 'package:flutter_project/widget/dialog_error.dart';
 import 'package:provider/provider.dart';
 
 class ListPerusahaan extends StatefulWidget {
@@ -17,10 +18,8 @@ class ListPerusahaan extends StatefulWidget {
 class _ListPerusahaanState extends State<ListPerusahaan> {
   @override
   void initState() {
-    try {
-      super.initState();
-      _loadData().timeout(const Duration(seconds: 5));
-    } catch (e) {
+    super.initState();
+    _loadData().timeout(const Duration(seconds: 5)).catchError((e) {
       if (e is TimeoutException) {
         // Terjadi timeout saat mengambil data
         print(e);
@@ -212,13 +211,17 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           },
         );
       }
-    }
+    });
   }
 
   Future<void> _loadData() async {
-    List<Perusahaan> listPerusahaan = await Perusahaan.getPerusahaan();
-    Provider.of<PerusahaanProvider>(context, listen: false)
-        .setPerusahaan(listPerusahaan);
+    try {
+      List<Perusahaan> listPerusahaan = await Perusahaan.getPerusahaan();
+      Provider.of<PerusahaanProvider>(context, listen: false)
+          .setPerusahaan(listPerusahaan);
+    } catch (e) {
+      throw e; // Lempar ulang error agar bisa ditangkap di initState
+    }
   }
 
   @override
@@ -592,7 +595,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                             //     color: Color(0xFF333333),
                             //   ),
                             // ),
-                          ], 
+                          ],
                         ),
                         Wrap(
                           spacing: 8.0, // Gap between chips
@@ -609,7 +612,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               ),
                               selected: provider.selectedYear == semester,
                               backgroundColor: Colors.grey[200],
-                              selectedColor: Color.fromARGB(113, 247, 124, 0),
+                              selectedColor: Colors.blue,
                               onSelected: (bool selected) {
                                 setState(() {
                                   provider
@@ -750,7 +753,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
-                                  backgroundColor: Color.fromARGB(255, 6, 6, 5),
+                                  backgroundColor: Color(0xFFF77D00),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
                                         12.0), // Set border radius
