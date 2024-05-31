@@ -31,8 +31,8 @@ class OnBoarding extends StatelessWidget {
                 ),
                 Consumer<OnboardingState>(
                   builder: (context, onBoarding, _) => Image(
-                    width: 245,
-                    height: 245,
+                    width: 320,
+                    height: 320,
                     image: AssetImage(
                       onBoarding.imageLocation,
                     ),
@@ -47,7 +47,7 @@ class OnBoarding extends StatelessWidget {
                         child: Text(
                           onBoarding.title,
                           style: const TextStyle(
-                              fontSize: 28, fontWeight: FontWeight.bold),
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -57,7 +57,7 @@ class OnBoarding extends StatelessWidget {
                         child: Text(
                           onBoarding.description,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                           textAlign: TextAlign.center,
                         ),

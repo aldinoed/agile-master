@@ -29,81 +29,78 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           builder: (BuildContext context) {
             print(context);
             return AlertDialog(
-                  backgroundColor:
-                      Colors.transparent, 
-                  contentPadding: EdgeInsets.zero,
-                  content: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xFFF77D00).withOpacity(
-                              0.2), 
-                          spreadRadius: 2,
-                          blurRadius: 6,
-                          offset: Offset(0, 0), 
-                        ),
-                      ],
+              backgroundColor: Colors.transparent,
+              contentPadding: EdgeInsets.zero,
+              content: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xFFF77D00).withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 6,
+                      offset: Offset(0, 0),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 24),
-                          child: Image.asset(
-                            'assets/home/timeout.png',
-                            width: 120,
-                            height: 120,
-                          ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 24),
+                      child: Image.asset(
+                        'assets/home/timeout.png',
+                        width: 120,
+                        height: 120,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Tiemout',
+                      style: TextStyle(
+                        color: Color(0xFFF77D00),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        'Timeout while retrieving data, please try again later',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black, // Content color
                         ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Tiemout',
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(24),
+                          bottomRight: Radius.circular(24),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'OK',
                           style: TextStyle(
                             color: Color(0xFFF77D00),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                            'Timeout while retrieving data, please try again later',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black, // Content color
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(24),
-                              bottomRight: Radius.circular(24),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text(
-                              'OK',
-                              style: TextStyle(
-                                color:
-                                    Color(0xFFF77D00), 
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                      ],
+                      ),
                     ),
-                  ),
-                );
+                    SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            );
             // return AlertDialog(
             //   title: const Text("Timeout"),
             //   content: const Text(
@@ -127,81 +124,78 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           builder: (BuildContext context) {
             print(context);
             return AlertDialog(
-                  backgroundColor:
-                      Colors.transparent, 
-                  contentPadding: EdgeInsets.zero,
-                  content: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xFFF77D00).withOpacity(
-                              0.2), 
-                          spreadRadius: 2,
-                          blurRadius: 6,
-                          offset: Offset(0, 0), 
-                        ),
-                      ],
+              backgroundColor: Colors.transparent,
+              contentPadding: EdgeInsets.zero,
+              content: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xFFF77D00).withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 6,
+                      offset: Offset(0, 0),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 24),
-                          child: Image.asset(
-                            'assets/home/error.png',
-                            width: 120,
-                            height: 120,
-                          ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 24),
+                      child: Image.asset(
+                        'assets/home/error.png',
+                        width: 120,
+                        height: 120,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Error',
+                      style: TextStyle(
+                        color: Color(0xFFF77D00),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        'Error while retrieving data, please try again later',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black, // Content color
                         ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Error',
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(24),
+                          bottomRight: Radius.circular(24),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'OK',
                           style: TextStyle(
                             color: Color(0xFFF77D00),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                            'Error while retrieving data, please try again later',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black, // Content color
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(24),
-                              bottomRight: Radius.circular(24),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text(
-                              'OK',
-                              style: TextStyle(
-                                color:
-                                    Color(0xFFF77D00), 
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                      ],
+                      ),
                     ),
-                  ),
-                );
+                    SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            );
             // return AlertDialog(
             //   title: const Text("Error"),
             //   content: const Text(
@@ -236,11 +230,11 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           scrolledUnderElevation: 0,
           backgroundColor: Color.fromRGBO(250, 250, 254, 1),
           title: InkWell(
-            onTap: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => MainScreen()),
-              );
-            },
+            // onTap: () {
+            //   // Navigator.of(context).pushReplacement(
+            //   //   MaterialPageRoute(builder: (context) => MainScreen()),
+            //   // );
+            // },
             child: Align(
               alignment: Alignment.center,
               child: Row(
@@ -267,7 +261,6 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
           ),
           centerTitle: true,
         ),
-        
         body: SafeArea(
           bottom: false,
           child: Padding(
@@ -291,19 +284,19 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                             children: <Widget>[
                               const Padding(
                                 padding: EdgeInsets.all(12.0),
-                                child:
-                                    Icon(Icons.search, color: Color(0xFFF77D00)),
+                                child: Icon(Icons.search,
+                                    color: Color(0xFFF77D00)),
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(right: 10, bottom: 5),
+                                  padding: const EdgeInsets.only(
+                                      right: 10, bottom: 5),
                                   child: TextField(
                                     onChanged: (value) {
                                       provider.searchPerusahaan(value);
                                     },
                                     decoration: const InputDecoration.collapsed(
-                                      hintText: 'Cari Perusahaan',
+                                      hintText: 'Cari Perusahaan atau Divisi',
                                       hintStyle: TextStyle(
                                         fontSize: 13,
                                         height: 1.0,
@@ -387,7 +380,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               ),
                             )
                           : ListView.builder(
-                            shrinkWrap: true,
+                              shrinkWrap: true,
                               padding: const EdgeInsets.all(0),
                               itemCount: provider.filteredPerusahaan.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -418,13 +411,18 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                         child: Row(
                                           children: <Widget>[
                                             Padding(
-                                              padding: const EdgeInsets.all(
-                                                  8.0), // Memberikan padding sebesar 16 unit
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  right: 12.0,
+                                                  top: 12.0,
+                                                  bottom:
+                                                      12.0), // Memberikan padding sebesar 16 unit
                                               child: Card(
                                                 color: Colors
                                                     .white, // Menetapkan warna card
@@ -433,13 +431,14 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                                       BorderRadius.circular(10),
                                                   child: Image.network(
                                                     provider
-                                                        .filteredPerusahaan[index]
+                                                        .filteredPerusahaan[
+                                                            index]
                                                         .logo_perusahaan,
                                                     fit: BoxFit.cover,
                                                     width: 55,
                                                     height: 55,
-                                                    errorBuilder: (context, error,
-                                                        stackTrace) {
+                                                    errorBuilder: (context,
+                                                        error, stackTrace) {
                                                       return Image.asset(
                                                         'assets/home/LOGO1.png',
                                                         fit: BoxFit.cover,
@@ -489,7 +488,10 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                                     (posisiIndex) => Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 5, top: 4),
+                                                              left: 5,
+                                                              top: 4,
+                                                              right: 12,
+                                                              bottom: 4),
                                                       child: Text(
                                                         '=> ' +
                                                             provider
@@ -502,6 +504,9 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                                           fontFamily: 'DM Sans',
                                                           fontSize: 12,
                                                         ),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                       ),
                                                     ),
                                                   ),
@@ -517,6 +522,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               },
                             ),
                 ),
+                SizedBox(height: 56),
               ],
             ),
           ),
@@ -532,6 +538,8 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
     Map<String, String> yearToSemester = {
       '2021': '6',
       '2020': '8',
+      '2022': '0',
+
       // Tambahkan pasangan tahun-semester lainnya di sini
     };
 
@@ -552,8 +560,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: SingleChildScrollView(
-                  physics:
-                      const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   child: Padding(
                     padding:
                         const EdgeInsets.only(bottom: 16, right: 16, left: 16),
@@ -564,7 +571,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Semester",
+                              "Angkatan",
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -585,7 +592,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                             //     color: Color(0xFF333333),
                             //   ),
                             // ),
-                          ],
+                          ], 
                         ),
                         Wrap(
                           spacing: 8.0, // Gap between chips
@@ -602,7 +609,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               ),
                               selected: provider.selectedYear == semester,
                               backgroundColor: Colors.grey[200],
-                              selectedColor: Colors.blue,
+                              selectedColor: Color.fromARGB(113, 247, 124, 0),
                               onSelected: (bool selected) {
                                 setState(() {
                                   provider
@@ -681,20 +688,18 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                           Wrap(
                             spacing: 8.0, // Gap between chips
                             children: <String>[
-                              'Teknik Elektronika',
-                              'Teknik Telekomunikasi',
                               'Teknik Elektro Industri',
                               'Teknik Informatika',
-                              'Teknik Komputer',
-                              'Teknik Mekatronika',
-                              'Sistem Pembangkit Energi',
-                              'Teknologi Game',
-                              'Teknologi Multimedia Broadcasting',
-                              'Teknik Elektro Industri - PLN',
-                              'Teknik Elektronika - GMF',
-                              'Teknik Informatika dan Komputer',
-                              'PJJ Teknik Informatika',
-                              'PJJ Teknik Telekomunikasi',
+                              // 'Teknik Komputer',
+                              // 'Teknik Mekatronika',
+                              // 'Sistem Pembangkit Energi',
+                              // 'Teknologi Game',
+                              // 'Teknologi Multimedia Broadcasting',
+                              // 'Teknik Elektro Industri - PLN',
+                              // 'Teknik Elektronika - GMF',
+                              // 'Teknik Informatika dan Komputer',
+                              // 'PJJ Teknik Informatika',
+                              // 'PJJ Teknik Telekomunikasi',
                             ].map<Widget>((String year) {
                               return Chip(
                                 label: Text(

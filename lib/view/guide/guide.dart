@@ -12,11 +12,11 @@ class Guide extends StatelessWidget {
         scrolledUnderElevation: 0,
         backgroundColor: Color.fromRGBO(250, 250, 254, 1),
         title: InkWell(
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => MainScreen()),
-            );
-          },
+          // onTap: () {
+          //   Navigator.of(context).pushReplacement(
+          //     MaterialPageRoute(builder: (context) => MainScreen()),
+          //   );
+          // },
           child: Align(
             alignment: Alignment.center,
             child: Row(
@@ -146,7 +146,7 @@ class Guide extends StatelessWidget {
                                 '   a. Reguler\n'
                                 '   b. IISMA via UP2AI Bu Lely dan KUI Pak\n'
                                 '       Iwan Syarif\n'
-                                '   c. IGIP via UP2AI Bu Lely dan KUI Pak Iwan\n' 
+                                '   c. IGIP via UP2AI Bu Lely dan KUI Pak Iwan\n'
                                 '       Syarif',
                                 style: TextStyle(
                                   fontSize: 14,
@@ -164,8 +164,8 @@ class Guide extends StatelessWidget {
                               ),
                               Text(
                                 '   Jika Anda berada dalam kelompok yang\n'
-                                '   terdiri dari maksimal 3 orang, isi Formulir\n' 
-                                '   Pengajuan KP di MIS Online (Jika dalam\n' 
+                                '   terdiri dari maksimal 3 orang, isi Formulir\n'
+                                '   Pengajuan KP di MIS Online (Jika dalam\n'
                                 '   kelompok, maka hanya perwakilan yang\n'
                                 '   akan mengisinya)',
                                 style: TextStyle(
@@ -183,8 +183,8 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '   a. Membuat Surat Pengantar (nomor surat,\n' 
-                                '      dan peruntukan KDAEP yang akan diurus\n' 
+                                '   a. Membuat Surat Pengantar (nomor surat,\n'
+                                '      dan peruntukan KDAEP yang akan diurus\n'
                                 '      melalui Bu Pipid)\n'
                                 '   b. Membuat surat ucapan terima kasih\n'
                                 '      setelah diterima (nomor surat dan\n'

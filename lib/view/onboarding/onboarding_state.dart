@@ -10,14 +10,14 @@ class OnboardingState with ChangeNotifier {
     'assets/onboarding/step3.png'
   ];
   List<String> listTitle = [
-    'Goship Insight',
-    'Goship Explorer',
-    'All in Goship'
+    'List Perusahaan',
+    'Detail Perusahaan',
+    'Detail Mahasiswa'
   ];
   List<String> listDescription = [
-    "Find out the history of upperclassmen's experiences",
-    "Find detailed information about your internship location",
-    "With a variety of features, your internship will be easier!"
+    "Kumpulan perusahaan tempat magang kakak tingkat",
+    "Informasi perusahaan dengan mahasiswa magangnya ",
+    "Informasi detail kegiatan magang beserta kontaknya"
   ];
 
   String get title => listTitle[onBoardingNumber];
@@ -28,7 +28,7 @@ class OnboardingState with ChangeNotifier {
     if (value == onBoardingNumber) {
       return Color(0xFFF77D00);
     } else {
-      return Colors.grey;
+      return Color.fromARGB(255, 226, 225, 225);
     }
   }
 
