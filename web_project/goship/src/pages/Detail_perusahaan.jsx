@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styles from "../style";
-import { Footer } from "../components";
-import { Navbar, Hero, Listperusahaan } from "../components/detail_perusahaan";
+import { Footer,Navbar } from "../components";
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { gojek, gps, req, bg, email, male, female } from "../assets";
@@ -113,36 +112,38 @@ const Detailperusahaan = () => {
 
                   <div className={` overflow-visible ${styles.flexStart} `}>
                         <div className={`${styles.boxWidth}`}>
-                              <div className=" pb-16">
+                              <div className=" pb-16 ">
                                     <Navbar />
                               </div>
                               <div ref={ref} className={`transition-opacity ease-in duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>
                                     <div className={``} style={{ backgroundImage: `url(${bg})` }}>
-                                          <section id="about" className=" flex md:flex-row flex-col">
-                                                <div className={` flex-col py-28 px-16`}>
+                                          <section id="about" className=" flex flex-col md:flex-row ">
+                                                <div className={` flex-col py-8 px-4 md:py-28 md:px-16 `}>
                                                       <div className={`  ${styles.flexCenter} md:my-0 my-10 relative`}>
-                                                            <img src={image} alt="billing" className=" w-72  z-[5]" />
+                                                            <div className='bg-white border rounded-lg shadow '>
+                                                                  <img style={{ boxShadow: 'rgb(38, 57, 77) 0px 20px 30px -10px' }} src={image} alt="billing" className=" object-contain border rounded-lg w-72  z-[5]" />
+                                                            </div>
                                                       </div>
                                                 </div>
-                                                <div className={`  font-libre flex ${styles.flexCenter} md:my-0 my-10 relative px-20`}>
+                                                <div className={`  font-libre flex ${styles.flexCenter} md:my-0 my-10 relative px-4 md:px-20`}>
                                                       <div className={`  font-libre ${styles.flexStart} flex-col pr-22 `}>
                                                             <div className=" flex-row items-center justify-between w-full font-libre">
-                                                                  <div className=" font-libre ml-2 font-semibold text-black ss:text-[60px]">
+                                                                  <div className=" font-libre ml-2 font-semibold text-black text-[50px] ss:text-[60px]">
                                                                         {companyName}
                                                                   </div>
                                                             </div>
                                                             <div className="flex flex-row justify-between items-center w-full py-2 font-libre">
                                                                   <img src={gps} className='pr-10' alt="" />
-                                                                  <div className="text-dimBlack flex-1 font-semibold ss:text-[30px] text-black ss:leading-[25.8px]">
+                                                                  <div className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[25.8px]">
                                                                         Lokasi<br className="sm:block hidden ]" />{" "}
-                                                                        <p className="font-sans max-w-[800px] text-[20px] py-2 ">{address}</p>{" "}
+                                                                        <p className="font-sans max-w-[800px] text-[20px] ss:text-[30px] py-2 ">{address}</p>{" "}
                                                                   </div>
                                                             </div>
-                                                            <div className="font-sans flex flex-row justify-between items-center w-full ">
+                                                            <div className="flex flex-row justify-between items-center w-full font-libre">
                                                                   <img src={req} className='px-3 pr-14' alt="" />
-                                                                  <h1 className="font-sans text-dimBlack  flex-1 font-poppins font-semibold ss:text-[30px] text-black ss:leading-[35.8px] py-2">
+                                                                  <h1 className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[35.8px] py-2">
                                                                         Persyaratan<br className="sm:block hidden" />{" "}
-                                                                        <span className=" font-sans ss:text-[20px]">
+                                                                        <span className=" font-sans text-[20px] ss:text-[30px]">
                                                                               <li>lulusan S1 </li>
                                                                               <li>bisa ngoding</li>
                                                                               <li>lulusan pens</li>
@@ -177,41 +178,59 @@ const Detailperusahaan = () => {
 
                               </section>
                               <div className={`${styles.flexCenter} content-center items-center py-5`}>
-                                    <div className="flex flex-col space-y-4">
+                                    <div className="flex flex-col space-y-4 w-full px-4 md:px-20">
                                           {posisi.map((role, index) => (
                                                 <RevealOnScroll>
                                                       <div className='py-6'>
-                                                            <div key={index} className=" flex-row rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.08)] md:w-auto md:flex-row">
-                                                                  <div className="flex justify-between p-4 bg-cream md:w-auto rounded-lg ">
-                                                                        <h2 className="text-orange text-xl font-semibold mb-2 px-10 font-[500]">
+                                                            <div style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }} key={index} className="flex flex-col md:flex-col rounded-lg md:w-auto">
+                                                                  <div className="flex justify-between items-center p-4 bg-cream md:w-auto rounded-lg md:rounded-t-lg ">
+                                                                        <h2 className="text-orange text-xl font-semibold mb-2 px-2 md:px-10 font-[500]">
                                                                               {role.nama_posisi}
                                                                         </h2>
-                                                                        <div className="flex justify-center bg-white px-4 py-2 rounded-lg">
-                                                                              <p className=" text-sm font-[500] text-[20px]"> {role.siswa.length} Mahasiswa</p>
+                                                                        <div className="flex justify-center items-center bg-white px-4 py-2 rounded-lg max-h-[50px] max-w-[250px] max-h-[100px] w-auto">
+                                                                              <p className=" flex justify-center md:items-center text-sm font-[500] text-[20px] "> {role.siswa.length} Mahasiswa</p>
                                                                         </div>
                                                                   </div>
-                                                                  <div className="  flex flex-wrap max-w-full p-20 bg-white rounded-b-lg  w-[1200px]">
+                                                                  <div className="flex flex-wrap max-w-full p-4 md:p-8 bg-white rounded-b-lg md:rounded-b-none w-full">
                                                                         {role.siswa.map((siswa, index) => (
                                                                               <div
                                                                                     key={siswa.id_siswa}
                                                                                     className={`flex justify-start p-4 bg-white rounded-lg md:rounded-b-none w-full md:w-1/3 ${(index + 1) % 3 === 0 ? '' : ''
                                                                                           }`}
                                                                               >
-                                                                                    <div className="flex flex-col rounded-lg shadow-md md:w-auto md:flex-row">
-                                                                                          <div className="justify-start px-2 py-2 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
-                                                                                                <img src={siswa.jenis_kelamin == 'Laki-laki' ? male : female} className="rounded object-cover w-20 h-18" alt="" />
+                                                                                    <div
+                                                                                          style={{
+                                                                                                width: '300px', // Set fixed width for the card
+                                                                                                boxShadow:
+                                                                                                      'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+                                                                                          }}
+                                                                                          className="flex flex-row rounded-lg shadow-md md:w-auto md:flex-row max-w-[300px]"
+                                                                                    >
+                                                                                          <div className="w-20 h-18 md:w-20 md:h-18 overflow-hidden pr-2 rounded-t-lg md:rounded-l-lg md:rounded-t-none relative">
+                                                                                                <img
+                                                                                                      src={siswa.jenis_kelamin === 'Laki-laki' ? male : female}
+                                                                                                      className="rounded object-cover w-full h-full"
+                                                                                                      alt=""
+                                                                                                />
                                                                                           </div>
-                                                                                          <div className="flex flex-col justify-start py-2 pr-10 bg-white rounded-b-lg md:rounded-r-lg md:rounded-b-none md:w-auto">
-                                                                                                <a href={'/detail-student/' + siswa.id_siswa}><p className="font-[700]">{siswa.nama_siswa}</p></a>
-                                                                                                <div className="flex-row flex items-center ">
-                                                                                                      <img src={email} className="pr-2" alt="" />
-                                                                                                      <p className="text-dimBlack">{siswa.email}</p>
+                                                                                          <div className="flex flex-col justify-center items-start py-2 bg-white rounded-b-lg md:rounded-r-lg md:rounded-b-none md:w-auto">
+                                                                                                <a href={'/detail-student/' + siswa.id_siswa}>
+                                                                                                      <p className="font-[700] truncate" style={{ maxWidth: '200px' }}>
+                                                                                                            {siswa.nama_siswa}
+                                                                                                      </p>
+                                                                                                </a>
+                                                                                                <div className="flex-row flex items-center">
+                                                                                                      <img src={email} className="pr-2 w-8 h-4" alt="" />
+                                                                                                      <p className="text-dimBlack truncate" style={{ maxWidth: '200px' }}>
+                                                                                                            {siswa.email}
+                                                                                                      </p>
                                                                                                 </div>
                                                                                           </div>
                                                                                     </div>
                                                                               </div>
                                                                         ))}
                                                                   </div>
+
                                                             </div>
                                                       </div>
                                                 </RevealOnScroll>
