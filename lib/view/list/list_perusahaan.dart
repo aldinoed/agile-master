@@ -538,13 +538,30 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
     bool isDropdownOpen = false;
     bool isDropdownOpen2 = false;
     String? _selectedYear;
+    String? _selectedProgram;
+
     Map<String, String> yearToSemester = {
       '2021': '6',
       '2020': '8',
-      '2022': '0',
-
+      '2018': '0',
       // Tambahkan pasangan tahun-semester lainnya di sini
     };
+
+    List<String> initialPrograms = [
+      'Teknik Informatika',
+      'Teknik Telekomunikasi',
+    ];
+
+    List<String> allPrograms = [
+      'Teknik Telekomunikasi',
+      'Teknik Informatika',
+      'Teknik Elektro Industri',
+      'Teknik Komputer',
+      'Teknik Mekatronika',
+      'Sistem Pembangkit Energi',
+      'Teknologi Game',
+      'Teknologi Multimedia',
+    ];
 
     showModalBottomSheet(
       context: context,
@@ -582,19 +599,6 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                                     0xFF333333), // Dark grey color for the text
                               ),
                             ),
-                            // IconButton(
-                            //   onPressed: () {
-                            //     setState(() {
-                            //       isDropdownOpen = !isDropdownOpen;
-                            //     });
-                            //   },
-                            //   icon: Icon(
-                            //     isDropdownOpen
-                            //         ? Icons.keyboard_arrow_up
-                            //         : Icons.keyboard_arrow_down,
-                            //     color: Color(0xFF333333),
-                            //   ),
-                            // ),
                           ],
                         ),
                         Wrap(
@@ -612,7 +616,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                               ),
                               selected: provider.selectedYear == semester,
                               backgroundColor: Colors.grey[200],
-                              selectedColor: Colors.blue,
+                              selectedColor: Color.fromARGB(120, 247, 124, 0),
                               onSelected: (bool selected) {
                                 setState(() {
                                   provider
@@ -622,26 +626,7 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                             );
                           }).toList(),
                         ),
-                        if (isDropdownOpen) // Tampilkan semua data warp jika dropdown terbuka
-                          // Wrap(
-                          //   spacing: 8.0, // Gap between chips
-                          //   children: <String>[
-                          //     '2022/2023',
-                          //     '2023/2024',
-                          //   ].map<Widget>((String year) {
-                          //     return Chip(
-                          //       label: Text(
-                          //         year,
-                          //         style: TextStyle(
-                          //           fontSize: 11,
-                          //           color: Color(0xFF605B57),
-                          //         ),
-                          //       ),
-                          //       backgroundColor: Colors.grey[200],
-                          //     );
-                          //   }).toList(),
-                          // ),
-                          SizedBox(height: 16),
+                        SizedBox(height: 16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -671,60 +656,39 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                         ),
                         Wrap(
                           spacing: 8.0, // Gap between chips
-                          children: <String>[
-                            'Teknik Elektronika',
-                            'Teknik Telekomunikasi',
-                          ].map<Widget>((String year) {
-                            return Chip(
+                          children:
+                              (isDropdownOpen2 ? allPrograms : initialPrograms)
+                                  .map<Widget>((String program) {
+                            return ChoiceChip(
                               label: Text(
-                                year,
+                                program,
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: Color(0xFF605B57),
                                 ),
                               ),
+                              selected: provider.selectedProgram == program,
                               backgroundColor: Colors.grey[200],
+                              selectedColor: Color.fromARGB(120, 247, 124, 0),
+                              onSelected: (bool selected) {
+                                setState(() {
+                                  provider
+                                      .selectProgram(selected ? program : null);
+                                });
+                              },
                             );
                           }).toList(),
                         ),
-                        if (isDropdownOpen2) // Tampilkan semua data warp jika dropdown terbuka
-                          Wrap(
-                            spacing: 8.0, // Gap between chips
-                            children: <String>[
-                              'Teknik Elektro Industri',
-                              'Teknik Informatika',
-                              // 'Teknik Komputer',
-                              // 'Teknik Mekatronika',
-                              // 'Sistem Pembangkit Energi',
-                              // 'Teknologi Game',
-                              // 'Teknologi Multimedia Broadcasting',
-                              // 'Teknik Elektro Industri - PLN',
-                              // 'Teknik Elektronika - GMF',
-                              // 'Teknik Informatika dan Komputer',
-                              // 'PJJ Teknik Informatika',
-                              // 'PJJ Teknik Telekomunikasi',
-                            ].map<Widget>((String year) {
-                              return Chip(
-                                label: Text(
-                                  year,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: Color(0xFF605B57),
-                                  ),
-                                ),
-                                backgroundColor: Colors.grey[200],
-                              );
-                            }).toList(),
-                          ),
                         SizedBox(height: 16),
                         Row(
                           children: [
                             Expanded(
                               child: OutlinedButton(
                                 onPressed: () {
-                                  Provider.of<PerusahaanProvider>(context,
-                                          listen: false)
-                                      .selectYear(null);
+                                  setState(() {
+                                    provider.selectYear(null);
+                                    provider.selectProgram(null);
+                                  });
                                 },
                                 style: OutlinedButton.styleFrom(
                                   foregroundColor: Colors.black,
@@ -747,8 +711,9 @@ class _ListPerusahaanState extends State<ListPerusahaan> {
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  provider.filterByYear(provider
-                                      .selectedYear); // Kirim nilai _selectedYear ke PerusahaanProvider
+                                  provider.filterByYear(provider.selectedYear);
+                                  provider.filterByProgram(
+                                      provider.selectedProgram);
                                   Navigator.of(context).pop();
                                 },
                                 style: ElevatedButton.styleFrom(

@@ -21,20 +21,35 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
   @override
   void initState() {
     super.initState();
-    _fetchData(widget.id_siswa).timeout(const Duration(seconds: 5)).catchError((e) {
+    _fetchData(widget.id_siswa)
+        .timeout(const Duration(seconds: 5))
+        .catchError((e) {
       if (e is TimeoutException) {
         // Terjadi timeout saat mengambil data
-        showCustomDialog(context, 'Timeout',
+        showCustomDialog(
+            context,
+            'Timeout',
             'Terjadi timeout saat mengambil data. Silakan coba lagi nanti.',
             'assets/home/timeout.png');
       } else {
         // Terjadi error lainnya
-        showCustomDialog(context, 'Error',
+        showCustomDialog(
+            context,
+            'Error',
             'Terjadi error saat mengambil data. Silakan coba lagi nanti.',
             'assets/home/error.png');
       }
       return [];
     });
+  }
+
+  String truncateEmail(String email) {
+    const maxLength = 17;
+    if (email.length > maxLength) {
+      return email.substring(0, maxLength) + '...';
+    } else {
+      return email;
+    }
   }
 
   Future<void> _fetchData(var id) async {
@@ -51,34 +66,29 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-  title: const Text('Detail Mahasiswa'),
-  titleTextStyle: const TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-    fontFamily: 'LibreBaskerville',
-  ),
-  centerTitle: true,
-  backgroundColor: Colors.white,
-  toolbarHeight: 70,
-  leading: Padding(
-    padding: const EdgeInsets.only(left: 20),
-    
-      
-      child: IconButton(
-        icon: Icon(
-          Icons.arrow_back,
+        title: const Text('Detail Mahasiswa'),
+        titleTextStyle: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
           color: Colors.black,
+          fontFamily: 'LibreBaskerville',
         ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        toolbarHeight: 70,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
       ),
-  
-  ),
-),
-
-
       body: mahasiswa.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
@@ -121,7 +131,6 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                     ),
                                   ),
                                 ),
-                                
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -149,7 +158,8 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                           children: [
                                             Row(
                                               children: [
-                                                const Icon(Icons.call,size: 15),
+                                                const Icon(Icons.call,
+                                                    size: 15),
                                                 const SizedBox(width: 5),
                                                 Text(
                                                   mahasiswa[index].no_telp,
@@ -157,182 +167,298 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                                       fontSize: 13),
                                                   textAlign: TextAlign.left,
                                                 ),
-                                                SizedBox(width: 10), // Jarak antara nomor telepon dan ikon salin
-                                              InkWell(
-                                                onTap: () {
-                                                  Clipboard.setData(ClipboardData(text: mahasiswa[index].no_telp));
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (BuildContext context) {
-                                                      return AlertDialog(
-                                                        backgroundColor: Colors.transparent,
-                                                        contentPadding: EdgeInsets.zero,
-                                                        content: Container(
-                                                          decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius: BorderRadius.circular(24.0),
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                color: Color(0xFFF77D00).withOpacity(0.2),
-                                                                spreadRadius: 2,
-                                                                blurRadius: 6,
-                                                                offset: Offset(0, 0),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          child: Column(
-                                                            mainAxisSize: MainAxisSize.min,
-                                                            children: [
-                                                              SizedBox(height: 16),
-                                                              Text(
-                                                                'Sukses',
-                                                                style: TextStyle(
-                                                                  color: Color(0xFFF77D00),
-                                                                  fontWeight: FontWeight.bold,
-                                                                  fontSize: 16,
+                                                SizedBox(
+                                                    width:
+                                                        10), // Jarak antara nomor telepon dan ikon salin
+                                                InkWell(
+                                                  onTap: () {
+                                                    Clipboard.setData(
+                                                        ClipboardData(
+                                                            text:
+                                                                mahasiswa[index]
+                                                                    .no_telp));
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return AlertDialog(
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          contentPadding:
+                                                              EdgeInsets.zero,
+                                                          content: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24.0),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: Color(
+                                                                          0xFFF77D00)
+                                                                      .withOpacity(
+                                                                          0.2),
+                                                                  spreadRadius:
+                                                                      2,
+                                                                  blurRadius: 6,
+                                                                  offset:
+                                                                      Offset(
+                                                                          0, 0),
                                                                 ),
-                                                              ),
-                                                              SizedBox(height: 8),
-                                                              Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 24),
-                                                                child: Text(
-                                                                  'Nomor telepon berhasil disalin',
-                                                                  textAlign: TextAlign.center,
-                                                                  style: TextStyle(
-                                                                    color: Colors.black, // Content color
+                                                              ],
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                SizedBox(
+                                                                    height: 16),
+                                                                Text(
+                                                                  'Sukses',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Color(
+                                                                        0xFFF77D00),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        16,
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(height: 8),
-                                                              Container(
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.only(
-                                                                    bottomLeft: Radius.circular(24),
-                                                                    bottomRight: Radius.circular(24),
-                                                                  ),
-                                                                  color: Colors.white,
-                                                                ),
-                                                                child: TextButton(
-                                                                  onPressed: () {
-                                                                    Navigator.of(context).pop();
-                                                                  },
-                                                                  child: const Text(
-                                                                    'OK',
-                                                                    style: TextStyle(
-                                                                      color: Color(0xFFF77D00),
+                                                                SizedBox(
+                                                                    height: 8),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          24),
+                                                                  child: Text(
+                                                                    'Nomor telepon berhasil disalin',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .black, // Content color
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(height: 16),
-                                                            ],
+                                                                SizedBox(
+                                                                    height: 8),
+                                                                Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              24),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              24),
+                                                                    ),
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                  child:
+                                                                      TextButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
+                                                                    child:
+                                                                        const Text(
+                                                                      'OK',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xFFF77D00),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 16),
+                                                              ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Icon(Icons.content_copy, size: 13),
-                                              ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Icon(
+                                                      Icons.content_copy,
+                                                      size: 13),
+                                                ),
                                               ],
                                             ),
                                             const SizedBox(height: 5),
                                             Row(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    const Icon(Icons.mail, size: 15),
-    const SizedBox(width: 5),
-    Container(
-      constraints: BoxConstraints(maxWidth: 200), // Atur lebar sesuai kebutuhan Anda
-      child: Text(
-        mahasiswa[index].email.length > 24
-            ? '${mahasiswa[index].email.substring(0, 24)}...'
-            : mahasiswa[index].email,
-        style: const TextStyle(fontSize: 13),
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.left,
-      ),
-    ),
-    SizedBox(width: 5), // Jarak antara email dan ikon salin
-    InkWell(
-      onTap: () {
-        Clipboard.setData(ClipboardData(text: mahasiswa[index].email));
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              backgroundColor: Colors.transparent,
-              contentPadding: EdgeInsets.zero,
-              content: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xFFF77D00).withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 6,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: 16),
-                    Text(
-                      'Sukses',
-                      style: TextStyle(
-                        color: Color(0xFFF77D00),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Text(
-                        'Alamat email berhasil disalin',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black, // Content color
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(24),
-                          bottomRight: Radius.circular(24),
-                        ),
-                        color: Colors.white,
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text(
-                          'OK',
-                          style: TextStyle(
-                            color: Color(0xFFF77D00),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
-      child: Icon(Icons.content_copy, size: 13),
-    ),
-  ],
-),
-
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Icon(Icons.mail,
+                                                    size: 15),
+                                                const SizedBox(width: 5),
+                                                Container(
+                                                  constraints: BoxConstraints(
+                                                      maxWidth:
+                                                          200), // Atur lebar sesuai kebutuhan Anda
+                                                  child: Text(
+                                                    truncateEmail(
+                                                        mahasiswa[index].email),
+                                                    style: const TextStyle(
+                                                        fontSize: 13),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    width:
+                                                        5), // Jarak antara email dan ikon salin
+                                                InkWell(
+                                                  onTap: () {
+                                                    Clipboard.setData(
+                                                        ClipboardData(
+                                                            text:
+                                                                mahasiswa[index]
+                                                                    .email));
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return AlertDialog(
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          contentPadding:
+                                                              EdgeInsets.zero,
+                                                          content: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24.0),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: Color(
+                                                                          0xFFF77D00)
+                                                                      .withOpacity(
+                                                                          0.2),
+                                                                  spreadRadius:
+                                                                      2,
+                                                                  blurRadius: 6,
+                                                                  offset:
+                                                                      Offset(
+                                                                          0, 0),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                SizedBox(
+                                                                    height: 16),
+                                                                Text(
+                                                                  'Sukses',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Color(
+                                                                        0xFFF77D00),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        16,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 8),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          24),
+                                                                  child: Text(
+                                                                    'Alamat email berhasil disalin',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .black, // Content color
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 8),
+                                                                Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              24),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              24),
+                                                                    ),
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                  child:
+                                                                      TextButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
+                                                                    child:
+                                                                        const Text(
+                                                                      'OK',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xFFF77D00),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 16),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Icon(
+                                                      Icons.content_copy,
+                                                      size: 13),
+                                                ),
+                                              ],
+                                            ),
                                           ],
                                         ),
                                       ],
