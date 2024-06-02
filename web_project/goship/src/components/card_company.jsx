@@ -96,13 +96,14 @@ const CardCompany = () => {
                                     key="show-more"
                                     className="card text-[30px] font-bold flex justify-center items-center"
                               >
-                                    <div className="h-[70px] sm:h-[90px] rounded-lg overflow-hidden shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex items-center justify-center">
-                                          <div className="px-3 ">
-                                                <button onClick={toggleShowMore}>
-                                                      {showMore ? "Less" : "More"}
-                                                </button>
-                                          </div>
-                                    </div>
+                                    <div className="h-[70px] sm:h-[90px] rounded-lg overflow-hidden shadow-[rgba(0,0,0,0.24)_0px_3px_8px] flex items-center justify-center">
+                              <div className="px-3">
+                                    <button onClick={toggleShowMore} style={{ color: '#F77F00' }}>
+                                          {showMore ? "Less" : "More"}
+                                    </button>
+                              </div>
+                              </div>
+
                               </div>
                         )}
                   </div>

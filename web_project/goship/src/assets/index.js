@@ -2,7 +2,7 @@ import logo1 from "./logo1.png";
 import logo2 from "./logo2.png";
 import image1 from "./image1.png";
 import image2 from "./image2.png";
-import Profile_lanang from "./image-2.png";
+import Profile_lanang from "./male.png";
 import gojek from "./gojek.png";
 import comp from "./comp.png";
 import grab from "./grab.png";

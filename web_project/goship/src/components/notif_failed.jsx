@@ -15,7 +15,7 @@ import {
             <div className="flex items-center">
               <img src={logo1} alt="Goship Logo" className="h-10 w-auto mr-4" />
               <div className="border-l-2 border-black pl-4">
-                <h2 className="text-lg font-semibold">Notification Failed</h2>
+                <h2 className="text-lg font-semibold">Notifikasi Gagal</h2>
               </div>
             </div>
             <button
@@ -51,10 +51,10 @@ import {
           </div>
   
           <div className="text-center mt-4">
-            <p className="text-black">Sorry, you  {" "}
-            <span style={{ color: '#F77D00'}}>failed to save the data </span>
+            <p className="text-black">Maaf, Anda  {" "}
+            <span style={{ color: '#F77D00'}}>gagal menyimpan data </span>
             </p>
-            <p className="font-normal"> Please, try do it again!</p>
+            <p className="font-normal"> Tolong, coba lakukan lagi !</p>
           </div>
         </div>
       </div>

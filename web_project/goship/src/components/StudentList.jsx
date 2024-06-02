@@ -2,7 +2,8 @@ import React from "react";
 import StudentCard from "./StudentCard";
 import { useEffect, useState } from "react";
 
-const StudentList = () => {
+const 
+StudentList = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
