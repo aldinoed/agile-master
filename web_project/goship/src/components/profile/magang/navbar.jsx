@@ -43,9 +43,6 @@ const Navbar = (nama) => {
                                           <a href={`#${nav.id}`}>{nav.title}</a>
                                     </li>
                               ))}
-                              <p className="pl-20 ">
-                                    {/* {namaSiswa} */}
-                              </p>
                               <div className="sm:pl-2 sm:py-3">
                                     <img src={Profile_lanang} alt="Goship" className="w-[40px] h-[40px]" />
                               </div>

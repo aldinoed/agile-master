@@ -8,46 +8,41 @@
   position: relative;
   border-radius: 24px;
   display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  height: 683px;
   width: 100%;
   max-width: 1507px;
   font-family: "DM Sans";
   margin-top: 50px;
   padding-bottom: 100px;
+  overflow: hidden;
 }
 
 .profile-bg {
+  width: 100%;
   height: 383px;
-  margin-top: 0px;
   background-image: url("./assets/bg_profil.png");
   background-size: cover;
-  /* background-position: center; */
+  background-position: center;
   box-shadow: #666;
   display: flex;
   border-radius: 24px;
-  align-items: last baseline;
+  align-items: center;
   justify-content: center;
 }
 
 .profile-image {
-  width: 326px; /* Adjust as per your image size */
+  width: 326px;
   height: 320px;
   position: absolute;
   overflow: hidden;
   border-radius: 8px;
   margin-left: 150px;
-  /* margin-right: 20px; */
   margin-top: 100px;
-
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
-
-/* .profile-image {
-    width: 100%;
-    height: auto;
-  } */
 
 .profile-info {
   color: rgb(0, 0, 0);
@@ -55,31 +50,30 @@
   flex-direction: column;
   text-align: start;
   justify-self: center;
-  /* margin-bottom: 100px; */
   margin-right: 80px;
   font-size: 24px;
   font-weight: normal;
   margin-left: 150px;
+  z-index: 1;
 }
 
-.profile-info p{
+.profile-info p {
   padding-bottom: 10px;
 }
 
-.profile-info i{
+.profile-info i {
   padding-right: 10px;
 }
 
 .profile-name {
   font-weight: bold;
-  font-size: 56px; /* Adjust as needed */
+  font-size: 56px;
   margin: 0 0 10px 0;
   align-items: center;
   color: #ffffff;
   margin-left: 50px;
+  z-index: 1;
 }
-
-
 
 .profile-body {
   width: 100%;
@@ -87,54 +81,42 @@
   box-shadow: 0px 8px 48px rgba(0, 0, 0, 0.12);
   border-radius: 24px;
   padding: 32px;
-  /* Add more styling for the body */
 }
 
 .profile-footer {
-  height: 427px;
-  width: 1507px;
+  width: 100%;
+  max-width: 1507px;
   background: #ffffff;
   color: #000000;
   padding: 20px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  /* padding: 24px 0; */
-  font-size: 24px;
-  /* line-height: 31px; */
-  /* font-weight: 500; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  
 }
 
-.profile-footer-detail{
-  width: 1252px;
-  height: 221px;
-  /* background-color: #f77d00; */
-  /* padding-left: 120px; */
-  text-align: start;
-  justify-self: center;
+.profile-footer-detail {
+  width: 100%;
+  max-width: 1252px;
   font-family: "DM Sans", sans-serif;
   font-weight: lighter;
   padding-left: 20px;
 }
 
 .profile-footer h2 {
-  font-size: 48px; /* Adjust if needed */
+  font-size: 48px;
   color: #000;
   margin-bottom: 16px;
   font-family: "DM Sans", sans-serif;
   font-weight: bold;
 }
 
-.profile-footer p{
+.profile-footer p {
   margin-top: 35px;
 }
-
-
 
 .internship-info {
   background-color: #ffffff;
@@ -218,38 +200,29 @@
   font-weight: lighter;
 }
 
-
 .internship-requirements {
   background-color: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 10px;
-  margin: 20px 0; /* Adjust based on layout */
+  margin: 20px 0;
   font-family: "DM Sans";
-  height: 507px;
-  width: 1507px;
+  width: 100%;
+  max-width: 1507px;
   display: grid;
   align-items: center;
-  align-content: center;
   justify-content: start;
   position: relative;
 }
 
-.internship-requirements-detail{
-  width: 1218px;
-  height: 301px;
-  /* background-color: #e48d8d; */
-  /* padding-left: 120px; */
-  /* text-align: start;
-  justify-self: center; */
-  /* left: 120px; */
-  /* top: 120px; */
+.internship-requirements-detail {
+  width: 100%;
+  max-width: 1218px;
   margin-left: 130px;
-  
 }
 
 .internship-requirements h2 {
-  font-size: 48px; /* Adjust if needed */
+  font-size: 48px;
   color: #000;
   padding-left: 10px;
   margin-top: 15px;
@@ -257,119 +230,204 @@
 }
 
 .internship-requirements ul {
-  list-style: inside; /* Adjust if you have custom icons for bullet points */
-  padding-left: 15px; /* Removes default padding */
+  list-style: inside;
+  padding-left: 15px;
   margin-top: 30px;
   font-family: "DM Sans", sans-serif;
 }
 
 .internship-requirements li {
-  font-size: 24px; /* Adjust if needed */
-  color: #666; /* Use actual color */
-  line-height: 1.2; /* Adjust if needed */
+  font-size: 24px;
+  color: #666;
+  line-height: 1.2;
   margin-bottom: 10px;
-
 }
-
-/* Add additional styles for responsiveness and matching exact design details */
-
-
 
 .history-date {
   position: absolute;
   right: 130px;
-  top: 130px;
+  top: 30px;
   font-size: 28px;
   color: #f77d00;
   font-style: italic;
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .internship-info{
-    padding-left: 0px;
-
-  }
-  .internship-info-detail{
-    padding-left: 40px;
-    max-width: 100%;
-  }
-  .info-row, .info-row-special {
-    grid-template-columns: 1fr; /* Satu kolom di layar kecil */
-  }
-  
-  .internship-info h2 {
-    font-size: 1.5rem; /* Ukuran font lebih kecil untuk layar kecil */
-  }
-
-  .details h3, .details p {
-    font-size: 1rem; /* Ukuran font lebih kecil */
-  }
+@media (max-width: 1024px) {
   .profile-header {
-    max-width:768px;
-  }
-
-  .profile-bg {
-    max-width: 100%;
-  }
-
-  .profile-name {
-    font-size: 24px; /* Smaller font size on smaller screens */
-  }
-
-  .profile-info {
-    font-size: 16px; /* Smaller text for readability */
-    align-items: start;
-    padding-left: 100px;
-    padding-bottom: 50px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding-bottom: 20px;
   }
 
   .profile-image {
-    margin-top: 110px;
-    margin-left: 60px;
-    max-height: 220px;
-    max-width: 226px; /* Smaller image on smaller screens */
+    position: static;
+    margin: 0 auto;
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: -100px;
   }
 
-  .internship-requirements {
-    max-width: 100%; /* Memperlebar pada layar kecil */
-    
+  .profile-info {
+    margin: 20px auto 0;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .profile-name {
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .internship-info-detail {
+    margin-left: 20px;
   }
 
   .internship-requirements-detail {
-    padding-left: 40px;
+    margin-left: 20px;
+  }
+
+  .history-date {
+    right: 20px;
+    top: 100px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .internship-info {
+    padding-left: 0;
+  }
+
+  .internship-info-detail {
+    padding-left: 20px;
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+
+  .internship-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .details h3,
+  .details p {
+    font-size: 1rem;
+  }
+
+  .profile-header {
+    padding-bottom: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  .profile-bg {
+    height: 200px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    margin-left: 20px;
+  }
+
+  .profile-info {
+    font-size: 16px;
+    align-items: start;
+    margin-left: 20px;
+    padding-bottom: 20px;
+  }
+
+  .profile-image {
+    margin-top: 50px;
+    margin-left: 20px;
+    max-height: 180px;
+    max-width: 180px;
+  }
+
+  .internship-requirements {
+    max-width: 100%;
+  }
+
+  .internship-requirements-detail {
+    padding-left: 20px;
+    margin-left: 0;
     max-width: 100%;
   }
 
   .internship-requirements h2 {
-    font-size: 1.5rem; /* Menyesuaikan ukuran font */
+    font-size: 1.5rem;
   }
 
   .internship-requirements li {
-    font-size: 1rem; /* Menyesuaikan ukuran font pada list item */
-    max-width: 100%;
+    font-size: 1rem;
   }
-  .profile-footer {
 
-    max-width: 100%; /* Menggunakan lebar penuh pada layar kecil */
+  .profile-footer {
+    max-width: 100%;
   }
 
   .profile-footer-detail {
-    padding-left: 40px;
+    padding-left: 20px;
     max-width: 100%;
   }
 
   .profile-footer h2 {
-    font-size: 2rem; /* Mengurangi ukuran judul pada layar kecil */
+    font-size: 2rem;
   }
 
   .profile-footer p {
-    font-size: 1rem; /* Mengurangi ukuran teks pada layar kecil */
+    font-size: 1rem;
     margin-top: 10px;
   }
-  .history-date{
+
+  .history-date {
     font-size: 1.5rem;
-    right: 50px;
-    top: 110px;
+    right: 20px;
+    top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-header {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding-bottom: 20px;
+  }
+
+  .profile-image {
+    position: static;
+    margin: 0 auto;
+    max-width: 150px;
+    max-height: 150px;
+    margin-top: -50px;
+  }
+
+  .profile-info {
+    margin: 20px auto 0;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .internship-info-detail {
+    margin-left: 10px;
+  }
+
+  .internship-requirements-detail {
+    margin-left: 10px;
+  }
+
+  .history-date {
+    right: 10px;
+    top: 30px;
+    font-size: 16px;
   }
 }

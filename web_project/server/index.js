@@ -5,8 +5,24 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const authRouter = require("./auth");
 const formRouter = require("./routes/form");
+
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const parser = multer({ storage: storage });
+const cloudinary = require("./cloudinary/config");
 // const morgan = require("morgan");
 const port = 5000;
+
+// const storage = multer.diskStorage({
+//       destination: (req, file, cb) => {
+//           cb(null, 'uploads/');
+//       },
+//       filename: (req, file, cb) => {
+//           cb(null, Date.now() + path.extname(file.originalname));
+//       }
+//   });
+
+//   const upload = multer({ storage: storage });
 
 // app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -170,53 +186,17 @@ app.get("/api/perusahaan", async (req, res) => {
       }
 });
 
-app.put('/api/perusahaan/:id/update', async (req, res) => {
-      // console.log('api berjalan');
-      try {
-            const id_perusahaan = req.params.id;
-            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi, logo_perusahaan } = req.body;
-            console.log(nama_perusahaan);
-            console.log(profil_perusahaan);
-            console.log(alamat);
-            console.log(kota);
-            console.log(provinsi);
-            console.log(logo_perusahaan);
-
-            const sql = `
-        UPDATE perusahaan SET 
-          nama_perusahaan = '${nama_perusahaan}', 
-          profil_perusahaan = '${profil_perusahaan}', 
-          alamat = '${alamat}',  
-          kota = '${kota}',  
-          provinsi = '${provinsi}',  
-          logo_perusahaan = '${logo_perusahaan}'
-        WHERE id_perusahaan = ${id_perusahaan}`;
-
-            const response = await executeQuery(sql);
-            console.log("🚀 ~ app.put ~ response:", response);
-
-            // res.send(response.json());
-            if (response.affectedRows > 0) {
-                  res.status(200).json({ status: true, message: "Berhasil update data perusahaan " + nama_perusahaan });
-            } else {
-                  res.status(403).json({ status: false, message: "Gagal update data perusahaan " + nama_perusahaan });
-            }
-      } catch (err) {
-            console.error(err);
-            res.status(500).send(err);
-      }
-});
 
 app.get('/api/perusahaan/:id', async (req, res) => {
       try {
             const id_perusahaan = req.params.id;
             const sql = `SELECT pr.*, p.id_posisi, p.nama_posisi, s.id_siswa, s.nama_siswa, s.email, s.jenis_kelamin, COUNT(m.id_magang) AS jumlah_siswa 
-                     FROM posisi p 
-                     JOIN magang m ON p.id_posisi = m.posisi_id 
-                     JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan 
-                     JOIN siswa s ON m.siswa_id = s.id_siswa 
-                     WHERE pr.id_perusahaan = ${id_perusahaan} 
-                     GROUP BY p.id_posisi, s.id_siswa;`;
+            FROM posisi p 
+            JOIN magang m ON p.id_posisi = m.posisi_id 
+            JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan 
+            JOIN siswa s ON m.siswa_id = s.id_siswa 
+            WHERE pr.id_perusahaan = ${id_perusahaan} 
+            GROUP BY p.id_posisi, s.id_siswa;`;
             const hasilQuery = await executeQuery(sql);
 
             // Mengubah format data
@@ -272,6 +252,115 @@ app.get('/api/perusahaan/:id', async (req, res) => {
 
             const data = formatData(hasilQuery);
             res.json(data);
+      } catch (err) {
+            console.error(err);
+            res.status(500).send(err);
+      }
+});
+
+app.post('/api/perusahaan/create', parser.single('logo_perusahaan'), async (req, res) => {
+      try {
+            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
+
+            // Mengupload gambar ke Cloudinary
+            const uploadResponse = await cloudinary.uploader.upload(req.file.path);
+            const logo_perusahaan = uploadResponse.secure_url;
+
+            const sql = `
+            UPDATE perusahaan SET 
+                nama_perusahaan = ?, 
+                profil_perusahaan = ?, 
+                alamat = ?,  
+                kota = ?,  
+                provinsi = ?,  
+                logo_perusahaan = ?
+            WHERE id_perusahaan = ?`;
+
+            const response = await executeQuery(sql, [
+                  nama_perusahaan,
+                  profil_perusahaan,
+                  alamat,
+                  kota,
+                  provinsi,
+                  logo_perusahaan,
+                  id_perusahaan
+            ]);
+            console.log("🚀 ~ app.post ~ response:", response);
+
+            if (response.affectedRows > 0) {
+                  res.status(200).json({
+                        status: true,
+                        message: "Berhasil membuat data perusahaan baru"
+                  });
+            } else {
+                  res.status(403).json({
+                        status: false,
+                        message: "Gagal membuat data perusahaan baru"
+                  });
+            }
+      } catch (err) {
+            console.error(err);
+            res.status(500).send(err);
+      }
+});
+app.put('/api/perusahaan/:id/update', parser.single('logo_perusahaan'), async (req, res) => {
+      console.log(req.body);
+      console.log(req.file);
+      try {
+            const id_perusahaan = req.params.id;
+            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
+            
+            const uploadResult = await cloudinary.uploader.upload((req.file.path)).then(result=>console.log(result)).catch((error)=>{console.log(error)});
+              
+              console.log(uploadResult);
+            // const imageBuffer = req.file.buffer;
+            // const uploadToCloudinary = (imageBuffer) => {
+            //       return new Promise((resolve, reject) => {
+            //           cloudinary.uploader.upload_stream(
+            //               { resource_type: 'image' },
+            //               (error, result) => {
+            //                   if (error) {
+            //                       console.error(error);
+            //                       reject('Failed to upload image to Cloudinary');
+            //                   } 
+            //                   else {
+            //                       console.log(result.secure_url);
+            //                       resolve(result.secure_url);
+            //                   }
+            //               }
+            //           ).end(imageBuffer);
+            //       });
+            //   };
+              
+            //   const imageUrl = await uploadToCloudinary(imageBuffer);
+
+            const sql = `
+            UPDATE perusahaan SET 
+                nama_perusahaan = ?, 
+                profil_perusahaan = ?, 
+                alamat = ?,  
+                kota = ?,  
+                provinsi = ?,  
+                logo_perusahaan = ?
+            WHERE id_perusahaan = ?`;
+
+            const response = await executeQuery(sql, [
+                  nama_perusahaan,
+                  profil_perusahaan,
+                  alamat,
+                  kota,
+                  provinsi,
+                  imageUrl,
+                  id_perusahaan
+            ]);
+            console.log("🚀 ~ app.put ~ response:", response);
+
+            // res.send(response.json());
+            if (response.changedRows > 0) {
+                  res.status(200).json({ status: true, message: "Berhasil update data perusahaan " + response.changedRows });
+            } else {
+                  res.status(403).json({ status: false, message: "Gagal update data perusahaan " + nama_perusahaan });
+            }
       } catch (err) {
             console.error(err);
             res.status(500).send(err);

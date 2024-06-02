@@ -17,7 +17,7 @@ StudentList = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div style={{ display: "flex", flexDirection: "row" , overflow: "hidden"}}>
+    <div className="py-5" style={{ display: "flex", flexDirection: "row" , overflow: "hidden"}}>
       {Object.entries(data.posts).map(([key, post]) => (
           <StudentCard post={post} key={key} />
         ))}

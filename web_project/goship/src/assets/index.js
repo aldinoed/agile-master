@@ -20,7 +20,7 @@ import profile from "./profile.png";
 import bag from "./bag.png";
 import calendar from "./calendar.png";
 import card from "./card.png";
-import document from "./document.png";
+import dokumen from "./document.png";
 import location from "./location.png";
 import star from "./star.png";
 import bg from "./bg.png";
@@ -90,7 +90,7 @@ export {
       bag,
       calendar,
       card,
-      document,
+      dokumen,
       location,
       star,
       bg,

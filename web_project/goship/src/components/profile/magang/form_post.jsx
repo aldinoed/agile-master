@@ -5,7 +5,7 @@ import {
   card,
   calendar,
   star,
-  document,
+  dokumen,
 } from "../../../assets";
 import React, { useState } from "react";
 
@@ -457,7 +457,7 @@ const CardForm = () => {
               <div className="col-span-full">
                 <div className="input-group flex inline-block border items-center justify-center border-1 rounded-md">
                   <img
-                    src={document}
+                    src={dokumen}
                     alt="document"
                     className="input-icon m-3"
                   />
