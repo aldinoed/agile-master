@@ -95,7 +95,6 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
               padding: const EdgeInsets.all(24),
               itemCount: mahasiswa.length,
               itemBuilder: (BuildContext context, int index) {
-                const index = 0;
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
