@@ -8,7 +8,7 @@ class Story {
   String post;
   String perusahaan;
   String sex;
-  String createdAt;
+  String? createdAt;
   int id_siswa;
 
 
@@ -19,7 +19,7 @@ class Story {
       required this.post,
       required this.perusahaan,
       required this.sex,
-      required this.createdAt,
+      this.createdAt,
       required this.id_siswa});
 
   factory Story.createStoryObject(Map<String, dynamic> object) {
@@ -30,16 +30,19 @@ class Story {
         post: object["deskripsi_magang"],
         perusahaan: object["perusahaan"],
         sex: object["jenis_kelamin"],
-        createdAt: object["created_at"],
+        createdAt: object["created_at"] ?? '',
         id_siswa: int.parse(object["id_siswa"].toString()));
   }
 
   static Future<List<Story>> getStory() async {
+    try{
     Uri url = Uri.parse('http://103.127.135.153:5000/api/major-data');
+    print('Uri: ' + url.toString());
     var apiResult = await http.get(url);
     var objectJson = json.decode(apiResult.body);
     Map<String, dynamic>? postsMap = objectJson['posts'];
     List<dynamic>? storiesData = postsMap?.values.toList();
+    print(storiesData);
     List<Story> stories = [];
     if (storiesData != null) {
       for (var storyData in storiesData) {
@@ -47,6 +50,11 @@ class Story {
       }
     }
 
+    print(stories);
     return stories;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }
