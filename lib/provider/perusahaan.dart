@@ -20,6 +20,7 @@ void resetFilters() {
 
   void setPerusahaan(List<Perusahaan> perusahaan) {
     _perusahaan = perusahaan;
+    resetFilters();
     _filterPerusahaan();
     notifyListeners();
   }
