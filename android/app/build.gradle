@@ -51,11 +51,20 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'YOUR_KEY_ALIAS'
+            keyPassword 'YOUR_KEY_PASSWORD'
+            storeFile file('PATH_TO_YOUR_KEYSTORE_FILE')
+            storePassword 'YOUR_KEYSTORE_PASSWORD'
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             applicationVariants.all { variant ->
                 variant.outputs.all {
                     outputFileName = "goship.apk"
