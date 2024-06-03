@@ -309,10 +309,10 @@ app.put('/api/perusahaan/:id/update', parser.single('logo_perusahaan'), async (r
       try {
             const id_perusahaan = req.params.id;
             const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
-            
-            const uploadResult = await cloudinary.uploader.upload((req.file.path)).then(result=>console.log(result)).catch((error)=>{console.log(error)});
-              
-              console.log(uploadResult);
+
+            const uploadResult = await cloudinary.uploader.upload((req.file.path)).then(result => console.log(result)).catch((error) => { console.log(error) });
+
+            console.log(uploadResult);
             // const imageBuffer = req.file.buffer;
             // const uploadToCloudinary = (imageBuffer) => {
             //       return new Promise((resolve, reject) => {
@@ -331,7 +331,7 @@ app.put('/api/perusahaan/:id/update', parser.single('logo_perusahaan'), async (r
             //           ).end(imageBuffer);
             //       });
             //   };
-              
+
             //   const imageUrl = await uploadToCloudinary(imageBuffer);
 
             const sql = `

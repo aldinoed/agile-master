@@ -52,30 +52,11 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GOSHIP'),
+        title: const Text('Student Detail'),
         titleTextStyle: const TextStyle(
             fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black,fontFamily: 'LibreBaskerville',),
         centerTitle: true,
-        actions: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 15),
-          child: InkWell(
-            onTap: (){
-            },
-            
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.asset(
-                'assets/home/Profile_Photo1.png',
-                fit: BoxFit.cover,
-                width: 45,
-                height: 45,
-              ),
-            ),
-            
-          ),
-        ),
-        ],
+        
         backgroundColor: Colors.grey.shade100,
         toolbarHeight: 70,
         leading: GestureDetector(
@@ -103,10 +84,22 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: InkWell(
-                        child: Card(
-                          elevation: 3, 
-                          shadowColor: Colors.grey.withOpacity(0.5),
-                          color: Colors.white,
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                        // Berikan dekorasi sesuai kebutuhan
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                
                           child: Row(
                             children: <Widget>[
                               Padding(
@@ -189,10 +182,22 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Card(
-                      elevation: 3, 
-                      shadowColor: Colors.grey.withOpacity(0.5),
-                      color: Colors.white,
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                    // Berikan dekorasi sesuai kebutuhan
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 3,
+                        blurRadius: 3,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                     
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Column(
@@ -247,8 +252,7 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       const Text(
                                         'Tempat Magang',
@@ -270,23 +274,34 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                             showStory = !showStory;
                                           });
                                         },
-                                        child: const Text(
-                                          'Lihat Story',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Color(0xFF605B57),
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FontStyle.italic,
-                                          ),
+                                        child: Row( // Baris baru untuk menempatkan ikon dan teks 'Lihat Story' secara horizontal
+                                          children: [
+                                            Icon(
+                                              showStory ? Icons.visibility : Icons.visibility_off,
+                                              size: 18,
+                                              color: Color(0xFFFF7F00),
+                                            ), // Icon mata disini
+                                            const SizedBox(width: 5), // Jarak antara icon dan teks 'Lihat Story'
+                                            Text(
+                                              'Lihat Story',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFFF7F00),
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle: FontStyle.italic,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       if (showStory)
                                         Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             const SizedBox(height: 5),
                                             Text(
+                                              // INI ERRORRRRRR
+                                              // 'andjagasj',
                                               mahasiswa[index].deskripsi_magang,
                                               style: const TextStyle(
                                                 fontSize: 16,
@@ -294,6 +309,39 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                             ),
                                           ],
                                         ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Divider(color: Colors.grey),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.work_outlined,
+                                    size: 18),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Jenis Magang',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      // INI ERRORRRRRRRRR
+                                      Text(
+                                        'jagdhgjdsga',
+                                        // mahasiswa[index].jenis_program,
+
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -341,7 +389,7 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Text(
-                                        'Devisi Magang',
+                                        'Divisi Magang',
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -378,7 +426,7 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
                                         ),
                                       ),
                                       Text(
-                                        mahasiswa[index].durasi_magang,
+                                        '${mahasiswa[index].durasi_magang} bulan',
                                         style: const TextStyle(
                                           fontSize: 16,
                                         ),
