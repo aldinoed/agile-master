@@ -42,7 +42,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
           return AlertDialog(
             title: const Text("Error"),
             content:
-                const Text("Failed to fetch data. Please try again later."),
+                const Text("Gagal mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -153,7 +153,7 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                 _search(value);
                               },
                               decoration: const InputDecoration.collapsed(
-                                hintText: 'search for the students',
+                                hintText: 'Cari Mahasiswa',
                                 hintStyle: TextStyle(
                                   fontSize: 13,
                                   height: 4,
@@ -196,8 +196,6 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                     );
                   },
                   child: Card(
-                    elevation: 3,
-                    shadowColor: Colors.grey.withOpacity(0.2),
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Row(
                       children: <Widget>[
@@ -245,14 +243,10 @@ class _ListmahasiswaState extends State<Listmahasiswa> {
                                   ),
                                   Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: Text(
-                                          filteredMahasiswa[index].email,
-                                          style: TextStyle(
-                                              color: Colors.grey.shade600,
-                                              overflow: TextOverflow.ellipsis),
-                                        ),
+                                      Text(
+                                        filteredMahasiswa[index].email,
+                                        style: TextStyle(
+                                            color: Colors.grey.shade600),
                                       ),
                                     ],
                                   ),

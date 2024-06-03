@@ -12,6 +12,9 @@ class ListDetailMahasiswa extends StatefulWidget {
   const ListDetailMahasiswa({Key? key, required this.id_siswa})
       : super(key: key);
 
+  const ListDetailMahasiswa({Key? key, required this.id_siswa})
+      : super(key: key);
+
   @override
   _ListDetailMahasiswaState createState() => _ListDetailMahasiswaState();
 }
@@ -36,8 +39,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text("Error"),
-            content:
-                const Text("Failed to fetch data. Please try again later."),
+            content: const Text(" mengambil data. Silakan coba lagi nanti."),
             actions: [
               TextButton(
                 onPressed: () {
@@ -56,7 +58,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GOSHIP'),
+        title: const Text('Goship'),
         titleTextStyle: const TextStyle(
             fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
         centerTitle: true,
@@ -178,7 +180,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'About',
+                        'Tentang Saya',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -195,7 +197,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Prodi',
+                                  'Program Studi',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -283,7 +285,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Devisi Magang',
+                                  'Divisi Magang',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -339,7 +341,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Privilage',
+                                  'Privilege',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -367,7 +369,7 @@ class _ListDetailMahasiswaState extends State<ListDetailMahasiswa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Title of internship report',
+                                  'Judul laporan magang',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
