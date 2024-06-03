@@ -9,7 +9,7 @@ const CardFailedForm = ({ onClose }) => {
           <div className="flex items-center flex-wrap">
             <img src={logo1} alt="Goship Logo" className="h-8 w-auto mr-2 sm:mr-4" />
             <div className="border-l-2 border-black pl-2 sm:pl-4">
-              <h2 className="text-base sm:text-lg font-semibold">Notification Failed</h2>
+              <h2 className="text-base sm:text-lg font-semibold">Notification Gagal</h2>
             </div>
           </div>
           <button
@@ -43,9 +43,9 @@ const CardFailedForm = ({ onClose }) => {
 
         <div className="text-center mt-4">
           <p className="text-black text-sm sm:text-base">
-            Sorry, you <span className="text-orange-500">failed to save the data</span>
+            Maaf, Anda <span className="text-orange-500">gagal untuk menyimpan data</span>
           </p>
-          <p className="font-normal text-sm sm:text-base">Please, try do it again!</p>
+          <p className="font-normal text-sm sm:text-base">Tolong, coba lakukan lagi!</p>
         </div>
       </div>
     </div>

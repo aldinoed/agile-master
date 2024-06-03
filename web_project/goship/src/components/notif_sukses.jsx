@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+import {
+    logo1,
+    sukses                                                                                                  
+  } from "../assets";
+  import React, {  } from "react";
+  
+  const CardSuccess = ({ onClose }) => {
+    // State dan logika lainnya di sini...
+  
+    return (
+      <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 overflow-auto py-3 ">
+        <div className="bg-white py-6 px-10 rounded-lg shadow-md max-w-full max-h-full overflow-y-auto overflow-y-scroll no-scrollbar"
+        style={{ width: '800px', height: '500px' }}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <img src={logo1} alt="Goship Logo" className="h-10 w-auto mr-4" />
+              <div className="border-l-2 border-black pl-4">
+                <h2 className="text-lg font-semibold">Notifikasi Sukses</h2>
+              </div>
+=======
 import { logo1, sukses } from "../assets";
 import React from "react";
 
@@ -10,6 +31,7 @@ const CardSuccess = ({ onClose }) => {
             <img src={logo1} alt="Goship Logo" className="h-8 w-auto mr-2 sm:mr-4" />
             <div className="border-l-2 border-black pl-2 sm:pl-4">
               <h2 className="text-base sm:text-lg font-semibold">Notification Success</h2>
+>>>>>>> 512787e6409ad807a14b3845000083c91d52676c
             </div>
           </div>
           <button
@@ -30,6 +52,28 @@ const CardSuccess = ({ onClose }) => {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
+<<<<<<< HEAD
+              
+            </button>
+          </div>
+  
+         
+  
+          <div className="mt-4 flex items-center justify-center">
+            <img
+              src={sukses} // Ganti yourImageHere dengan sumber gambar Anda
+              alt="Sorry, at this time you cannot add data"
+              style={{ width: "325px", height: "300px" }}
+            />
+          </div>
+  
+          <div className="text-center mt-4">
+            <p className="text-black">Selamat, Anda  {" "}
+            <span style={{ color: '#F77D00'}}>Anda telah berhasil menyimpan</span> data
+            </p>
+            <p className="font-normal"> Terima Kasih!</p>
+          </div>
+=======
           </button>
         </div>
 
@@ -46,6 +90,7 @@ const CardSuccess = ({ onClose }) => {
             Congratulations, you <span className="text-orange-500">have successfully saved</span> the data
           </p>
           <p className="font-normal text-sm sm:text-base">Thank you!</p>
+>>>>>>> 512787e6409ad807a14b3845000083c91d52676c
         </div>
       </div>
     </div>

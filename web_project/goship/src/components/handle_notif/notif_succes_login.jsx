@@ -9,7 +9,7 @@ const CardSuccessLogin = ({ onClose }) => {
           <div className="flex items-center flex-wrap">
             <img src={logo1} alt="Goship Logo" className="h-8 w-auto mr-2 sm:mr-4" />
             <div className="border-l-2 border-black pl-2 sm:pl-4">
-              <h2 className="text-base sm:text-lg font-semibold">Notification Success</h2>
+              <h2 className="text-base sm:text-lg font-semibold">Notifikasi Sukses</h2>
             </div>
           </div>
           <button
@@ -43,9 +43,9 @@ const CardSuccessLogin = ({ onClose }) => {
 
         <div className="text-center mt-4">
           <p className="text-black text-sm sm:text-base">
-            Congratulations, you <span className="text-orange-500">have successfully logged in</span>
+            Selamat, Anda <span className="text-orange-500">telah berhasil masuk</span>
           </p>
-          <p className="font-normal text-sm sm:text-base">Welcome to Goship!</p>
+          <p className="font-normal text-sm sm:text-base">Selamat datang di Goship!</p>
         </div>
       </div>
     </div>

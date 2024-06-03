@@ -189,7 +189,7 @@ const CardForm = ({ onClose }) => {
           <div className="flex items-center">
             <img src={logo1} alt="Goship Logo" className="h-10 w-auto mr-4" />
             <div className="border-l-2 border-black pl-4">
-              <h2 className="text-lg font-semibold">Insert Data</h2>
+              <h2 className="text-lg font-semibold">Masukkan Data</h2>
             </div>
           </div>
           <button

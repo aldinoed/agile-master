@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"; // Menambahkan impor React
 import styles from "../style";
 import "../DetailMahasiswa.css";
-import { profile } from "../assets";
+import male from '../assets/male.png';
+import female from '../assets/female.png';
 import { Navbar, Footer } from "../components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -31,6 +32,7 @@ const DetailMahasiswa = () => {
   if (error) {
     return <p>{error}</p>;
   }
+  const image = profileData.jenis_kelamin === 'Laki-laki' ? male : female;
   return (
     <>
       <div className="w-full bg-orange-gradient-navbar">
@@ -42,26 +44,26 @@ const DetailMahasiswa = () => {
       </div>
 
       {/* Profile Header */}
-      <div className="profile-header">
-        <div className="profile-bg">
-          <h1 className="profile-name">{profileData.nama_siswa}</h1>
-        </div>
-        <img src={profile} alt="Profile" className="profile-image" />
-        <div className="profile-info">
-          <p>
-            <i className="fas fa-phone"></i> Nomer Telepon :{" "}
-            <span style={{ color: "#605B57" }}>{profileData.no_telp}</span>
-          </p>
-          <p>
-            <i className="fas fa-envelope"></i> Email : {""}
-            <span style={{ color: "#605B57" }}>{profileData.email}</span>
-          </p>
-          <p>
-            <i className="fas fa-graduation-cap"></i> Prodi :{" "}
-            <span style={{ color: "#605B57" }}>{profileData.prodi}</span>
-          </p>
-        </div>
-      </div>
+      <div className="profile-header flex flex-col md:flex-row items-center">
+  <div className="profile-bg flex-1">
+    <h1 className="profile-name text-2xl md:text-4xl">{profileData.nama_siswa}</h1>
+  </div>
+  <img src={image} alt="Profile" className="profile-image w-32 h-32 md:w-48 md:h-48 rounded-full" />
+  <div className="profile-info flex-1 mt-4 md:mt-0 md:ml-4">
+    <p className="text-base md:text-lg flex items-center">
+      <i className="fas fa-phone mr-2"></i> Nomer Telepon:{" "}
+      <span style={{ color: "#605B57" }} className="ml-1">{profileData.no_telp}</span>
+    </p>
+    <p className="text-base md:text-lg flex items-center mt-2">
+      <i className="fas fa-envelope mr-2"></i> Email:{" "}
+      <span style={{ color: "#605B57" }} className="ml-1">{profileData.email}</span>
+    </p>
+    <p className="text-base md:text-lg flex items-center mt-2">
+      <i className="fas fa-graduation-cap mr-2"></i> Prodi:{" "}
+      <span style={{ color: "#605B57" }} className="ml-1">{profileData.prodi}</span>
+    </p>
+  </div>
+</div>
 
       {/* Internship Information */}
       <div className="internship-info">
