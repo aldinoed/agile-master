@@ -16,7 +16,7 @@ function AdminDashboard() {
       const [formData, setFormData] = useState({
             id_perusahaan: "",
             nama_perusahaan: "",
-            logo_perusahaan: "",
+          //  logo_perusahaan: "",
             profil_perusahaan: "",
             alamat: "",
             kota: "",
@@ -58,7 +58,7 @@ function AdminDashboard() {
                   );
                   const res = await response.json();
                   setUrl(res.secureUrl);
-                  setFormData({ ...formData, [logo_perusahaan]: res.url });
+               //   setFormData({ ...formData, [logo_perusahaan]: res.url });
                   console.log("🚀 ~ uploadImage ~ res:", formData)
 
                   setLoading(false);
@@ -112,7 +112,7 @@ function AdminDashboard() {
                   setFormData({
                         id_perusahaan: idPerusahaan,
                         nama_perusahaan: response.data[0].nama_perusahaan,
-                        logo_perusahaan: response.data[0].logo_perusahaan,
+                    //    logo_perusahaan: response.data[0].logo_perusahaan,
                         profil_perusahaan: response.data[0].profil_perusahaan,
                         alamat: response.data[0].alamat,
                         kota: response.data[0].kota,
@@ -214,7 +214,7 @@ function AdminDashboard() {
             setFormData({
                   id_perusahaan: "",
                   nama_perusahaan: "",
-                  logo_perusahaan: "",
+         //         logo_perusahaan: "",
                   profil_perusahaan: "",
                   alamat: "",
                   kota: "",
@@ -296,7 +296,7 @@ function AdminDashboard() {
                                                 <div className="flex detail">
                                                       <div className="company-logo-container">
                                                             <img
-                                                                  src={company.logo_perusahaan}
+                                                                  //src={company.logo_perusahaan}
                                                                   alt={company.nama_perusahaan}
                                                                   className="company-logo"
                                                             />
