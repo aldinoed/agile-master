@@ -66,7 +66,7 @@ const LoginPage = () => {
                   password: password
             }
             try {
-                  const response = await axios.post('http://localhost:5000/auth/login', credential);
+                  const response = await axios.post('https://goship-apii.vercel.app/auth/login', credential);
                   Cookies.set('refresh_token', response.data.token, { expires: 10 / (24 * 60) });
 
                   if (response.data.user.is_first_auth === 1) {

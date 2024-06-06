@@ -11,7 +11,7 @@ const Buttonlogout = () => {
       // console.log(user.user.user)
       const handleSubmit = async (e) => {
             e.preventDefault();
-            const response = await axios.post('http://localhost:5000/auth/logout')
+            const response = await axios.post('https://goship-apii.vercel.app/auth/logout')
             console.log("🚀 ~ handleSubmit ~ response:", response)
             if (refreshToken) {
                   localStorage.clear()

@@ -244,46 +244,12 @@ app.post('/api/perusahaan/create', async (req, res) => {
       }
 });
 app.put('/api/perusahaan/:id/update', async (req, res) => {
-      console.log(req.body);
-      console.log(req.file);
       const { id } = req.params;
+      console.log("🚀 ~ app.put ~ id:", id)
       try {
-            const id_perusahaan = req.params.id;
-            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
+            const { nama_perusahaan, logo_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
 
-            // const uploadResult = await cloudinary.uploader.upload((req.file.path)).then(result => console.log(result)).catch((error) => { console.log(error) });
-
-            // console.log(uploadResult);
-            // const imageBuffer = req.file.buffer;
-            // const uploadToCloudinary = (imageBuffer) => {
-            //       return new Promise((resolve, reject) => {
-            //           cloudinary.uploader.upload_stream(
-            //               { resource_type: 'image' },
-            //               (error, result) => {
-            //                   if (error) {
-            //                       console.error(error);
-            //                       reject('Failed to upload image to Cloudinary');
-            //                   } 
-            //                   else {
-            //                       console.log(result.secure_url);
-            //                       resolve(result.secure_url);
-            //                   }
-            //               }
-            //           ).end(imageBuffer);
-            //       });
-            //   };
-
-            //   const imageUrl = await uploadToCloudinary(imageBuffer);
-
-            const sql = `
-            UPDATE perusahaan SET 
-                nama_perusahaan = ?, 
-                profil_perusahaan = ?, 
-                alamat = ?,  
-                kota = ?,  
-                provinsi = ?,  
-                logo_perusahaan = ?
-            WHERE id_perusahaan = ?`;
+            const sql = `UPDATE perusahaan SET nama_perusahaan = ?,  profil_perusahaan = ?,  alamat = ?,  kota = ?,   provinsi = ?,   logo_perusahaan = ? WHERE id_perusahaan = ?`;
 
             const response = await executeQuery(sql, [
                   nama_perusahaan,
@@ -291,10 +257,9 @@ app.put('/api/perusahaan/:id/update', async (req, res) => {
                   alamat,
                   kota,
                   provinsi,
-                  // logo_perusahaan,
+                  logo_perusahaan,
                   id
             ]);
-            console.log("🚀 ~ app.put ~ response:", response);
 
             // res.send(response.json());
             if (response.changedRows > 0) {

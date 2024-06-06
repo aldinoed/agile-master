@@ -4,13 +4,7 @@ const mysql = require("mysql");
 
 // Buat pool koneksi database
 const pool = mysql.createPool({
-      connectionLimit: 10, // Sesuaikan dengan kebutuhan Anda
-      // host: 'zayratshop.com',
-      // user: 'u517506439_goshipAdmin',
-      // password: 'Goshipb2',
-      //   host: 'localhost',
-      //   user: 'root',
-      //   password: '',
+      connectionLimit: 10,
       host: 'zayratshop.com',
       user: 'u517506439_goshipAdmin',
       password: 'Goshipb2',

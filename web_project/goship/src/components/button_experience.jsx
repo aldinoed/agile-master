@@ -12,7 +12,7 @@ const ButtonExperience = () => {
 
       useEffect(() => {
             // Mengambil data dari API
-            fetch(`http://localhost:5000/api/user/${id}`)
+            fetch(`https://goship-apii.vercel.app/api/user/${id}`)
                   .then(response => response.json())
                   .then(data => setData(data[0]));
       }, [id]);
