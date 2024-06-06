@@ -8,7 +8,7 @@ const
 
             useEffect(() => {
                   // Mengambil data dari API
-                  fetch('http://localhost:5000/api/major-data/')
+                  fetch('https://goship-apii.vercel.app/api/major-data/')
                         .then(response => response.json())
                         .then(data => setData(data));
             }, []);
