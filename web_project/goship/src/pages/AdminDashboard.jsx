@@ -58,7 +58,7 @@ function AdminDashboard() {
       const [showAddSuccess, setShowAddSuccess] = useState(false);
       const [showAddFailed, setShowAddFailed] = useState(false);
       const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-const [companyToDelete, setCompanyToDelete] = useState(null);
+      const [companyToDelete, setCompanyToDelete] = useState(null);
 
       let index = 0;
 
@@ -151,7 +151,7 @@ const [companyToDelete, setCompanyToDelete] = useState(null);
       const fetchSomeDetailData = async (idPerusahaan) => {
             try {
                   const response = await axios.get(
-                        "http://localhost:5000/api/perusahaan/" + idPerusahaan
+                        "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
                   );
                   console.log("🚀 ~ fetchSomeDetailData ~ response:", response)
                   if (Array.isArray(response.data) && response.data.length > 0) {
@@ -312,38 +312,38 @@ const [companyToDelete, setCompanyToDelete] = useState(null);
       const handleKonfDelete = (id) => {
             setCompanyToDelete(id);
             setShowDeleteConfirmation(true);
-          };
+      };
 
-          const confirmDelete = async () => {
+      const confirmDelete = async () => {
             try {
-              const response = await axios.put(`https://goship-apii.vercel.app/api/perusahaan/${companyToDelete}/delete`);
-              if (response.status === 200) {
-                setCompanies(companies.filter(company => company.id_perusahaan !== companyToDelete));
-                setShowDeleteConfirmation(false);
-                setCompanyToDelete(null);
-              } else {
-                // Handle error case
-                Swal.fire({
-                  title: "Error!",
-                  text: `Failed to delete company.`,
-                  icon: "error",
-                });
-              }
+                  const response = await axios.put(`https://goship-apii.vercel.app/api/perusahaan/${companyToDelete}/delete`);
+                  if (response.status === 200) {
+                        setCompanies(companies.filter(company => company.id_perusahaan !== companyToDelete));
+                        setShowDeleteConfirmation(false);
+                        setCompanyToDelete(null);
+                  } else {
+                        // Handle error case
+                        Swal.fire({
+                              title: "Error!",
+                              text: `Failed to delete company.`,
+                              icon: "error",
+                        });
+                  }
             } catch (error) {
-              console.error("Error deleting company:", error);
-              Swal.fire({
-                title: "Error!",
-                text: `Error: ${error}`,
-                icon: "error",
-              });
+                  console.error("Error deleting company:", error);
+                  Swal.fire({
+                        title: "Error!",
+                        text: `Error: ${error}`,
+                        icon: "error",
+                  });
             }
-          };
-          
-          const closeDeleteCard = () => {
+      };
+
+      const closeDeleteCard = () => {
             setShowDeleteConfirmation(false);
             setCompanyToDelete(null);
-          };
-          
+      };
+
 
       return (
             <div className="App">
@@ -367,9 +367,9 @@ const [companyToDelete, setCompanyToDelete] = useState(null);
                         {showAddFailed && (
                               <CardAddFailed onClose={() => setShowAddFailed(false)} />
                         )}
-{showDeleteConfirmation && (
-        <CardDelete onClose={closeDeleteCard} onConfirm={confirmDelete} />
-      )}
+                        {showDeleteConfirmation && (
+                              <CardDelete onClose={closeDeleteCard} onConfirm={confirmDelete} />
+                        )}
                         <div className="header-container">
                               <h1>Kelola Akun Perusahaan</h1>
                               <button className="btn btn-primary" onClick={handleAdd}>
