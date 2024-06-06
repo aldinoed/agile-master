@@ -10,7 +10,7 @@ const CardCompany = () => {
             const fetchData = async () => {
                   try {
                         const response = await fetch(
-                              "https://goship-apii.vercel.app/api/perusahaan",
+                              "https://goship-apii.vercel.app/api/data",
                               {
                                     headers: {
                                           "Access-Control-Allow-Origin": "*",

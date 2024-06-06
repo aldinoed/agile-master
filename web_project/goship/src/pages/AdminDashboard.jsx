@@ -13,6 +13,7 @@ import CardAddSuccess from "../components/addsuccess";
 import CardAddFailed from "../components/addfailed";
 import Cookie from "js-cookie";
 import Cookies from "js-cookie";
+import CardDelete from "../components/handle_notif/notif_delete";
 
 function AdminDashboard() {
       document.addEventListener('contextmenu', event => event.preventDefault());
@@ -56,6 +57,9 @@ function AdminDashboard() {
       const [showEditError, setShowEditError] = useState(false);
       const [showAddSuccess, setShowAddSuccess] = useState(false);
       const [showAddFailed, setShowAddFailed] = useState(false);
+      const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+const [companyToDelete, setCompanyToDelete] = useState(null);
+
       let index = 0;
 
       const [image, setImage] = useState(null);
@@ -305,6 +309,42 @@ function AdminDashboard() {
             setFormVisible(true);
       };
 
+      const handleKonfDelete = (id) => {
+            setCompanyToDelete(id);
+            setShowDeleteConfirmation(true);
+          };
+
+          const confirmDelete = async () => {
+            try {
+              const response = await axios.put(`https://goship-apii.vercel.app/api/perusahaan/${companyToDelete}/delete`);
+              if (response.status === 200) {
+                setCompanies(companies.filter(company => company.id_perusahaan !== companyToDelete));
+                setShowDeleteConfirmation(false);
+                setCompanyToDelete(null);
+              } else {
+                // Handle error case
+                Swal.fire({
+                  title: "Error!",
+                  text: `Failed to delete company.`,
+                  icon: "error",
+                });
+              }
+            } catch (error) {
+              console.error("Error deleting company:", error);
+              Swal.fire({
+                title: "Error!",
+                text: `Error: ${error}`,
+                icon: "error",
+              });
+            }
+          };
+          
+          const closeDeleteCard = () => {
+            setShowDeleteConfirmation(false);
+            setCompanyToDelete(null);
+          };
+          
+
       return (
             <div className="App">
                   <header>
@@ -327,7 +367,9 @@ function AdminDashboard() {
                         {showAddFailed && (
                               <CardAddFailed onClose={() => setShowAddFailed(false)} />
                         )}
-
+{showDeleteConfirmation && (
+        <CardDelete onClose={closeDeleteCard} onConfirm={confirmDelete} />
+      )}
                         <div className="header-container">
                               <h1>Kelola Akun Perusahaan</h1>
                               <button className="btn btn-primary" onClick={handleAdd}>
@@ -376,7 +418,7 @@ function AdminDashboard() {
                                                             <FontAwesomeIcon icon={faPen} />
                                                       </button>
                                                       <button
-                                                            onClick={() => handleDelete(company.id_perusahaan)}
+                                                            onClick={() => handleKonfDelete(company.id_perusahaan)}
                                                             className="delete-button"
                                                             data-testid="delete-button"
                                                       >
@@ -583,7 +625,7 @@ function AdminDashboard() {
                                                             <div>
                                                                   <button
                                                                         type="submit"
-                                                                        className={`w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md ${viewMode ? "hidden" : ""
+                                                                        className={`w-full bg-[#F77D00] hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md ${viewMode ? "hidden" : ""
                                                                               }`}
                                                                         disabled={viewMode}
                                                                   >

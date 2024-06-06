@@ -1,7 +1,7 @@
 import { logo1, failed } from "../../assets";
 import React from "react";
 
-const CardDelete = ({ onClose }) => {
+const CardDelete = ({ onClose, onConfirm }) => {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 py-3">
       <div className="bg-white py-6 px-4 sm:px-6 md:px-10 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4">
@@ -32,7 +32,6 @@ const CardDelete = ({ onClose }) => {
             </svg>
           </button>
         </div>
-
         <div className="mt-4 flex items-center justify-center">
           <img
             src={failed}
@@ -40,14 +39,16 @@ const CardDelete = ({ onClose }) => {
             className="w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px]"
           />
         </div>
-
         <div className="text-center mt-4">
           <p className="text-black text-sm sm:text-base font-bold">
             <span className="text-black">Apakah anda yakin ingin </span>
             <span className="text-[#F77D00]">menghapus data?</span>
           </p>
           <div className="mt-4 flex justify-center space-x-4">
-            <button className="w-32 bg-white text-[#F77D00] border border-[#F77D00] py-2 px-4 rounded">
+            <button
+              className="w-32 bg-white text-[#F77D00] border border-[#F77D00] py-2 px-4 rounded"
+              onClick={onConfirm}
+            >
               Ya
             </button>
             <button
