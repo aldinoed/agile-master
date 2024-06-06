@@ -41,7 +41,7 @@ const Profilemaba = (loggedUser) => {
 
       async function fetchData() {
             try {
-                  const response = await axios.get('http://localhost:5000/api/user/' + id);
+                  const response = await axios.get('https://goship-apii.vercel.app/api/user/' + id);
                   setJenisKelamin(response.data[0].jenis_kelamin)
                   setFullName(response.data[0].nama_siswa)
                   setNrp(response.data[0].nrp)
@@ -110,7 +110,7 @@ const Profilemaba = (loggedUser) => {
                   id: id
             }
             try {
-                  const response = await axios.post(`http://localhost:5000/api/user-profile/update`, data);
+                  const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
                   if (response.status === 200) {
                         Swal.fire({
                               html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten

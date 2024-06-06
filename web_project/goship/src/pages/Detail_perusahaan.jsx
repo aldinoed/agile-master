@@ -92,7 +92,7 @@ const Detailperusahaan = () => {
       useEffect(() => {
 
             async function fetchData() {
-                  const data = await axios.get('http://localhost:5000/api/perusahaan/' + id)
+                  const data = await axios.get('https://goship-apii.vercel.app/api/perusahaan/' + id)
                   setCompanyName(data.data[0].nama_perusahaan)
                   setAddress(data.data[0].alamat)
                   setImage(data.data[0].logo_perusahaan)

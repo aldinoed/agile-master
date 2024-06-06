@@ -119,7 +119,7 @@ function AdminDashboard() {
       const fetchSomeDetailData = async (idPerusahaan) => {
             try {
                   const response = await axios.get(
-                        "http://localhost:5000/api/perusahaan/" + idPerusahaan
+                        "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
                   );
                   setFormData({
                         id_perusahaan: idPerusahaan,
@@ -168,7 +168,7 @@ function AdminDashboard() {
                   if (editMode) {
                         try {
                               const response = await axios.put(
-                                    `http://localhost:5000/api/perusahaan/${formData.id_perusahaan}/update`, formData
+                                    `https://goship-apii.vercel.app/api/perusahaan/${formData.id_perusahaan}/update`, formData
                               );
                               console.log("🚀 ~ handleAddOrUpdate ~ response:", response)
 
@@ -182,7 +182,7 @@ function AdminDashboard() {
                         }
                   } else {
                         await axios.post(
-                              "http://localhost:5000/api/perusahaan/create",
+                              "https://goship-apii.vercel.app/api/perusahaan/create",
                               formData
                         );
                         setShowAddSuccess(true);
@@ -217,7 +217,7 @@ function AdminDashboard() {
 
       const handleDelete = async (id) => {
             try {
-                  const response = await axios.put(`http://localhost:5000/api/perusahaan/${id}/delete`);
+                  const response = await axios.put(`https://goship-apii.vercel.app/api/perusahaan/${id}/delete`);
                   // fetchCompanies();
                   if (response.status === 200) {
                         const newListCompanies = companies.filter((item) => item.id_perusahaan !== id);
