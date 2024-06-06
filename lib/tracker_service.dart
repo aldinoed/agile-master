@@ -31,14 +31,6 @@ class TrackerService {
         });
     }
 
-    if (map != null) {
-      content = {}
-        ..addAll(content)
-        ..addAll({
-          'device_info': await getDeviceInfo(),
-        });
-    }
-
     content = {}
       ..addAll(content)
       ..addAll({
@@ -56,7 +48,6 @@ class TrackerService {
       },
     );
 
-    print(map);
     print(response.data);
     print(response.statusCode);
   }
