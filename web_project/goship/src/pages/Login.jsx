@@ -22,7 +22,7 @@ const LoginPage = () => {
                   navigate('/')
             }
       }
-      document.addEventListener('contextmenu', event => event.preventDefault());
+
       // useEffect(() => {
       //       const handleKeyDown = (event) => {
       //             if (event.ctrlKey) {
@@ -51,7 +51,9 @@ const LoginPage = () => {
             email: "",
             password: "",
       });
-
+      useEffect(() => {
+            document.addEventListener('contextmenu', event => event.preventDefault());
+      }, [])
       useEffect(() => {
             checkSession();
       }, [refreshToken, navigate]);
