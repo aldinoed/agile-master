@@ -4,7 +4,7 @@ import StudentList from "./StudentList";
 import styles from "../style";
 
 const CustomCarousel = () => {
-
+      console.log('')
       return (
             <>
                   <section id="Our_story" className={`flex flex-col md:flex-row`}>
