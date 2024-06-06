@@ -13,6 +13,7 @@ import shopee from "./shopee.png";
 import plus from "./plus.png";
 import comki from "./comki.jpeg";
 import instagram from "./instagram.svg";
+import jenis from "./jenis.svg"
 import facebook from "./facebook.svg";
 import linkedin from "./linkedin.svg";
 import twitter from "./twitter.svg";
@@ -77,6 +78,7 @@ export {
       shopee,
       telkomsel,
       halodoc,
+      jenis,
       lazada,
       grab,
       comp,
