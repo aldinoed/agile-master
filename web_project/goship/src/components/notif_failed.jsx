@@ -2,20 +2,7 @@ import { logo1, failed } from "../assets";
 import React from "react";
 
 const CardFailed = ({ onClose }) => {
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
 
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
       return (
             <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 py-3">
                   <div className="bg-white py-6 px-4 sm:px-6 md:px-10 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4">

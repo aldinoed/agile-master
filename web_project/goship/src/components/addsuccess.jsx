@@ -1,22 +1,8 @@
 import { logo1, sukses } from "../assets";
-import { useEffect, useState } from "react";
 import React from "react";
 
 const CardAddSuccess = ({ onClose }) => {
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
 
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
       // State dan logika lainnya di sini...
 
       return (

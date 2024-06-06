@@ -2,23 +2,9 @@ import React from "react";
 import styles from "../style";
 import { image2, bg } from "../assets";
 import ButtonExperience from "./button_experience";
-import { useEffect, useState } from "react";
 
 const AddExperience = () => {
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
 
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
       return (
             <section
                   id="Shared_Story"

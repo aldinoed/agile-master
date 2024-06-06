@@ -2,23 +2,8 @@ import React from "react";
 import styles from "../style";
 import { image1 } from "../assets";
 import ButtonIntern from "./button_intern";
-import { useEffect, useState } from "react";
 
 const Hero = () => {
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
-
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
       return (
             <>
                   <section id="home" className="flex flex-col md:flex-row">

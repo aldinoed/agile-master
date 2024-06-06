@@ -2,23 +2,9 @@ import React from 'react'
 import { socialMedia } from "../constant";
 import styles from "../style";
 import { logo2 } from "../assets";
-import { useEffect, useState } from "react";
 
 const Footer = () => {
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
 
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
       return (
 
             <div className={`bg-orange w-full flex justify-between items-center md:flex-row xs:flex-col sm:px-32 xs:px-6  border-t-[1px]`}>

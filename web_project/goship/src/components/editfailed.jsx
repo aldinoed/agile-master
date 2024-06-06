@@ -1,23 +1,8 @@
 import { logo1, failed } from "../assets";
 import React from "react";
-import { useEffect, useState } from "react";
 
 const CardEditError = ({ onClose }) => {
       // State dan logika lainnya di sini...
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
-
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
 
       return (
             <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 overflow-auto py-3 ">

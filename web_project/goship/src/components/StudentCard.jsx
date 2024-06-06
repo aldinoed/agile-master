@@ -1,24 +1,10 @@
 import React from "react";
 import male from '../assets/male.png';
 import female from '../assets/female.png';
-import { useEffect, useState } from "react";
 
 const StudentCard = ({ post }) => {
       let image = post.jenis_kelamin === 'Laki-laki' ? male : female;
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
 
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
 
       // Fungsi untuk membatasi teks dengan substring
       const limitText = (text, maxLength) => {
