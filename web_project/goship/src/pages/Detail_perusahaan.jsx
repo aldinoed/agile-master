@@ -149,21 +149,21 @@ const Detailperusahaan = () => {
                                                                         {companyName}
                                                                   </div>
                                                             </div>
-                                                            <div className="flex flex-row justify-between items-center w-full py-2 font-libre">
-                                                                  <img src={gps} className='pr-10' alt="" />
-                                                                  <div className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[25.8px]">
-                                                                        Lokasi<br className="sm:block hidden ]" />{" "}
-                                                                        <p className="font-sans max-w-[800px] text-[20px] ss:text-[30px] py-2 ">{address}</p>{" "}
-                                                                  </div>
-                                                            </div>
-                                                            <div className="flex flex-row justify-between items-center w-full font-libre">
-                                                                  <div><i className="fas fa-building"></i></div>
+                                                            <div className="flex flex-row justify-between items-center w-full  font-libre">
+                                                                  <div><i className="fas fa-building fa-3x pl-3 pr-12"></i></div>
                                                                   <h1 className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[35.8px] py-2">
                                                                         Tentang Perusahaan<br className="sm:block hidden" />{" "}
                                                                         <span className=" font-sans text-[20px] ss:text-[30px]">
                                                                               {profil ?? '- '}
                                                                         </span>{" "}
                                                                   </h1>
+                                                            </div>
+                                                            <div className="flex flex-row justify-between items-center w-full py-2 font-libre">
+                                                                  <img src={gps} className='pr-10' alt="" />
+                                                                  <div className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[25.8px]">
+                                                                        Lokasi<br className="sm:block hidden ]" />{" "}
+                                                                        <p className="font-sans max-w-[800px] text-[20px] ss:text-[30px] py-2 ">{address}</p>{" "}
+                                                                  </div>
                                                             </div>
 
                                                       </div>
