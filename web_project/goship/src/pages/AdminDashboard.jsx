@@ -42,6 +42,7 @@ function AdminDashboard() {
       const [showEditError, setShowEditError] = useState(false);
       const [showAddSuccess, setShowAddSuccess] = useState(false);
       const [showAddFailed, setShowAddFailed] = useState(false);
+      let index = 0;
 
       const [image, setImage] = useState(null);
       const [url, setUrl] = useState("");
@@ -157,23 +158,28 @@ function AdminDashboard() {
 
       const handleAddOrUpdate = async (e) => {
             e.preventDefault();
-            const data = new FormData();
+            // const data = new FormData();
 
             // Append each key-value pair from formData to FormData instance
-            for (const key in formData) {
-                  data.append(key, formData[key]);
-            }
+            // for (const key in formData) {
+            //       data.append(key, formData[key]);
+            // }
             try {
                   if (editMode) {
-                        await axios.put(
-                              `http://localhost:5000/api/perusahaan/${formData.id_perusahaan}/update`,
-                              data,
-                              {
-                                    headers: { "Content-Type": "multipart/form-data" },
-                              }
-                        );
+                        try {
+                              const response = await axios.put(
+                                    `http://localhost:5000/api/perusahaan/${formData.id_perusahaan}/update`, formData
+                              );
+                              console.log("🚀 ~ handleAddOrUpdate ~ response:", response)
 
-                        setShowEditSuccess(true);
+                              if (response.status === 200) {
+
+                                    setShowEditSuccess(true);
+                              }
+
+                        } catch (error) {
+
+                        }
                   } else {
                         await axios.post(
                               "http://localhost:5000/api/perusahaan/create",
@@ -307,7 +313,7 @@ function AdminDashboard() {
                               {companies.map((company) => (
                                     <div key={company.id_perusahaan} className="company-card-container">
                                           <div className="company-card">
-                                                <div className="company-id">{company.id_perusahaan}</div>
+                                                <div className="company-id">{++index}</div>
                                                 <div className="flex detail">
                                                       <div className="company-logo-container">
                                                             <img
