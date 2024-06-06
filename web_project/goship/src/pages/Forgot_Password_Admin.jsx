@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { forgotadmin, amplop } from "../assets";
 import image21 from "../assets/image21.png";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const ForgotPasswordAdminPage = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());

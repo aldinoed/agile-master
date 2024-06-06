@@ -127,8 +127,10 @@ form button {
   transition: background-color 0.3s;
 }
 
+
 .company-card-container:hover {
-  background-color: #f77d00;
+  background-color: #ffdebd;
+  border-color: #F77D00; 
 }
 
 .company-card {
@@ -209,15 +211,15 @@ form button {
 }
 
 .view-button {
-  color: green;
+  color: #202226;
 }
 
 .edit-button {
-  color: yellow;
+  color: #58D09D;
 }
 
 .delete-button {
-  color: red;
+  color: #F46B69;
 }
 
 @media (max-width: 1024px) {
