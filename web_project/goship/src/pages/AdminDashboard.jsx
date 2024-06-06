@@ -16,6 +16,13 @@ import Cookies from "js-cookie";
 
 function AdminDashboard() {
       document.addEventListener('contextmenu', event => event.preventDefault());
+      $(document).keyup(function (evtobj) {
+            if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)) {
+                  if (evtobj.keyCode == 16) { return false; }
+                  if (evtobj.keyCode == 17) { return false; }
+                  $("body").append(evtobj.keyCode + " ");
+            }
+      });
       const navigate = useNavigate();
       let cookie = Cookies.get('refresh_token');
       let isAdmin = localStorage.getItem('isAdmin');
