@@ -17,19 +17,19 @@ const ForgotPasswordUserPage = () => {
       const [password, setPassword] = useState('');
       const [confirmpassword, setConfirmPassword] = useState('');
       document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey) {
-                        event.preventDefault();
-                  }
-            };
+      // useEffect(() => {
+      //       const handleKeyDown = (event) => {
+      //             if (event.ctrlKey) {
+      //                   event.preventDefault();
+      //             }
+      //       };
 
-            document.addEventListener('keydown', handleKeyDown);
+      //       document.addEventListener('keydown', handleKeyDown);
 
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
+      //       return () => {
+      //             document.removeEventListener('keydown', handleKeyDown);
+      //       };
+      // }, []);
       useEffect(() => {
             setUser(localStorage.getItem('nrp'));
       }, []);

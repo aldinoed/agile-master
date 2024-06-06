@@ -17,19 +17,19 @@ const DetailMahasiswa = () => {
       const navigate = useNavigate();
       let refreshToken = Cookies.get("refresh_token");
       document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey) {
-                        event.preventDefault();
-                  }
-            };
+      // useEffect(() => {
+      //       const handleKeyDown = (event) => {
+      //             if (event.ctrlKey) {
+      //                   event.preventDefault();
+      //             }
+      //       };
 
-            document.addEventListener('keydown', handleKeyDown);
+      //       document.addEventListener('keydown', handleKeyDown);
 
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
+      //       return () => {
+      //             document.removeEventListener('keydown', handleKeyDown);
+      //       };
+      // }, []);
       useEffect(() => {
             if (!refreshToken) {
                   localStorage.clear();

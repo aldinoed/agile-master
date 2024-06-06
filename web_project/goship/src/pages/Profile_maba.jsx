@@ -39,19 +39,19 @@ const Profilemaba = (loggedUser) => {
       const [loaded, setLoaded] = useState(false)
       const [loadedAllData, setLoadedAllData] = useState(false)
       document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey) {
-                        event.preventDefault();
-                  }
-            };
+      // useEffect(() => {
+      //       const handleKeyDown = (event) => {
+      //             if (event.ctrlKey) {
+      //                   event.preventDefault();
+      //             }
+      //       };
 
-            document.addEventListener('keydown', handleKeyDown);
+      //       document.addEventListener('keydown', handleKeyDown);
 
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
+      //       return () => {
+      //             document.removeEventListener('keydown', handleKeyDown);
+      //       };
+      // }, []);
       async function fetchData() {
             try {
                   const response = await axios.get('https://goship-apii.vercel.app/api/user/' + id);

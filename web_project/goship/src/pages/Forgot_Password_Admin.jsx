@@ -4,19 +4,19 @@ import image21 from "../assets/image21.png";
 
 const ForgotPasswordAdminPage = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey) {
-                        event.preventDefault();
-                  }
-            };
+      // useEffect(() => {
+      //       const handleKeyDown = (event) => {
+      //             if (event.ctrlKey) {
+      //                   event.preventDefault();
+      //             }
+      //       };
 
-            document.addEventListener('keydown', handleKeyDown);
+      //       document.addEventListener('keydown', handleKeyDown);
 
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
+      //       return () => {
+      //             document.removeEventListener('keydown', handleKeyDown);
+      //       };
+      // }, []);
       const [formData, setFormData] = useState({
             password: "",
             confirmpassword: "",
