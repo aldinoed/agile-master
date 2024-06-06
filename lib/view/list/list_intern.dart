@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/model/intern.dart';
+import 'package:flutter_project/tracker_service.dart';
 import 'package:flutter_project/view/list/page_detail_mahasiswa.dart';
 import 'package:flutter_project/widget/dialog_error.dart';
 
@@ -22,6 +23,7 @@ class _ListInternState extends State<Listintern> {
   @override
   void initState() {
     super.initState();
+    _trackPageOpen(widget.idPerusahaan);
     _fetchData(widget.idPerusahaan).timeout(const Duration(seconds: 5)).catchError((e) {
       if (e is TimeoutException) {
         // Terjadi timeout saat mengambil data
@@ -36,6 +38,10 @@ class _ListInternState extends State<Listintern> {
       }
       return [];
     });
+  }
+
+  Future<void> _trackPageOpen(int id) async {
+    await (TrackerService()).track("page-detail-perusahaan-open", {"id_perusahaan": id.toString()}, withDeviceInfo: false);
   }
 
   Future<void> _fetchData(var id) async {

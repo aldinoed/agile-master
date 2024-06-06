@@ -42,7 +42,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.flutter_project"
+        applicationId "com.goship.flutter_project"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
@@ -53,10 +53,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'YOUR_KEY_ALIAS'
-            keyPassword 'YOUR_KEY_PASSWORD'
-            storeFile file('PATH_TO_YOUR_KEYSTORE_FILE')
-            storePassword 'YOUR_KEYSTORE_PASSWORD'
+            keyAlias 'jamal.jks'
+            keyPassword 'jamala'
+            storeFile file('./jamal.jks')
+            storePassword 'jamala'
         }
     }
 

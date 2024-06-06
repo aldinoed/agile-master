@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_project/model/detail_mahasiswa.dart';
+import 'package:flutter_project/tracker_service.dart';
 import 'package:flutter_project/widget/dialog_error.dart';
 
 class PageDetailMahasiswa extends StatefulWidget {
@@ -21,6 +22,7 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
   @override
   void initState() {
     super.initState();
+    _trackPageOpen(widget.id_siswa);
     _fetchData(widget.id_siswa)
         .timeout(const Duration(seconds: 5))
         .catchError((e) {
@@ -41,6 +43,10 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
       }
       return [];
     });
+  }
+
+  Future<void> _trackPageOpen(int id) async {
+    await (TrackerService()).track("page-detail-mahasiswa-open", {"id_siswa": id.toString()}, withDeviceInfo: false);
   }
 
   String truncateEmail(String email) {
