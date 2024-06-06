@@ -51,9 +51,9 @@ app.get('/home', (req, res) => {
 app.get("/api/major-data", async (req, res) => {
       try {
             const sql =
-            "SELECT * FROM magang JOIN posisi ON magang.posisi_id = posisi.id_posisi JOIN perusahaan ON posisi.perusahaan_id = perusahaan.id_perusahaan JOIN siswa ON magang.siswa_id = siswa.id_siswa;";
+                  "SELECT * FROM magang JOIN posisi ON magang.posisi_id = posisi.id_posisi JOIN perusahaan ON posisi.perusahaan_id = perusahaan.id_perusahaan JOIN siswa ON magang.siswa_id = siswa.id_siswa;";
             const hasilQuery = await executeQuery(sql);
-            
+
             const posts = {};
             for (let j = 0; j < hasilQuery.length; j++) {
                   const element = hasilQuery[j];
@@ -70,11 +70,11 @@ app.get("/api/major-data", async (req, res) => {
                         }
                   }
             }
-            
+
             const data = {
                   posts,
             };
-            
+
             // Output jumlah siswa tiap perusahaan
             res.json(data);
       } catch (err) {
@@ -141,16 +141,95 @@ app.get("/api/perusahaan", async (req, res) => {
       }
 });
 
+// app.get('/api/perusahaan/:id', async (req, res) => {
+//       try {
+//             const id_perusahaan = req.params.id;
+//             const sql = `SELECT pr.*, p.id_posisi, p.nama_posisi, s.id_siswa, s.nama_siswa, s.email, s.jenis_kelamin, COUNT(m.id_magang) AS jumlah_siswa 
+//             FROM posisi p 
+//             JOIN magang m ON p.id_posisi = m.posisi_id 
+//             JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan 
+//             JOIN siswa s ON m.siswa_id = s.id_siswa 
+//             WHERE pr.id_perusahaan = ${id_perusahaan} 
+//             GROUP BY p.nama_posisi, s.id_siswa;`;
+//             const hasilQuery = await executeQuery(sql);
+
+//             // Mengubah format data
+//             const formatData = (datas) => {
+//                   const hasil = {};
+
+//                   datas.forEach((item) => {
+//                         if (!hasil[item.id_perusahaan]) {
+//                               hasil[item.id_perusahaan] = {
+//                                     nama_perusahaan: item.nama_perusahaan,
+//                                     alamat: item.alamat,
+//                                     kota: item.kota,
+//                                     provinsi: item.provinsi,
+//                                     profil_perusahaan: item.profil_perusahaan,
+//                                     logo_perusahaan: item.logo_perusahaan,
+//                                     jumlah_siswa_total: 0,
+//                                     posisi: {},
+//                               };
+//                         }
+
+//                         if (!hasil[item.id_perusahaan].posisi[item.id_posisi]) {
+//                               hasil[item.id_perusahaan].posisi[item.id_posisi] = {
+//                                     id_posisi: item.id_posisi,
+//                                     nama_posisi: item.nama_posisi,
+//                                     jumlah_siswa: 0,
+//                                     siswa: []
+//                               };
+//                         }
+
+//                         hasil[item.id_perusahaan].posisi[item.id_posisi].siswa.push({
+//                               id_siswa: item.id_siswa,
+//                               nama_siswa: item.nama_siswa,
+//                               email: item.email,
+//                               jenis_kelamin: item.jenis_kelamin
+//                         });
+
+//                         hasil[item.id_perusahaan].posisi[item.id_posisi].jumlah_siswa += 1;
+//                         hasil[item.id_perusahaan].jumlah_siswa_total += 1;
+//                   });
+
+//                   // Mengubah hasil menjadi array
+//                   return Object.values(hasil).map(item => ({
+//                         nama_perusahaan: item.nama_perusahaan,
+//                         alamat: item.alamat,
+//                         kota: item.kota,
+//                         provinsi: item.provinsi,
+//                         profil_perusahaan: item.profil_perusahaan,
+//                         logo_perusahaan: item.logo_perusahaan,
+//                         jumlah_siswa_total: item.jumlah_siswa_total,
+//                         posisi: Object.values(item.posisi)
+//                   }));
+//             };
+
+//             const data = formatData(hasilQuery);
+//             res.json(data);
+//       } catch (err) {
+//             console.error(err);
+//             res.status(500).send(err);
+//       }
+// });
 app.get('/api/perusahaan/:id', async (req, res) => {
       try {
             const id_perusahaan = req.params.id;
-            const sql = `SELECT pr.*, p.id_posisi, p.nama_posisi, s.id_siswa, s.nama_siswa, s.email, s.jenis_kelamin, COUNT(m.id_magang) AS jumlah_siswa 
-            FROM posisi p 
-            JOIN magang m ON p.id_posisi = m.posisi_id 
-            JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan 
-            JOIN siswa s ON m.siswa_id = s.id_siswa 
-            WHERE pr.id_perusahaan = ${id_perusahaan} 
-            GROUP BY p.nama_posisi, s.id_siswa;`;
+            const sql = `
+            SELECT 
+                  pr.id_perusahaan, pr.nama_perusahaan, pr.alamat, pr.kota, pr.provinsi, pr.profil_perusahaan, pr.logo_perusahaan,
+                  p.id_posisi, p.nama_posisi,
+                  s.id_siswa, s.nama_siswa, s.email, s.jenis_kelamin
+            FROM 
+                  perusahaan pr
+            LEFT JOIN 
+                  posisi p ON pr.id_perusahaan = p.perusahaan_id
+            LEFT JOIN 
+                  magang m ON p.id_posisi = m.posisi_id
+            LEFT JOIN 
+                  siswa s ON m.siswa_id = s.id_siswa
+            WHERE 
+                  pr.id_perusahaan = ${id_perusahaan};`;
+
             const hasilQuery = await executeQuery(sql);
 
             // Mengubah format data
@@ -171,24 +250,27 @@ app.get('/api/perusahaan/:id', async (req, res) => {
                               };
                         }
 
-                        if (!hasil[item.id_perusahaan].posisi[item.id_posisi]) {
-                              hasil[item.id_perusahaan].posisi[item.id_posisi] = {
-                                    id_posisi: item.id_posisi,
-                                    nama_posisi: item.nama_posisi,
-                                    jumlah_siswa: 0,
-                                    siswa: []
-                              };
+                        if (item.id_posisi) {
+                              if (!hasil[item.id_perusahaan].posisi[item.id_posisi]) {
+                                    hasil[item.id_perusahaan].posisi[item.id_posisi] = {
+                                          id_posisi: item.id_posisi,
+                                          nama_posisi: item.nama_posisi,
+                                          jumlah_siswa: 0,
+                                          siswa: []
+                                    };
+                              }
+
+                              if (item.id_siswa) {
+                                    hasil[item.id_perusahaan].posisi[item.id_posisi].siswa.push({
+                                          id_siswa: item.id_siswa,
+                                          nama_siswa: item.nama_siswa,
+                                          email: item.email,
+                                          jenis_kelamin: item.jenis_kelamin
+                                    });
+                                    hasil[item.id_perusahaan].posisi[item.id_posisi].jumlah_siswa += 1;
+                                    hasil[item.id_perusahaan].jumlah_siswa_total += 1;
+                              }
                         }
-
-                        hasil[item.id_perusahaan].posisi[item.id_posisi].siswa.push({
-                              id_siswa: item.id_siswa,
-                              nama_siswa: item.nama_siswa,
-                              email: item.email,
-                              jenis_kelamin: item.jenis_kelamin
-                        });
-
-                        hasil[item.id_perusahaan].posisi[item.id_posisi].jumlah_siswa += 1;
-                        hasil[item.id_perusahaan].jumlah_siswa_total += 1;
                   });
 
                   // Mengubah hasil menjadi array
@@ -200,17 +282,23 @@ app.get('/api/perusahaan/:id', async (req, res) => {
                         profil_perusahaan: item.profil_perusahaan,
                         logo_perusahaan: item.logo_perusahaan,
                         jumlah_siswa_total: item.jumlah_siswa_total,
-                        posisi: Object.values(item.posisi)
+                        posisi: Object.values(item.posisi).map(posisi => ({
+                              ...posisi,
+                              jumlah_siswa: posisi.jumlah_siswa || null,
+                              siswa: posisi.siswa.length > 0 ? posisi.siswa : null
+                        }))
                   }));
             };
 
             const data = formatData(hasilQuery);
+            console.log("🚀 ~ app.get ~ data:", data)
             res.json(data);
       } catch (err) {
             console.error(err);
             res.status(500).send(err);
       }
 });
+
 
 app.post('/api/perusahaan/create', async (req, res) => {
       try {

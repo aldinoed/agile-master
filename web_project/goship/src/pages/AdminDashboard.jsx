@@ -16,19 +16,19 @@ import Cookies from "js-cookie";
 
 function AdminDashboard() {
       document.addEventListener('contextmenu', event => event.preventDefault());
-      useEffect(() => {
-            const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
-                        event.preventDefault();
-                  }
-            };
+      // useEffect(() => {
+      //       const handleKeyDown = (event) => {
+      //             if (event.ctrlKey || event.shiftKey) {
+      //                   event.preventDefault();
+      //             }
+      //       };
 
-            document.addEventListener('keydown', handleKeyDown);
+      //       document.addEventListener('keydown', handleKeyDown);
 
-            return () => {
-                  document.removeEventListener('keydown', handleKeyDown);
-            };
-      }, []);
+      //       return () => {
+      //             document.removeEventListener('keydown', handleKeyDown);
+      //       };
+      // }, []);
       const navigate = useNavigate();
       let cookie = Cookies.get('refresh_token');
       let isAdmin = localStorage.getItem('isAdmin');
@@ -63,8 +63,7 @@ function AdminDashboard() {
       const [loading, setLoading] = useState(false);
       const [preview, setPreview] = useState(null);
 
-      const uploadImage = async (e) => {
-            e.preventDefault()
+      const uploadImage = async () => {
             setLoading(true);
             const data = new FormData();
             data.append("file", image);
@@ -82,10 +81,22 @@ function AdminDashboard() {
                         }
                   );
                   const res = await response.json();
+                  if (!res.secure_url) {
+                        Swal.fire({
+                              title: "Oops!",
+                              text: `Gagal upload!`,
+                              icon: "info",
+                        });
+                  }
                   setUrl(res.secure_url);
 
                   setLoading(false);
             } catch (error) {
+                  Swal.fire({
+                        title: "Error!",
+                        text: `Error: ${error}`,
+                        icon: "error",
+                  });
                   setLoading(false);
             }
       };
@@ -93,13 +104,16 @@ function AdminDashboard() {
       useEffect(() => {
             if (url !== '' || url !== null) {
                   setFormData({ ...formData, logo_perusahaan: url });
-                  console.log(formData);
+            } else {
+                  setFormData({ ...formData, logo_perusahaan: '' });
             }
       }, [url])
 
       const handleImageChange = (event) => {
             const file = event.target.files[0];
             setImage(file);
+
+            uploadImage()
 
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -133,18 +147,24 @@ function AdminDashboard() {
       const fetchSomeDetailData = async (idPerusahaan) => {
             try {
                   const response = await axios.get(
-                        "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
+                        "http://localhost:5000/api/perusahaan/" + idPerusahaan
                   );
-                  setFormData({
-                        id_perusahaan: idPerusahaan,
-                        nama_perusahaan: response.data[0].nama_perusahaan ?? '-',
-                        logo_perusahaan: response.data[0].logo_perusahaan ?? '-',
-                        profil_perusahaan: response.data[0].profil_perusahaan ?? '-',
-                        alamat: response.data[0].alamat ?? '-',
-                        kota: response.data[0].kota ?? '-',
-                        provinsi: response.data[0].provinsi ?? '-',
-                  });
-                  setExistingLogo(response.data[0].logo_perusahaan);
+                  console.log("🚀 ~ fetchSomeDetailData ~ response:", response)
+                  if (Array.isArray(response.data) && response.data.length > 0) {
+                        setFormData({
+                              id_perusahaan: idPerusahaan,
+                              nama_perusahaan: response.data[0].nama_perusahaan ?? '-',
+                              logo_perusahaan: response.data[0].logo_perusahaan ?? '-',
+                              profil_perusahaan: response.data[0].profil_perusahaan ?? '-',
+                              alamat: response.data[0].alamat ?? '-',
+                              kota: response.data[0].kota ?? '-',
+                              provinsi: response.data[0].provinsi ?? '-',
+                        });
+                        setUrl(response.data[0].logo_perusahaan ?? '-');
+                        console.log("🚀 ~ fetchSomeDetailData ~ response.data[0].logo_perusahaan:", response.data[0].logo_perusahaan)
+                  } else {
+                        // Handle case when response.data is not an array or is empty
+                  }
             } catch (error) {
                   Swal.fire({
                         title: "Error!",
@@ -184,7 +204,6 @@ function AdminDashboard() {
                               const response = await axios.put(
                                     `https://goship-apii.vercel.app/api/perusahaan/${formData.id_perusahaan}/update`, formData
                               );
-                              console.log("🚀 ~ handleAddOrUpdate ~ response:", response)
 
                               if (response.status === 200) {
 
@@ -214,6 +233,7 @@ function AdminDashboard() {
       };
 
       const handleEdit = (company) => {
+            console.log("🚀 ~ handleEdit ~ company:", company)
             fetchSomeDetailData(company.id_perusahaan);
             setEditMode(true);
             setViewMode(false);
@@ -222,6 +242,7 @@ function AdminDashboard() {
       };
 
       const handleView = (company) => {
+            console.log("🚀 ~ handleView ~ company:", company)
             fetchSomeDetailData(company.id_perusahaan);
             setEditMode(false);
             setViewMode(true);
@@ -248,12 +269,13 @@ function AdminDashboard() {
             setFormData({
                   id_perusahaan: "",
                   nama_perusahaan: "",
-                  //         logo_perusahaan: "",
+                  logo_perusahaan: "",
                   profil_perusahaan: "",
                   alamat: "",
                   kota: "",
                   provinsi: "",
             });
+            setUrl('')
             setEditMode(false);
             setViewMode(false);
             setFormVisible(false);
@@ -415,8 +437,8 @@ function AdminDashboard() {
                                                                   </label>
                                                                   <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                                         <div className="space-y-1 text-center">
-                                                                              {existingLogo && (
-                                                                                    <img src={existingLogo} alt="Existing Logo" className="mx-auto h-12 w-12" />
+                                                                              {url && (
+                                                                                    <img src={url} alt="Existing Logo" className="mx-auto h-12 w-12" />
                                                                               )}
                                                                               <svg
                                                                                     className="mx-auto h-12 w-12 text-gray-400"
@@ -451,21 +473,7 @@ function AdminDashboard() {
                                                                                     PNG, JPG, GIF up to 10MB
                                                                               </p>
                                                                         </div>
-
                                                                   </div>
-                                                                  <button
-                                                                        onClick={uploadImage}
-                                                                        className="rounded-sm px-3 py-1 bg-blue-700 hover:bg-blue-500 text-white focus:shadow-outline focus:outline-none disabled:cursor-not-allowed"
-                                                                        disabled={!image}
-                                                                  >
-                                                                        Upload now
-                                                                  </button>
-                                                                  <button
-                                                                        onClick={handleResetImageClick}
-                                                                        className="rounded-sm px-3 py-1 bg-red-700 hover:bg-red-500 text-white focus:shadow-outline focus:outline-none"
-                                                                  >
-                                                                        Reset
-                                                                  </button>
                                                             </div>
                                                             <div>
                                                                   <label
