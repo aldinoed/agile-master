@@ -146,8 +146,8 @@ class Guide extends StatelessWidget {
                                 '   a. Reguler\n'
                                 '   b. IISMA via UP2AI Bu Lely dan KUI Pak\n'
                                 '       Iwan Syarif\n'
-                                '   c. IGIP via UP2AI Bu Lely dan KUI Pak Iwan\n'
-                                '       Syarif',
+                                '   c. IGIP via UP2AI Bu Lely dan KUI Pak\n'
+                                '       Iwan Syarif',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -163,11 +163,12 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '   Jika Anda berada dalam kelompok yang\n'
-                                '   terdiri dari maksimal 3 orang, isi Formulir\n'
-                                '   Pengajuan KP di MIS Online (Jika dalam\n'
-                                '   kelompok, maka hanya perwakilan yang\n'
-                                '   akan mengisinya)',
+                                '   Jika Anda berada dalam kelompok\n'
+                                '   yang terdiri dari maksimal 3 orang,\n'
+                                '   isi Formulir Pengajuan KP di MIS\n'
+                                '   Online (Jika dalam kelompok, maka\n'
+                                '   hanya perwakilan yang akan\n' 
+                                '   mengisinya)',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -183,15 +184,15 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '   a. Membuat Surat Pengantar (nomor surat,\n'
-                                '      dan peruntukan KDAEP yang akan diurus\n'
-                                '      melalui Bu Pipid)\n'
+                                '   a. Membuat Surat Pengantar (nomor\n'
+                                '      surat, dan peruntukan KDAEP yang\n'
+                                '      akan diurus melalui Bu Pipid)\n'
                                 '   b. Membuat surat ucapan terima kasih\n'
                                 '      setelah diterima (nomor surat dan\n'
-                                '      peruntukan KDAEP untuk dikelola melalui\n'
-                                '      Bu Pipid)\n'
-                                '   c. Perpisahan dengan Supervisor sebelum\n'
-                                '      berangkat ke KP',
+                                '      peruntukan KDAEP untuk dikelola\n'
+                                '      melalui Bu Pipid)\n'
+                                '   c. Perpisahan dengan Supervisor\n'
+                                '      sebelum berangkat ke KP',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -216,9 +217,10 @@ class Guide extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '   File yang diisi adalah progres buku KP, foto\n'
-                                '   yang diupload bisa berupa kegiatan sehari-\n'
-                                '   hari di perusahaan (foto bebas)',
+                                '   File yang diisi adalah progres buku KP,\n' 
+                                '   foto yang diupload bisa berupa\n' 
+                                '   kegiatan sehari-hari di perusahaan\n' 
+                                '   (foto bebas)',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -238,9 +240,10 @@ class Guide extends StatelessWidget {
                                 '   b. Buku KP\n'
                                 '   c. Presentasi KP (Indonesia)\n'
                                 '   d. Maju dalam Bentuk Kelompok\n'
-                                '   e. Mengumpulkan Nilai dari Perusahaan\n'
-                                '   f. Mengumpulkan Rekening Bank Mandiri\n'
-                                '      (dana KP)',
+                                '   e. Mengumpulkan Nilai dari\n'
+                                '      Perusahaan\n'
+                                '   f. Mengumpulkan Rekening Bank\n' 
+                                '      Mandiri(dana KP)',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,

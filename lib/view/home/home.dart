@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/model/perusahaan.dart';
+import 'package:flutter_project/view/guide/guide.dart';
+import 'dart:math';
 import 'package:flutter_project/model/story.dart';
 import 'package:flutter_project/view/list/page_detail_mahasiswa.dart';
+import 'package:flutter_project/view/main_screen/main_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_project/widget/dialog_error.dart';
 
@@ -25,7 +29,6 @@ class _HomePageState extends State<HomePage> {
 void initState() {
   super.initState();
   _loadStories().timeout(const Duration(seconds: 5)).then((stories) {
-    print(stories);
     setState(() {
       this.stories = stories;
     });
@@ -100,6 +103,8 @@ Future<List<Story>> _loadStories() async {
               children: [
                 CarouselSlider(
                   options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
                     height: 130,
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
