@@ -14,6 +14,14 @@ let storage = require('../storage')
 const LoginPage = () => {
       let refreshToken = Cookies.get('refresh_token');
       const navigate = useNavigate();
+      const isAdmin = localStorage.getItem('isAdmin');
+      const checkSession = () => {
+            if (refreshToken && isAdmin) {
+                  navigate('/admin');
+            } else if (refreshToken) {
+                  navigate('/')
+            }
+      }
 
       const handleUserClick = () => {
             navigate("/forgot-password-user");
@@ -31,9 +39,7 @@ const LoginPage = () => {
       });
 
       useEffect(() => {
-            if (refreshToken) {
-                  navigate('/');
-            }
+            checkSession();
       }, [refreshToken, navigate]);
 
       const [isUserHovered, setIsUserHovered] = useState(false);
@@ -60,7 +66,7 @@ const LoginPage = () => {
                   password: password
             }
             try {
-                  const response = await axios.post('https://goship-apii.vercel.app/auth/login', credential);
+                  const response = await axios.post('http://localhost:5000/auth/login', credential);
                   Cookies.set('refresh_token', response.data.token, { expires: 10 / (24 * 60) });
 
                   if (response.data.user.is_first_auth === 1) {
@@ -111,16 +117,15 @@ const LoginPage = () => {
                         localStorage.setItem('id', response.data.user.id_siswa);
                         localStorage.setItem('nama', response.data.user.nama_siswa);
                         localStorage.setItem('nrp', response.data.user.nrp);
-                        localStorage.setItem('is_admin', response.data.user.is_admin);
+                        localStorage.setItem('isAdmin', response.data.user.is_admin);
                         const authorizationKey = {
                               user: response.data.user,
                               token: response.data.token
                         }
-                        const isAdmin = localStorage.getItem('is_admin');
-                        if (isAdmin) {
+                        if (response.data.user.is_admin === 1) {
                               navigate('/admin', { state: authorizationKey });
                         }
-                        navigate('/student-profile', { state: authorizationKey });
+                        else { navigate('/student-profile', { state: authorizationKey }); }
                   }
             } catch (error) {
                   Swal.fire({

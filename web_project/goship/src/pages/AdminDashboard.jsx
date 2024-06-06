@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../assets/AdminDashboard.css";
 import "../assets/AdminDashboard.css";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { logo1 } from "../assets"; // Hanya impor yang digunakan
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +11,17 @@ import CardEditSuccess from "../components/editsukses";
 import CardEditError from "../components/editfailed";
 import CardAddSuccess from "../components/addsuccess";
 import CardAddFailed from "../components/addfailed";
+import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 
 function AdminDashboard() {
+      const navigate = useNavigate();
+      let cookie = Cookies.get('refresh_token');
+      let isAdmin = localStorage.getItem('isAdmin');
+
+      if ((cookie && !isAdmin) || !cookie) {
+            navigate('/');
+      }
       const [companies, setCompanies] = useState([]);
       const [formData, setFormData] = useState({
             id_perusahaan: "",
@@ -21,11 +31,11 @@ function AdminDashboard() {
             alamat: "",
             kota: "",
             provinsi: "",
-      });
+      })
+      const [formMode, setFormMode] = useState(""); // "add", "edit", "view"
       const [editMode, setEditMode] = useState(false);
       const [viewMode, setViewMode] = useState(false);
       const [formVisible, setFormVisible] = useState(false);
-      const [formMode, setFormMode] = useState(""); // "add", "edit", "view"
       const [sortOrder, setSortOrder] = useState("asc");
       const [existingLogo, setExistingLogo] = useState("");
       const [showEditSuccess, setShowEditSuccess] = useState(false);
@@ -57,9 +67,7 @@ function AdminDashboard() {
                         }
                   );
                   const res = await response.json();
-                  setUrl(res.secureUrl);
-                  setFormData({ ...formData, [logo_perusahaan]: res.url });
-                  console.log("🚀 ~ uploadImage ~ res:", formData)
+                  setUrl(res.secure_url);
 
                   setLoading(false);
             } catch (error) {
@@ -68,7 +76,10 @@ function AdminDashboard() {
       };
 
       useEffect(() => {
-            console.log(url)
+            if (url !== '' || url !== null) {
+                  setFormData({ ...formData, logo_perusahaan: url });
+                  console.log(formData);
+            }
       }, [url])
 
       const handleImageChange = (event) => {
@@ -107,7 +118,7 @@ function AdminDashboard() {
       const fetchSomeDetailData = async (idPerusahaan) => {
             try {
                   const response = await axios.get(
-                        "https://goship-apii.vercel.app/api/perusahaan/" + idPerusahaan
+                        "http://localhost:5000/api/perusahaan/" + idPerusahaan
                   );
                   setFormData({
                         id_perusahaan: idPerusahaan,
@@ -155,7 +166,7 @@ function AdminDashboard() {
             try {
                   if (editMode) {
                         await axios.put(
-                              `https://goship-apii.vercel.app/api/perusahaan/${formData.id_perusahaan}/update`,
+                              `http://localhost:5000/api/perusahaan/${formData.id_perusahaan}/update`,
                               data,
                               {
                                     headers: { "Content-Type": "multipart/form-data" },
@@ -165,7 +176,7 @@ function AdminDashboard() {
                         setShowEditSuccess(true);
                   } else {
                         await axios.post(
-                              "https://goship-apii.vercel.app/api/perusahaan",
+                              "http://localhost:5000/api/perusahaan",
                               data,
                               {
                                     headers: { "Content-Type": "multipart/form-data" },
@@ -203,7 +214,7 @@ function AdminDashboard() {
 
       const handleDelete = async (id) => {
             try {
-                  await axios.delete(`https://goship-apii.vercel.app/api/perusahaan/${id}`);
+                  await axios.delete(`http://localhost:5000/api/perusahaan/${id}`);
                   fetchCompanies();
             } catch (error) {
                   console.error("Error deleting company:", error);
@@ -239,8 +250,9 @@ function AdminDashboard() {
       };
 
       const handleLogout = () => {
-            localStorage.removeItem("userToken");
-            window.location.href = "/login";
+            localStorage.clear();
+            Cookies.remove('refresh_token')
+            navigate("/login");
       };
 
       const handleAdd = () => {

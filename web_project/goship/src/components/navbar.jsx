@@ -47,7 +47,7 @@ const Navbar = (user) => {
                                           className={`font-poppins font-normal cursor-pointer text-[16px] ${active === nav.title ? "text-orange" : "text-dimblack"} ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
                                           onClick={() => setActive(nav.title)}
                                     >
-                                          <a href={`#${nav.id}`}>{nav.title}</a>
+                                          <a href={`/#${nav.id}`}>{nav.title}</a>
                                     </li>
                               ))}
                               <div className="sm:px-10 px-5 sm:py-3">

@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 import { createRoot } from 'react-dom/client';
 import CardSuccesEdit from "../components/handle_notif/notif_succes_edit"
 import CardFailedEdit from "../components/handle_notif/notif_failed_edit"
-// import {  } from "react-router-dom";
 
 const Profilemaba = (loggedUser) => {
       const [showInstruction, setShowInstruction] = useState(false);
@@ -42,7 +41,7 @@ const Profilemaba = (loggedUser) => {
 
       async function fetchData() {
             try {
-                  const response = await axios.get('https://goship-apii.vercel.app/api/user/' + id);
+                  const response = await axios.get('http://localhost:5000/api/user/' + id);
                   setJenisKelamin(response.data[0].jenis_kelamin)
                   setFullName(response.data[0].nama_siswa)
                   setNrp(response.data[0].nrp)
@@ -111,7 +110,7 @@ const Profilemaba = (loggedUser) => {
                   id: id
             }
             try {
-                  const response = await axios.post(`https://goship-apii.vercel.app/api/user-profile/update`, data);
+                  const response = await axios.post(`http://localhost:5000/api/user-profile/update`, data);
                   if (response.status === 200) {
                         Swal.fire({
                               html: '<div class="loading-spinner"></div>', // Tambahkan spinner ke dalam konten
@@ -205,7 +204,7 @@ const Profilemaba = (loggedUser) => {
       return (
             <div className='w-full max-w-full m-0 p-0'>
                   <div className="pb-16">
-                        <Navbar user={userFullName}/>
+                        <Navbar user={userFullName} />
                   </div>
                   <div className="flex md:flex-row xs:flex-col md:px-6 xs:px-2 items-start">
                         <div className='flex flex-col sm:flex-row md:flex-col w-full items-center md:max-w-80 min-w-10'>
