@@ -103,6 +103,8 @@ Future<List<Story>> _loadStories() async {
               children: [
                 CarouselSlider(
                   options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
                     height: 130,
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
