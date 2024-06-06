@@ -18,10 +18,7 @@ const DetailMahasiswa = () => {
       let refreshToken = Cookies.get("refresh_token");
 
       useEffect(() => {
-            if (!refreshToken) {
-                  localStorage.clear();
-                  navigate("/");
-            } else if (refreshToken) {
+            if (refreshToken) {
                   let isAdmin = localStorage.getItem('isAdmin');
                   if (isAdmin == 1) {
                         navigate('/admin')

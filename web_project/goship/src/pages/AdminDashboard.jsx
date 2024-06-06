@@ -123,12 +123,12 @@ function AdminDashboard() {
                   );
                   setFormData({
                         id_perusahaan: idPerusahaan,
-                        nama_perusahaan: response.data[0].nama_perusahaan,
-                        logo_perusahaan: response.data[0].logo_perusahaan,
-                        profil_perusahaan: response.data[0].profil_perusahaan,
-                        alamat: response.data[0].alamat,
-                        kota: response.data[0].kota,
-                        provinsi: response.data[0].provinsi,
+                        nama_perusahaan: response.data[0].nama_perusahaan ?? '-',
+                        logo_perusahaan: response.data[0].logo_perusahaan ?? '-',
+                        profil_perusahaan: response.data[0].profil_perusahaan ?? '-',
+                        alamat: response.data[0].alamat ?? '-',
+                        kota: response.data[0].kota ?? '-',
+                        provinsi: response.data[0].provinsi ?? '-',
                   });
                   setExistingLogo(response.data[0].logo_perusahaan);
             } catch (error) {
