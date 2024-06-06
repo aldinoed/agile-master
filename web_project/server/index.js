@@ -132,7 +132,7 @@ app.get('/api/data', async (req, res) => {
 app.get("/api/perusahaan", async (req, res) => {
       try {
             const sql =
-                  "SELECT * FROM perusahaan;";
+                  "SELECT * FROM perusahaan where is_disabled = 0;";
             const hasilQuery = await executeQuery(sql);
             res.json(hasilQuery);
       } catch (err) {
