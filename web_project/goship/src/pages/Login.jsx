@@ -46,6 +46,7 @@ const LoginPage = () => {
 
       const [nrp, setnrp] = useState('');
       const [password, setPassword] = useState('');
+      const [isSubmitting, setIsSubmitting] = useState(false);
       const [formDataAdmin, setFormDataAdmin] = useState({
             email: "",
             password: "",
@@ -73,6 +74,7 @@ const LoginPage = () => {
 
       const handleSubmit = async (e) => {
             e.preventDefault();
+            setIsSubmitting(true);
 
             const credential = {
                   nrp: nrp,
@@ -312,6 +314,8 @@ const LoginPage = () => {
                                                       type="submit"
                                                       className="bg-orange-500 text-white font-bold py-2 px-4 rounded mb-1"
                                                       style={{ backgroundColor: "#F77D00" }}
+                                                      disabled={isSubmitting}
+
                                                 >
                                                       Masuk
                                                 </button>

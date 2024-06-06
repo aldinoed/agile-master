@@ -13,14 +13,14 @@ const ButtonExperience = () => {
       let refreshToken = Cookies.get("refresh_token");
       const navigate = useNavigate();
 
-      useEffect(async () => {
+      useEffect(() => {
             // Mengambil data dari API
-            await fetch(`https://goship-apii.vercel.app/api/user/${id}`)
-                  .then(response => response.json())
-                  .then(data => setData(data[0]));
       }, [id]);
 
       const handleClick = () => {
+            fetch(`https://goship-apii.vercel.app/api/user/${id}`)
+                  .then(response => response.json())
+                  .then(data => setData(data[0]));
             if (!refreshToken) {
                   localStorage.clear();
                   navigate("/login");

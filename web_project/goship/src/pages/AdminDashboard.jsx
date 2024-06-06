@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 import CardDelete from "../components/handle_notif/notif_delete";
 
 function AdminDashboard() {
+      let refreshToken = Cookies.get('refresh_token')
       document.addEventListener('contextmenu', event => event.preventDefault());
       // useEffect(() => {
       //       const handleKeyDown = (event) => {
@@ -114,6 +115,17 @@ function AdminDashboard() {
       }, [url])
 
       const handleImageChange = (event) => {
+            if (!refreshToken || localStorage.getItem('nama') == null || localStorage.getItem('id') == null || localStorage.getItem('nrp') == null) {
+                  Swal.fire({
+                        title: 'Oops!',
+                        text: 'Sesi kamu habis',
+                        icon: "warning",
+
+                  })
+                  localStorage.clear()
+
+                  navigate('/login');
+            }
             const file = event.target.files[0];
             setImage(file);
 
@@ -179,6 +191,17 @@ function AdminDashboard() {
       };
 
       const handleInputChange = (e) => {
+            if (!refreshToken || localStorage.getItem('nama') == null || localStorage.getItem('id') == null || localStorage.getItem('nrp') == null) {
+                  Swal.fire({
+                        title: 'Oops!',
+                        text: 'Sesi kamu habis',
+                        icon: "warning",
+
+                  })
+                  localStorage.clear()
+
+                  navigate('/login');
+            }
             const { name, value } = e.target;
             setFormData({ ...formData, [name]: value });
       };
@@ -196,6 +219,17 @@ function AdminDashboard() {
 
       const handleAddOrUpdate = async (e) => {
             e.preventDefault();
+            if (!refreshToken || localStorage.getItem('nama') == null || localStorage.getItem('id') == null || localStorage.getItem('nrp') == null) {
+                  Swal.fire({
+                        title: 'Oops!',
+                        text: 'Sesi kamu habis',
+                        icon: "warning",
+
+                  })
+                  localStorage.clear()
+
+                  navigate('/login');
+            }
             // const data = new FormData();
 
             // Append each key-value pair from formData to FormData instance
