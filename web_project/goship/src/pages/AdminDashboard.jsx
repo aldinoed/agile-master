@@ -123,7 +123,7 @@ function AdminDashboard() {
                   setFormData({
                         id_perusahaan: idPerusahaan,
                         nama_perusahaan: response.data[0].nama_perusahaan,
-                        //    logo_perusahaan: response.data[0].logo_perusahaan,
+                        logo_perusahaan: response.data[0].logo_perusahaan,
                         profil_perusahaan: response.data[0].profil_perusahaan,
                         alamat: response.data[0].alamat,
                         kota: response.data[0].kota,
@@ -176,11 +176,8 @@ function AdminDashboard() {
                         setShowEditSuccess(true);
                   } else {
                         await axios.post(
-                              "http://localhost:5000/api/perusahaan",
-                              data,
-                              {
-                                    headers: { "Content-Type": "multipart/form-data" },
-                              }
+                              "http://localhost:5000/api/perusahaan/create",
+                              formData
                         );
                         setShowAddSuccess(true);
                   }
@@ -214,8 +211,14 @@ function AdminDashboard() {
 
       const handleDelete = async (id) => {
             try {
-                  await axios.delete(`http://localhost:5000/api/perusahaan/${id}`);
-                  fetchCompanies();
+                  const response = await axios.put(`http://localhost:5000/api/perusahaan/${id}/delete`);
+                  // fetchCompanies();
+                  if (response.status === 200) {
+                        const newListCompanies = companies.filter((item) => item.id_perusahaan !== id);
+                        setCompanies(newListCompanies);
+                  } else {
+                        // INI ERROR MESSAGE
+                  }
             } catch (error) {
                   console.error("Error deleting company:", error);
             }
@@ -308,7 +311,7 @@ function AdminDashboard() {
                                                 <div className="flex detail">
                                                       <div className="company-logo-container">
                                                             <img
-                                                                  //src={company.logo_perusahaan}
+                                                                  src={company.logo_perusahaan}
                                                                   alt={company.nama_perusahaan}
                                                                   className="company-logo"
                                                             />

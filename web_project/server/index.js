@@ -258,32 +258,18 @@ app.get('/api/perusahaan/:id', async (req, res) => {
       }
 });
 
-app.post('/api/perusahaan/create', parser.single('logo_perusahaan'), async (req, res) => {
+app.post('/api/perusahaan/create', async (req, res) => {
       try {
-            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
+            const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi, logo_perusahaan } = req.body;
 
-            // Mengupload gambar ke Cloudinary
-            const uploadResponse = await cloudinary.uploader.upload(req.file.path);
-            const logo_perusahaan = uploadResponse.secure_url;
-
-            const sql = `
-            UPDATE perusahaan SET 
-                nama_perusahaan = ?, 
-                profil_perusahaan = ?, 
-                alamat = ?,  
-                kota = ?,  
-                provinsi = ?,  
-                logo_perusahaan = ?
-            WHERE id_perusahaan = ?`;
-
+            const sql = `INSERT INTO perusahaan (nama_perusahaan, profil_perusahaan, alamat, kota, provinsi, logo_perusahaan) VALUES (?,?,?,?,?,?);`;
             const response = await executeQuery(sql, [
                   nama_perusahaan,
                   profil_perusahaan,
                   alamat,
                   kota,
                   provinsi,
-                  logo_perusahaan,
-                  id_perusahaan
+                  logo_perusahaan
             ]);
             console.log("🚀 ~ app.post ~ response:", response);
 
@@ -303,16 +289,17 @@ app.post('/api/perusahaan/create', parser.single('logo_perusahaan'), async (req,
             res.status(500).send(err);
       }
 });
-app.put('/api/perusahaan/:id/update', parser.single('logo_perusahaan'), async (req, res) => {
+app.put('/api/perusahaan/:id/update', async (req, res) => {
       console.log(req.body);
       console.log(req.file);
+      const { id } = req.params;
       try {
             const id_perusahaan = req.params.id;
             const { nama_perusahaan, profil_perusahaan, alamat, kota, provinsi } = req.body;
 
-            const uploadResult = await cloudinary.uploader.upload((req.file.path)).then(result => console.log(result)).catch((error) => { console.log(error) });
+            // const uploadResult = await cloudinary.uploader.upload((req.file.path)).then(result => console.log(result)).catch((error) => { console.log(error) });
 
-            console.log(uploadResult);
+            // console.log(uploadResult);
             // const imageBuffer = req.file.buffer;
             // const uploadToCloudinary = (imageBuffer) => {
             //       return new Promise((resolve, reject) => {
@@ -350,8 +337,8 @@ app.put('/api/perusahaan/:id/update', parser.single('logo_perusahaan'), async (r
                   alamat,
                   kota,
                   provinsi,
-                  imageUrl,
-                  id_perusahaan
+                  // logo_perusahaan,
+                  id
             ]);
             console.log("🚀 ~ app.put ~ response:", response);
 
@@ -447,7 +434,7 @@ app.post("/api/users/insert-user", async (req, res) => {
                   bodyReq.nrp,
             ]);
 
-            res.status(200).json({
+            response.status(200).json({
                   status: true,
                   message: "Insert Data Successfully",
             });
@@ -471,6 +458,22 @@ app.post("/api/users/delete/:id", async (req, res) => {
             res.status(500).send(error.message);
       }
 });
+
+app.put('/api/perusahaan/:id/delete', async (req, res) => {
+      const id = req.params.id;
+      try {
+            const query = `UPDATE perusahaan SET is_disabled=1 WHERE id_perusahaan='${id}';`;
+            const response = await executeQuery(query);
+            console.log("🚀 ~ app.put ~ response:", response)
+            if (response.affectedRows > 0) {
+                  res.status(200).json({ status: true, message: "Berhasil hapus data perusahaan " });
+            } else {
+                  res.status(403).json({ status: false, message: "Gagal hapus data perusahaan " });
+            }
+      } catch (error) {
+            res.status(500).send(error.message);
+      }
+})
 
 app.put("/api/users/:id/update", async (req, res) => {
       const { id } = req.params;
@@ -530,16 +533,6 @@ app.post("/api/user-profile/update", async (req, res) => {
             res.status(500).send(error.message);
       }
 });
-
-// app.post('/login', (req,res)=>{
-//     const nrp = req.params.nrp;
-//     const password = req.params.password;
-//     try{
-
-//     }catch(error){
-
-//     }
-// })
 
 app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
