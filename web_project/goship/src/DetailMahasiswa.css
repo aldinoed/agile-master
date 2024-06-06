@@ -6,13 +6,13 @@
 
 .profile-header {
   position: relative;
-  border-radius: 24px;
+  /* border-radius: 24px;  */
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 1507px;
+  /* max-width: 1507px; */
   font-family: "DM Sans";
   /* margin-top: 50px; */
   padding-bottom: 100px;
@@ -27,7 +27,8 @@
   background-position: center;
   box-shadow: #666;
   display: flex;
-  border-radius: 24px;
+  border-bottom-right-radius: 24px;
+  border-bottom-left-radius: 24px;
   align-items: center;
   justify-content: center;
 }
@@ -85,7 +86,7 @@
 
 .profile-footer {
   width: 100%;
-  max-width: 1507px;
+  /* max-width: 1507px; */
   background: #ffffff;
   color: #000000;
   padding: 20px;
@@ -100,7 +101,7 @@
 
 .profile-footer-detail {
   width: 100%;
-  max-width: 1252px;
+  /* max-width: 1252px; */
   font-family: "DM Sans", sans-serif;
   font-weight: lighter;
   padding-left: 20px;
@@ -127,7 +128,7 @@
   min-height: auto;  /* Disesuaikan */
   max-height: fit-content;
   width: 100%;
-  max-width: 1507px; /* Disesuaikan untuk responsif */
+  /* max-width: 1507px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -209,7 +210,7 @@
   margin: 20px 0;
   font-family: "DM Sans";
   width: 100%;
-  max-width: 1507px;
+  /* max-width: 1507px; */
   display: grid;
   align-items: center;
   justify-content: start;
