@@ -41,7 +41,7 @@ class _ListInternState extends State<Listintern> {
   }
 
   Future<void> _trackPageOpen(int id) async {
-    await (TrackerService()).track("page-detail-perusahaan-open", {"id_perusahaan": id.toString()}, withDeviceInfo: false);
+    await (TrackerService()).track("page-detail-perusahaan-open", {}, content: {"id_perusahaan": id.toString()}, withDeviceInfo: false);
   }
 
   Future<void> _fetchData(var id) async {

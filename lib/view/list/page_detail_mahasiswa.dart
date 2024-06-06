@@ -46,7 +46,7 @@ class _PageDetailMahasiswaState extends State<PageDetailMahasiswa> {
   }
 
   Future<void> _trackPageOpen(int id) async {
-    await (TrackerService()).track("page-detail-mahasiswa-open", {"id_siswa": id.toString()}, withDeviceInfo: false);
+    await (TrackerService()).track("page-detail-mahasiswa-open", {}, content: {"id_siswa": id.toString()}, withDeviceInfo: false);
   }
 
   String truncateEmail(String email) {
