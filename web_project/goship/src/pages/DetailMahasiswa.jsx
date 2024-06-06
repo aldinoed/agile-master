@@ -16,7 +16,20 @@ const DetailMahasiswa = () => {
       const [error, setError] = useState("");
       const navigate = useNavigate();
       let refreshToken = Cookies.get("refresh_token");
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       useEffect(() => {
             if (!refreshToken) {
                   localStorage.clear();
@@ -52,9 +65,9 @@ const DetailMahasiswa = () => {
       return (
             <div className="m-0 p-0 w-full h-full">
                   {/* <div className="w-full bg-orange-gradient-navbar"> */}
-                        <div className={`top-0`}>
-                                    <Navbar />
-                        </div>
+                  <div className={`top-0`}>
+                        <Navbar />
+                  </div>
                   {/* </div> */}
 
                   {/* Profile Header */}

@@ -9,7 +9,20 @@ const ButtonExperience = () => {
       const id = localStorage.getItem('id');
       const [userInput, setUserInput] = useState(null)
       const [showForm, setShowForm] = useState(false);
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       useEffect(() => {
             // Mengambil data dari API
             fetch(`https://goship-apii.vercel.app/api/user/${id}`)

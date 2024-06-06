@@ -8,7 +8,20 @@ import Cookies from "js-cookie";
 const Profilemagang = () => {
       const navigate = useNavigate();
       let refreshToken = Cookies.get("refresh_token");
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       useEffect(() => {
             if (!refreshToken) {
                   localStorage.clear();

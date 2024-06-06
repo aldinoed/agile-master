@@ -1,61 +1,53 @@
-<<<<<<< HEAD
-import {
-    logo1,
-    failed
-  } from "../assets";
-  import React, {  } from "react";
-  
-  const CardFailed = ({ onClose }) => {
-    // State dan logika lainnya di sini...
-  
-    return (
-      <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 overflow-auto py-3 ">
-        <div className="bg-white py-6 px-10 rounded-lg shadow-md max-w-full max-h-full overflow-y-auto overflow-y-scroll no-scrollbar"
-        style={{ width: '800px', height: '500px' }}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <img src={logo1} alt="Goship Logo" className="h-10 w-auto mr-4" />
-              <div className="border-l-2 border-black pl-4">
-                <h2 className="text-lg font-semibold">Notifikasi Gagal</h2>
-              </div>
-=======
 import { logo1, failed } from "../assets";
 import React from "react";
 
 const CardFailed = ({ onClose }) => {
-  return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 py-3">
-      <div className="bg-white py-6 px-4 sm:px-6 md:px-10 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center flex-wrap">
-            <img src={logo1} alt="Goship Logo" className="h-8 w-auto mr-2 sm:mr-4" />
-            <div className="border-l-2 border-black pl-2 sm:pl-4">
-              <h2 className="text-base sm:text-lg font-semibold">Notification Failed</h2>
->>>>>>> 512787e6409ad807a14b3845000083c91d52676c
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 focus:outline-none border-2 border-black rounded-md p-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
+      return (
+            <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50 py-3">
+                  <div className="bg-white py-6 px-4 sm:px-6 md:px-10 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4">
+                        <div className="flex items-center justify-between mb-4">
+                              <div className="flex items-center flex-wrap">
+                                    <img src={logo1} alt="Goship Logo" className="h-8 w-auto mr-2 sm:mr-4" />
+                                    <div className="border-l-2 border-black pl-2 sm:pl-4">
+                                          <h2 className="text-base sm:text-lg font-semibold">Notification Failed</h2>
+                                    </div>
+                              </div>
+                              <button
+                                    onClick={onClose}
+                                    className="text-gray-500 hover:text-gray-700 focus:outline-none border-2 border-black rounded-md p-1"
+                              >
+                                    <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          className="h-6 w-6"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                          stroke="currentColor"
+                                    >
+                                          <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M6 18L18 6M6 6l12 12"
+                                          />
+                                    </svg>
 <<<<<<< HEAD
               
-            </button>
-          </div>
+            </button >
+          </div >
   
          
   
@@ -91,9 +83,9 @@ const CardFailed = ({ onClose }) => {
           </p>
           <p className="font-normal text-sm sm:text-base">Please, try do it again!</p>
 >>>>>>> 512787e6409ad807a14b3845000083c91d52676c
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 };
 

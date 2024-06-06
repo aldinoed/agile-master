@@ -16,13 +16,19 @@ import Cookies from "js-cookie";
 
 function AdminDashboard() {
       document.addEventListener('contextmenu', event => event.preventDefault());
-      $(document).keyup(function (evtobj) {
-            if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)) {
-                  if (evtobj.keyCode == 16) { return false; }
-                  if (evtobj.keyCode == 17) { return false; }
-                  $("body").append(evtobj.keyCode + " ");
-            }
-      });
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       const navigate = useNavigate();
       let cookie = Cookies.get('refresh_token');
       let isAdmin = localStorage.getItem('isAdmin');

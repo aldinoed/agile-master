@@ -16,7 +16,20 @@ const ForgotPasswordUserPage = () => {
       const [user, setUser] = useState(null);
       const [password, setPassword] = useState('');
       const [confirmpassword, setConfirmPassword] = useState('');
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       useEffect(() => {
             setUser(localStorage.getItem('nrp'));
       }, []);

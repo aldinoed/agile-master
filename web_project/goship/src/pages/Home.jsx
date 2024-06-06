@@ -24,7 +24,20 @@ const Home = () => {
       const [user, setUser] = useState(null);
       const [loginState, setLoginState] = useState(false);
       const [showMore, setShowMore] = useState(false);
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       useEffect(() => {
             if (!refreshToken) {
                   localStorage.clear();

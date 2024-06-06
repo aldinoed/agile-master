@@ -22,7 +22,20 @@ const CardForm = ({ onClose }) => {
                   .then(data => setPerusahaanData(data))
                   .catch(error => console.error('Error fetching data:', error));
       }, []);
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       let refreshToken = Cookies.get('refresh_token')
       const [id, setId] = useState('');
 

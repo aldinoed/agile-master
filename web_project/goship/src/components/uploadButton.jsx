@@ -1,6 +1,20 @@
 import { useState } from "react"
 
 const UploadButton = (props) => {
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       const [image, _setImage] = useState();
       const inputFileRef = useState();
       const cleanUp = () => {

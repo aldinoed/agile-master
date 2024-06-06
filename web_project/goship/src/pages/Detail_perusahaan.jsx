@@ -12,6 +12,20 @@ import { Link } from 'react-router-dom';
 const RevealOnScroll = ({ children }) => {
       const [isVisible, setIsVisible] = useState(false);
       const ref = useRef(null);
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
 
       useEffect(() => {
             const scrollObserver = new IntersectionObserver(([entry]) => {

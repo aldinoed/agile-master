@@ -10,6 +10,20 @@ const Navbar = (user) => {
       const [active, setActive] = useState("Home");
       const [iniNavbar, setIniNavbar] = useState(false);
       const loggedUser = user.user;
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
 
       const scrollHeader = () => {
             console.log(window.scrollY);
