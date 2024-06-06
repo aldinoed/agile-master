@@ -3,7 +3,7 @@ import {
       announcement
 } from "../assets";
 import React, { } from "react";
-
+import { useEffect, useState } from "react";
 const CardNotif = ({ onClose }) => {
       document.addEventListener('contextmenu', event => event.preventDefault());
       useEffect(() => {

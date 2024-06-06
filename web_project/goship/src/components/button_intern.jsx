@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from "react";
 
 const ButtonIntern = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());

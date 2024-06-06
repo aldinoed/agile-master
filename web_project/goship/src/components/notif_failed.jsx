@@ -44,49 +44,26 @@ const CardFailed = ({ onClose }) => {
                                                 d="M6 18L18 6M6 6l12 12"
                                           />
                                     </svg>
-<<<<<<< HEAD
-              
-            </button >
-          </div >
-  
-         
-  
-          <div className="mt-4 flex items-center justify-center">
-            <img
-              src={failed} // Ganti yourImageHere dengan sumber gambar Anda
-              alt="Sorry, at this time you cannot add data"
-              style={{ width: "325px", height: "300px" }}
-            />
-          </div>
-  
-          <div className="text-center mt-4">
-            <p className="text-black">Maaf, Anda  {" "}
-            <span style={{ color: '#F77D00'}}>gagal menyimpan data </span>
-            </p>
-            <p className="font-normal"> Tolong, coba lakukan lagi !</p>
-          </div>
-=======
-          </button>
-        </div>
+                              </button>
+                        </div>
 
-        <div className="mt-4 flex items-center justify-center">
-          <img
-            src={failed}
-            alt="Failed"
-            className="w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px]"
-          />
-        </div>
+                        <div className="mt-4 flex items-center justify-center">
+                              <img
+                                    src={failed}
+                                    alt="Failed"
+                                    className="w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px]"
+                              />
+                        </div>
 
-        <div className="text-center mt-4">
-          <p className="text-black text-sm sm:text-base">
-            Sorry, you <span className="text-orange-500">failed to save the data</span>
-          </p>
-          <p className="font-normal text-sm sm:text-base">Please, try do it again!</p>
->>>>>>> 512787e6409ad807a14b3845000083c91d52676c
-        </div >
-      </div >
-    </div >
-  );
+                        <div className="text-center mt-4">
+                              <p className="text-black text-sm sm:text-base">
+                                    Sorry, you <span className="text-orange-500">failed to save the data</span>
+                              </p>
+                              <p className="font-normal text-sm sm:text-base">Please, try do it again!</p>
+                        </div >
+                  </div >
+            </div >
+      );
 };
 
 export default CardFailed;

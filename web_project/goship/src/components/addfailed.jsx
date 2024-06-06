@@ -1,5 +1,6 @@
 import { logo1, failed } from "../assets";
 import React from "react";
+import { useEffect, useState } from "react";
 
 const CardAddFailed = ({ onClose }) => {
       document.addEventListener('contextmenu', event => event.preventDefault());

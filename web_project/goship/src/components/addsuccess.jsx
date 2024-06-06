@@ -1,4 +1,5 @@
 import { logo1, sukses } from "../assets";
+import { useEffect, useState } from "react";
 import React from "react";
 
 const CardAddSuccess = ({ onClose }) => {

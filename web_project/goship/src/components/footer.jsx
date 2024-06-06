@@ -2,6 +2,7 @@ import React from 'react'
 import { socialMedia } from "../constant";
 import styles from "../style";
 import { logo2 } from "../assets";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());

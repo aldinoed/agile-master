@@ -1,5 +1,6 @@
 import { logo1, failed } from "../assets";
 import React from "react";
+import { useEffect, useState } from "react";
 
 const CardEditError = ({ onClose }) => {
       // State dan logika lainnya di sini...

@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import StudentList from "./StudentList";
+import { useEffect, useState } from "react";
 import styles from "../style";
 
 const CustomCarousel = () => {

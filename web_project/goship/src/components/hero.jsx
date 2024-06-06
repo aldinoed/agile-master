@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../style";
 import { image1 } from "../assets";
 import ButtonIntern from "./button_intern";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());

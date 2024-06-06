@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../style";
 import { image2, bg } from "../assets";
 import ButtonExperience from "./button_experience";
+import { useEffect, useState } from "react";
 
 const AddExperience = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());

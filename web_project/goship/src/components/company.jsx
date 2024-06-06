@@ -1,5 +1,6 @@
 import React from "react";
 import CardCompany from "./card_company";
+import { useEffect, useState } from "react";
 
 const Perusahaan = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());

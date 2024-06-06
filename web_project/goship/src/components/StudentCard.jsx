@@ -1,6 +1,7 @@
 import React from "react";
 import male from '../assets/male.png';
 import female from '../assets/female.png';
+import { useEffect, useState } from "react";
 
 const StudentCard = ({ post }) => {
       let image = post.jenis_kelamin === 'Laki-laki' ? male : female;

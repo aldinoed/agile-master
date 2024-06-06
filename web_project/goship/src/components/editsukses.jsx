@@ -1,5 +1,6 @@
 import { logo1, sukses } from "../assets";
 import React from "react";
+import { useEffect, useState } from "react";
 
 const CardEditSuccess = ({ onClose }) => {
       // State dan logika lainnya di sini...
