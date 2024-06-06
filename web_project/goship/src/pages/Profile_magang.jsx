@@ -11,7 +11,7 @@ const Profilemagang = () => {
       document.addEventListener('contextmenu', event => event.preventDefault());
       useEffect(() => {
             const handleKeyDown = (event) => {
-                  if (event.ctrlKey || event.shiftKey) {
+                  if (event.ctrlKey) {
                         event.preventDefault();
                   }
             };
