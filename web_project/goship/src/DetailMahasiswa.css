@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 1507px;
   font-family: "DM Sans";
-  margin-top: 50px;
+  /* margin-top: 50px; */
   padding-bottom: 100px;
   overflow: hidden;
 }
@@ -50,7 +50,7 @@
   flex-direction: column;
   text-align: start;
   justify-self: center;
-  margin-right: 80px;
+  /* margin-right: 80px; */
   font-size: 24px;
   font-weight: normal;
   margin-left: 150px;
@@ -140,7 +140,8 @@
   font-family: "DM Sans";
   text-align: start;
   margin-bottom: 50px;
-  margin-left: 250px;
+  padding-left: 20px;
+  /* margin-left: 250px; */
   /* align-items: center; */
 }
 
@@ -217,8 +218,9 @@
 
 .internship-requirements-detail {
   width: 100%;
-  max-width: 1218px;
-  margin-left: 130px;
+  max-width: 100%;
+  padding-left: 20px;
+  /* margin-left: 130px; */
 }
 
 .internship-requirements h2 {

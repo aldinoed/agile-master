@@ -50,14 +50,12 @@ const DetailMahasiswa = () => {
       }
       const image = profileData.jenis_kelamin === 'Laki-laki' ? male : female;
       return (
-            <>
-                  <div className="w-full bg-orange-gradient-navbar">
-                        <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-                              <div className={`${styles.boxWidth}`}>
+            <div className="m-0 p-0 w-full h-full">
+                  {/* <div className="w-full bg-orange-gradient-navbar"> */}
+                        <div className={`top-0`}>
                                     <Navbar />
-                              </div>
                         </div>
-                  </div>
+                  {/* </div> */}
 
                   {/* Profile Header */}
                   <div className="profile-header flex flex-col md:flex-row items-center">
@@ -145,23 +143,17 @@ const DetailMahasiswa = () => {
 
                   {/* Internship Requirements */}
                   <div className="internship-requirements">
-                        <div className="internship-requirements-detail">
+                        <div className="internship-requirements-detail details pb-6">
                               <h2>
                                     Persyaratan <span style={{ color: "#F77D00" }}>Magang</span>
                               </h2>
-                              <ul>
-                                    <li>Menguasai skill Javascript, CSS.</li>
-                                    <li>Lebih disukai: vuejs, nuxtjs, reactjs, nextjs.</li>
-                                    <li>Mengikuti standar coding yang baik;</li>
-                                    <li>Menambahkan komentar pada kode untuk memudahkan pemahaman;</li>
-                                    <li>Menulis kode yang mudah diuji.</li>
-                              </ul>
+                              <p className="ms-2">{profileData.syarat_magang}</p>
                         </div>
                   </div>
 
                   {/* Profile Footer */}
                   <div className="profile-footer">
-                        <div className="profile-footer-detail">
+                        <div className="profile-footer-detail details pb-6">
                               <h2>Cerita Saya</h2>
                               <div className="history-date">
                                     <span>
@@ -179,7 +171,7 @@ const DetailMahasiswa = () => {
                               <Footer />
                         </div>
                   </div>
-            </>
+            </div>
       );
 };
 
