@@ -2,9 +2,23 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import StudentList from "./StudentList";
 import styles from "../style";
+import React, { useEffect } from 'react';
 
 const CustomCarousel = () => {
-      console.log('')
+      document.addEventListener('contextmenu', event => event.preventDefault());
+      useEffect(() => {
+            const handleKeyDown = (event) => {
+                  if (event.ctrlKey || event.shiftKey) {
+                        event.preventDefault();
+                  }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                  document.removeEventListener('keydown', handleKeyDown);
+            };
+      }, []);
       return (
             <>
                   <section id="Our_story" className={`flex flex-col md:flex-row`}>
