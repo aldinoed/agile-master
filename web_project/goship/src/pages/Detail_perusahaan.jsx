@@ -94,11 +94,12 @@ const Detailperusahaan = () => {
 
             async function fetchData() {
                   const data = await axios.get('https://goship-apii.vercel.app/api/perusahaan/' + id)
-                  setCompanyName(data.data[0].nama_perusahaan)
-                  setAddress(data.data[0].alamat)
-                  setImage(data.data[0].logo_perusahaan)
-                  setPosisi(data.data[0].posisi)
-                  setProfil(data.data[0].profil_perusahaan)
+                  console.log("🚀 ~ fetchData ~ data:", data)
+                  setCompanyName(data.data[0].nama_perusahaan ?? '-');
+                  setAddress(data.data[0].alamat ?? '-');
+                  setImage(data.data[0].logo_perusahaan ?? '-');
+                  setPosisi(data.data[0].posisi ?? '-');
+                  setProfil(data.data[0].profil_perusahaan ?? '-');
             }
             fetchData()
 
@@ -142,7 +143,7 @@ const Detailperusahaan = () => {
                                                                   </div>
                                                             </div>
                                                             <div className="flex flex-row justify-between items-center w-full font-libre">
-                                                                  <img src={req} className='px-3 pr-14' alt="" />
+                                                                  <div><i className="fas fa-building"></i></div>
                                                                   <h1 className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[35.8px] py-2">
                                                                         Tentang Perusahaan<br className="sm:block hidden" />{" "}
                                                                         <span className=" font-sans text-[20px] ss:text-[30px]">

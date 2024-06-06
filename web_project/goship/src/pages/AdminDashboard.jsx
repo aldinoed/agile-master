@@ -15,6 +15,7 @@ import Cookie from "js-cookie";
 import Cookies from "js-cookie";
 
 function AdminDashboard() {
+      document.addEventListener('contextmenu', event => event.preventDefault());
       const navigate = useNavigate();
       let cookie = Cookies.get('refresh_token');
       let isAdmin = localStorage.getItem('isAdmin');
