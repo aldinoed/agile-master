@@ -109,7 +109,7 @@ const Home = () => {
                         </div>
                   </div>
 
-                  <div className="relative px-4 md:px-8 lg:px-16 xl:px-24 -mt-60 max-h-60 xs:mb-56 sm:mb-0">
+                  <div className="relative px-4 md:px-8 lg:px-16 xl:px-24">
                         <div className={`${styles.boxWidth}`}>
                               {/* Bagian Perusahaan */}
                               <div className="object-top">

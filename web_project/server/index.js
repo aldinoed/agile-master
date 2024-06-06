@@ -60,7 +60,7 @@ app.get('/tes', async (req, res) => {
 
 app.get('/api/data', async (req, res) => {
       try {
-            const sql = "SELECT p.id_perusahaan, p.nama_perusahaan, p.logo_perusahaan, COUNT(m.siswa_id) AS jumlah_siswa, po.id_posisi, po.nama_posisi, GROUP_CONCAT(DISTINCT s.prodi) AS prodi, s.semester FROM perusahaan p LEFT JOIN posisi po ON p.id_perusahaan = po.perusahaan_id INNER JOIN magang m ON po.id_posisi = m.posisi_id LEFT JOIN siswa s ON m.siswa_id = s.id_siswa GROUP BY p.id_perusahaan, po.id_posisi;"
+            const sql = "SELECT p.id_perusahaan, p.nama_perusahaan, p.logo_perusahaan, COUNT(m.siswa_id) AS jumlah_siswa, po.id_posisi, po.nama_posisi, GROUP_CONCAT(DISTINCT s.prodi) AS prodi, s.semester FROM perusahaan p LEFT JOIN posisi po ON p.id_perusahaan = po.perusahaan_id INNER JOIN magang m ON po.id_posisi = m.posisi_id LEFT JOIN siswa s ON m.siswa_id = s.id_siswa GROUP BY p.id_perusahaan, po.nama_posisi;"
             const hasilQuery = await executeQuery(sql);
 
             const companiesData = {};
@@ -142,7 +142,7 @@ app.get("/api/major-data", async (req, res) => {
 app.get("/api/perusahaan", async (req, res) => {
       try {
             const sql =
-                  "SELECT pr.nama_perusahaan, pr.id_perusahaan, pr.profil_perusahaan, pr.logo_perusahaan, p.id_posisi, p.nama_posisi, COUNT(m.id_magang) AS jumlah_siswa FROM posisi p JOIN magang m ON p.id_posisi = m.posisi_id JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan GROUP BY p.id_posisi;";
+                  "SELECT pr.nama_perusahaan, pr.id_perusahaan, pr.profil_perusahaan, pr.logo_perusahaan, p.id_posisi, p.nama_posisi, COUNT(m.id_magang) AS jumlah_siswa FROM posisi p JOIN magang m ON p.id_posisi = m.posisi_id JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan GROUP BY p.nama_posisi;";
             const hasilQuery = await executeQuery(sql);
             console.log(hasilQuery);
             const formatData = (datas) => {
@@ -196,7 +196,7 @@ app.get('/api/perusahaan/:id', async (req, res) => {
             JOIN perusahaan pr ON p.perusahaan_id = pr.id_perusahaan 
             JOIN siswa s ON m.siswa_id = s.id_siswa 
             WHERE pr.id_perusahaan = ${id_perusahaan} 
-            GROUP BY p.id_posisi, s.id_siswa;`;
+            GROUP BY p.nama_posisi, s.id_siswa;`;
             const hasilQuery = await executeQuery(sql);
 
             // Mengubah format data
