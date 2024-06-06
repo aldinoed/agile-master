@@ -28,7 +28,7 @@ const Navbar = (user) => {
       }, []);
 
       return (
-            <div className={`py-2 fixed z-10 w-full transition duration-300 ${isOpen ? 'bg-orange-gradient-navbar' : iniNavbar ? 'bg-transparent backdrop-blur-lg' : 'bg-transparent'}`}>
+            <div className={`py-2 fixed z-[1000] w-full transition duration-300 ${isOpen ? 'bg-orange-gradient-navbar' : iniNavbar ? 'bg-transparent backdrop-blur-lg' : 'bg-transparent'}`}>
                   <nav className="px-6 sm:px-16 w-full flex justify-between items-center navbar">
                         <img src={logo1} alt="Goship" className="xs:w-[130px] sm:w-[150px] h-[40px]" />
 
