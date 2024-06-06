@@ -20,7 +20,7 @@ const DetailMahasiswa = () => {
       useEffect(() => {
             if (!refreshToken) {
                   localStorage.clear();
-                  navigate("/");
+                  navigate("/login");
             } else if (refreshToken) {
                   let isAdmin = localStorage.getItem('isAdmin');
                   if (isAdmin == 1) {
@@ -31,7 +31,7 @@ const DetailMahasiswa = () => {
 
       useEffect(() => {
             axios
-                  .get("https://goship-apii.vercel.app/api/user/" + id)
+                  .get("http://localhost:5000/api/user/" + id)
                   .then((response) => {
                         if (response.data && response.data.length > 0) {
                               setProfileData(response.data[0]); // Menyimpan data pertama dari array ke state
