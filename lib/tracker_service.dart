@@ -54,11 +54,13 @@ class TrackerService {
 
   // FUNCTION LIST ======================
   Future<Map> getUser() async {
+  
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userId = prefs.getString('userId');
     // create new uuid for user jika pertama kali
-    if (userId == '') {
-      prefs.setString('userId', const Uuid().v4());
+    if (userId == '' || userId == null) {
+      var myUuid = const Uuid().v4();
+      prefs.setString('userId',myUuid );
     }
 
     return {
