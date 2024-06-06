@@ -1,7 +1,7 @@
 import {
       logo1,
       profile,
-      location,
+      jenis,
       card,
       calendar,
       star,
@@ -319,7 +319,7 @@ const CardForm = ({ onClose }) => {
 
                                           <div className="sm:col-span-3">
                                                 <div className="input-group flex inline-block border items-center justify-center border-1 rounded-md">
-                                                      <img src={location} alt="bag" className="input-icon m-3" />
+                                                      <img src={jenis} alt="bag" className="input-icon m-3 size-6" />
                                                       <input
                                                             type="text"
                                                             name="Jenis Magang"
