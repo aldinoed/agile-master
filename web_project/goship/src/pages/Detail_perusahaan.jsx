@@ -134,11 +134,11 @@ const Detailperusahaan = () => {
                               </div>
                               <div ref={ref} className={`transition-opacity ease-in duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>
                                     <div className={``} style={{ backgroundImage: `url(${bg})` }}>
-                                          <section id="about" className=" flex flex-col md:flex-row ">
+                                          <section id="about" className=" flex flex-col md:flex-row items-center">
                                                 <div className={` flex-col py-8 px-4 md:py-28 md:px-16 `}>
                                                       <div className={`  ${styles.flexCenter} md:my-0 my-10 relative`}>
                                                             <div className='bg-white border rounded-lg shadow '>
-                                                                  <img style={{ boxShadow: 'rgb(38, 57, 77) 0px 20px 30px -10px' }} src={image} alt="billing" className=" object-contain border rounded-lg w-72  z-[5]" />
+                                                                  <img style={{ boxShadow: 'rgb(38, 57, 77) 0px 20px 30px -10px' }} src={image} alt="billing" className=" object-contain border rounded-lg max-w-72 z-[5]" />
                                                             </div>
                                                       </div>
                                                 </div>
@@ -152,17 +152,19 @@ const Detailperusahaan = () => {
                                                             <div className="flex flex-row justify-between items-center w-full  font-libre">
                                                                   <div><i className="fas fa-building fa-3x pl-3 pr-12"></i></div>
                                                                   <h1 className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[35.8px] py-2">
-                                                                        Tentang Perusahaan<br className="sm:block hidden" />{" "}
-                                                                        <span className=" font-sans text-[20px] ss:text-[30px]">
+                                                                        Tentang Perusahaan<br className="sm:block" />{" "}
+                                                                        <p className='text-justify '>
+                                                                        <span className="font-sans text-[20px] ss:text-[30px]">
                                                                               {profil ?? '- '}
                                                                         </span>{" "}
+                                                                        </p>
                                                                   </h1>
                                                             </div>
                                                             <div className="flex flex-row justify-between items-center w-full py-2 font-libre">
                                                                   <img src={gps} className='pr-10' alt="" />
                                                                   <div className="text-dimBlack flex-1 font-semibold text-[20px] ss:text-[30px] text-black ss:leading-[25.8px]">
-                                                                        Lokasi<br className="sm:block hidden ]" />{" "}
-                                                                        <p className="font-sans max-w-[800px] text-[20px] ss:text-[30px] py-2 ">{address}</p>{" "}
+                                                                        Lokasi<br className="sm:block ]" />{" "}
+                                                                        <p className="text-justify font-sans max-w-[800px] text-[20px] ss:text-[30px] py-2 ">{address}</p>{" "}
                                                                   </div>
                                                             </div>
 
